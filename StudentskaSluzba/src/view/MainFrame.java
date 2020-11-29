@@ -27,6 +27,10 @@ public class MainFrame extends JFrame {
 		this.add(panel);
 		validate();
 		
+		MyMenuBar menuBar = new MyMenuBar();
+		setJMenuBar(menuBar);
+		validate();
+		
 	}
 
 }
