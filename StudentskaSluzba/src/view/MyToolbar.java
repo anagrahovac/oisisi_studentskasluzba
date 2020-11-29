@@ -21,7 +21,7 @@ public class MyToolbar extends JToolBar {
 				//(255, 255, 255); //bela
 		setBackground(c);
 		setBorder(BorderFactory.createLineBorder(new Color(255,255,255)));
-		Dimension btnDim = new Dimension(35, 35);
+		Dimension btnDim = new Dimension(30, 30);
 		
 		
 		//panel sa alatima iz toolbara
@@ -60,7 +60,7 @@ public class MyToolbar extends JToolBar {
 		panSearch.setBackground(c);
 		
 		JTextField searchBox = new JTextField();
-		searchBox.setPreferredSize(new Dimension(400, 35));
+		searchBox.setPreferredSize(new Dimension(400, 30));
 		panSearch.add(searchBox);
 		
 		JButton btnSearch = new JButton();
