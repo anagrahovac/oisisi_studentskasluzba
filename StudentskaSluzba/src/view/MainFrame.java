@@ -35,6 +35,10 @@ public class MainFrame extends JFrame {
 		MyToolbar toolbar = new MyToolbar();
 		this.add(toolbar, BorderLayout.NORTH);
 		validate();
+		
+		MyStatusBar statusBar = new MyStatusBar();
+		getContentPane().add(statusBar, BorderLayout.SOUTH);
+		validate();
 	}
 
 }
