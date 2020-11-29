@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -31,6 +32,9 @@ public class MainFrame extends JFrame {
 		setJMenuBar(menuBar);
 		validate();
 		
+		MyToolbar toolbar = new MyToolbar();
+		this.add(toolbar, BorderLayout.NORTH);
+		validate();
 	}
 
 }
