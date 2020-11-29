@@ -2,20 +2,27 @@ package view;
 
 import javax.swing.JMenuBar;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 //import javax.swing.ImageIcon;
 
+import java.awt.Color;
 
 public class MyMenuBar extends JMenuBar{
 
 	public MyMenuBar() {
 		setVisible(true);
+		
+		Color c = new Color(245, 245, 245); //svetlo siva
+		//(255, 255, 255); //bela
+		setBackground(c);
 		
 		JMenu menuFile = new JMenu("File");
 		JMenu menuEdit = new JMenu("Edit"); 
@@ -52,6 +59,21 @@ public class MyMenuBar extends JMenuBar{
 		add(menuFile);
 		add(menuEdit);
 		add(menuHelp);
+		
+		setBorder(BorderFactory.createLineBorder(new Color(255,255,255)));
+		 
+		Font f = new Font("Dialog", Font.PLAIN, 15);
+ 
+		menuFile.setFont(f);
+		menuEdit.setFont(f);
+		menuHelp.setFont(f);
+ 
+		menuFileNew.setFont(f);
+		menuEditEdit.setFont(f);
+		menuHelpHelp.setFont(f);
+		menuFileClose.setFont(f);
+		menuEditDelete.setFont(f);
+		menuHelpAbout.setFont(f);
 
 	}
 }
