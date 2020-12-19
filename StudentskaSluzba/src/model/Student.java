@@ -5,21 +5,36 @@ import java.util.ArrayList;
 enum Status{B,S};	
 
 public class Student {
-	protected String prezimeStudenta;
-	protected String imeStudenta;
-	protected String datumRodjenja;
-	protected String adresaStanovanja;
-	protected String kontaktTelefon;
-	protected String emailAdresa;
-	protected String brojIndexa;
-	protected int godinaUpisa;
-	protected int trenutnaGodinaStudija;
-	protected Status status;
-	protected double prosecnaocena;
-	//protected ArrayList<Ocena> spisakPolozenihIspita;
-	//protected ArrayList<Ocena> spisakNepolozenihIspita;
+	private String prezimeStudenta;
+	private String imeStudenta;
+	private String datumRodjenja;
+	private String adresaStanovanja;
+	private String kontaktTelefon;
+	private String emailAdresa;
+	private String brojIndexa;
+	private int godinaUpisa;
+	private int trenutnaGodinaStudija;
+	private Status status;
+	private double prosecnaocena;
+	private ArrayList<Ocena> spisakPolozenihIspita;
+	private ArrayList<Ocena> spisakNepolozenihIspita;
 	
-	public Student() {}
+	public Student() {
+		super();
+		this.prezimeStudenta = null;
+		this.imeStudenta = null;
+		this.datumRodjenja = null;
+		this.adresaStanovanja = null;
+		this.kontaktTelefon = null;
+		this.emailAdresa = null;
+		this.brojIndexa = null;
+		this.godinaUpisa = 0;
+		this.trenutnaGodinaStudija = 0;
+		this.status = null;
+		this.prosecnaocena = 0;
+		this.spisakPolozenihIspita = new ArrayList<Ocena>();
+		this.spisakNepolozenihIspita = new ArrayList<Ocena>();
+	}
 
 	public Student(String prezimeStudenta, String imeStudenta, String datumRodjenja, String adresaStanovanja,
 			String kontaktTelefon, String emailAdresa, String brojIndexa, int godinaUpisa, int trenutnaGodinaStudija,
@@ -36,15 +51,8 @@ public class Student {
 		this.trenutnaGodinaStudija = trenutnaGodinaStudija;
 		this.status = status;
 		this.prosecnaocena = prosecnaocena;
-	}
-
-	@Override
-	public String toString() {
-		return "Student [prezimeStudenta=" + prezimeStudenta + ", imeStudenta=" + imeStudenta + ", datumRodjenja="
-				+ datumRodjenja + ", adresaStanovanja=" + adresaStanovanja + ", kontaktTelefon=" + kontaktTelefon
-				+ ", emailAdresa=" + emailAdresa + ", brojIndexa=" + brojIndexa + ", godinaUpisa=" + godinaUpisa
-				+ ", trenutnaGodinaStudija=" + trenutnaGodinaStudija + ", status=" + status + ", prosecnaocena="
-				+ prosecnaocena + "]";
+		this.spisakPolozenihIspita = new ArrayList<Ocena>();
+		this.spisakNepolozenihIspita = new ArrayList<Ocena>();
 	}
 
 	public String getPrezimeStudenta() {
