@@ -16,7 +16,7 @@ public class Profesor {
 	private String brojLicneKarte;
 	private Titula titula;
 	private Zvanje zvanje;
-	//private ArrayList<Predmet> spisakPredmeta;
+	private ArrayList<Predmet> spisakPredmeta;
 	
 	public Profesor() {
 		super();
@@ -30,7 +30,7 @@ public class Profesor {
 		this.brojLicneKarte = null;
 		this.titula = null;
 		this.zvanje = null;
-		//this.spisakPredmeta = new ArrayList<Predmet>();
+		this.spisakPredmeta = new ArrayList<Predmet>();
 	}
 	
 	public Profesor(String prezime, String ime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
@@ -46,7 +46,7 @@ public class Profesor {
 		this.brojLicneKarte = brojLicneKarte;
 		this.titula = titula;
 		this.zvanje = zvanje;
-		//this.spisakPredmeta = new ArrayList<Predmet>();
+		this.spisakPredmeta = new ArrayList<Predmet>();
 	}
 
 	public String getPrezime() {
@@ -128,5 +128,34 @@ public class Profesor {
 	public void setZvanje(Zvanje zvanje) {
 		this.zvanje = zvanje;
 	}
+	
+	
+	public boolean dodajPoloziliPredmet(Predmet p) {
+		for(int i = 0; i < spisakPredmeta.size(); i++) {
+			if ((spisakPredmeta.get(i)).getSifraPredmeta() == p.getSifraPredmeta()) {
+				return false;
+			}
+		}
+		return spisakPredmeta.add(p);
+	}
+	//**************ODLUCI SE ZA JEDAN**************
+	public boolean izbaciPoloziliPredmet(Predmet p) {
+		for(int i = 0; i < spisakPredmeta.size(); i++) {
+			if ((spisakPredmeta.get(i).getSifraPredmeta()) == p.getSifraPredmeta()) {
+				return spisakPredmeta.remove(p);
+			}
+		}
+		return false;
+	}
+	public Predmet izbaciIndeksPoloziliPredmet(String sifra) {
+		for(int i = 0; i < spisakPredmeta.size(); i++) {
+			if ((spisakPredmeta.get(i)).getSifraPredmeta() == sifra) {
+				spisakPredmeta.remove(spisakPredmeta.get(i));
+				return spisakPredmeta.get(i);
+			}
+		}
+		return null;
+	}
+	
 	
 }
