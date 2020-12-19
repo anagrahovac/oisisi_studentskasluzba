@@ -3,10 +3,12 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 public class MainFrame extends JFrame {
 	
@@ -25,9 +27,7 @@ public class MainFrame extends JFrame {
 		setVisible(true);
 
 		Color c = new Color(255, 255, 255);
-		JPanel panel = new JPanel();
-		panel.setBackground(c);
-		this.add(panel);
+		this.getContentPane().setBackground(c);
 		validate();
 		
 		MyMenuBar menuBar = new MyMenuBar();
@@ -41,6 +41,23 @@ public class MainFrame extends JFrame {
 		MyStatusBar statusBar = new MyStatusBar();
 		getContentPane().add(statusBar, BorderLayout.SOUTH);
 		validate();
+		
+		JTabbedPane tabbedPane = new JTabbedPane();
+		tabbedPane.setBackground(c);
+		Font f = new Font("Dialog", Font.PLAIN, 15);
+		tabbedPane.setFont(f);
+		JPanel studentiTab = new JPanel();
+		studentiTab.setBackground(c);
+		tabbedPane.addTab("Studenti", null, studentiTab, "Tabela sa studentima");
+		JPanel profesoriTab = new JPanel();
+		profesoriTab.setBackground(c);
+		tabbedPane.addTab("Profesori", null, profesoriTab, "Tabela sa profesorima");
+		JPanel predmetiTab = new JPanel();
+		predmetiTab.setBackground(c);
+		tabbedPane.addTab("Predmeti", null, predmetiTab, "Tabela sa predmetima");
+		this.add(tabbedPane, BorderLayout.CENTER);
+		validate();
+		
 	}
 
 	public static MainFrame getInstance(){
