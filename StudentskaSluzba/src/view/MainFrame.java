@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 
 public class MainFrame extends JFrame {
 	
+	private static MainFrame instance  = null;
+	
 	public MainFrame() {
 		
 		Toolkit kit = Toolkit.getDefaultToolkit();
@@ -41,4 +43,10 @@ public class MainFrame extends JFrame {
 		validate();
 	}
 
+	public static MainFrame getInstance(){
+		if(instance == null) {
+			instance = new MainFrame();
+		}
+		return instance;
+	}
 }
