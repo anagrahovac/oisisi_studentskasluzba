@@ -33,19 +33,25 @@ public class MyMenuBar extends JMenuBar{
 		menuHelp.setMnemonic(KeyEvent.VK_H);
 		
 		JMenuItem menuFileNew = new JMenuItem("New", new ImageIcon("menubar_images/new.png"));
-		menuFileNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.ALT_MASK));		
+		menuFileNew.setMnemonic(KeyEvent.VK_N);
+		menuFileNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_MASK));		
 		JMenuItem menuFileClose = new JMenuItem("Close", new ImageIcon("menubar_images/close.png"));
-		menuFileClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.ALT_MASK));
+		menuFileClose.setMnemonic(KeyEvent.VK_C);
+		menuFileClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_MASK));
 		
 		JMenuItem menuEditEdit = new JMenuItem("Edit",new ImageIcon("menubar_images/edit.png"));
-		menuEditEdit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.ALT_MASK));
+		menuEditEdit.setMnemonic(KeyEvent.VK_S);
+		menuEditEdit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_MASK));
 		JMenuItem menuEditDelete = new JMenuItem("Delete",new ImageIcon("menubar_images/delete.png"));
-		menuEditDelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.ALT_MASK));
+		menuEditDelete.setMnemonic(KeyEvent.VK_D);
+		menuEditDelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_MASK));
 		
 		JMenuItem menuHelpHelp = new JMenuItem("Help",new ImageIcon("menubar_images/help.png"));
-		menuHelpHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.ALT_MASK));
+		menuHelpHelp.setMnemonic(KeyEvent.VK_B);
+		menuHelpHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, KeyEvent.CTRL_MASK));
 		JMenuItem menuHelpAbout = new JMenuItem("About",new ImageIcon("menubar_images/about.png"));
-		menuHelpAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.ALT_MASK));
+		menuHelpAbout.setMnemonic(KeyEvent.VK_A);
+		menuHelpAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, KeyEvent.CTRL_MASK));
 		
 		menuFile.add(menuFileNew);
 		menuFile.add(menuFileClose);
