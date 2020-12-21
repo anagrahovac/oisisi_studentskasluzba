@@ -45,13 +45,12 @@ public class MainFrame extends JFrame {
 		
 		//prikaz - tabovi i tabele
 		Font f = new Font("Dialog", Font.PLAIN, 14);
-		//Color headerColor = new Color(143, 180, 255);//blue
-		Color headerColor = new Color(211,199,233);	//light pastel purple
+		Color headerColor = new Color(143, 180, 255);   //blue
+		//Color headerColor = new Color(211,199,233);	//light pastel purple
 		
 		JTabbedPane tabbedPane = new JTabbedPane();
 		tabbedPane.setBackground(Color.WHITE);
 		tabbedPane.setFont(f);
-		//tabbedPane.setBackground(headerColor);
 		
 		TableStudenti studentiTable = new TableStudenti();
 		studentiTable.setFont(f);
