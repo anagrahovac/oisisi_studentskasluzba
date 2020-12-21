@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
+import view.TableStudenti;
+
 public class MainFrame extends JFrame {
 	
 	private static MainFrame instance  = null;
@@ -43,14 +45,20 @@ public class MainFrame extends JFrame {
 		
 		//prikaz - tabovi i tabele
 		Font f = new Font("Dialog", Font.PLAIN, 14);
-		Color headerColor = new Color(143, 180, 255);
+		//Color headerColor = new Color(143, 180, 255);//blue
+		Color headerColor = new Color(211,199,233);	//light pastel purple
 		
 		JTabbedPane tabbedPane = new JTabbedPane();
 		tabbedPane.setBackground(Color.WHITE);
 		tabbedPane.setFont(f);
+		//tabbedPane.setBackground(headerColor);
 		
-		//dodati tabelu studenti 
-		JScrollPane studentiTab = new JScrollPane();
+		TableStudenti studentiTable = new TableStudenti();
+		studentiTable.setFont(f);
+		studentiTable.setRowHeight(25);
+		studentiTable.getTableHeader().setBackground(headerColor);
+		studentiTable.getTableHeader().setPreferredSize(new Dimension(0, 25));
+		JScrollPane studentiTab = new JScrollPane(studentiTable);
 		studentiTab.getViewport().setBackground(Color.WHITE);
 		
 		TableProfesori profesoriTable = new TableProfesori();
