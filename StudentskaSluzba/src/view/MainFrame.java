@@ -68,8 +68,12 @@ public class MainFrame extends JFrame {
 		JScrollPane profesoriTab = new JScrollPane(profesoriTable);
 		profesoriTab.getViewport().setBackground(Color.WHITE);
 		
-		//dodati tabelu predmeti
-		JScrollPane predmetiTab = new JScrollPane();
+		TablePredmeti predmetiTable = new TablePredmeti();
+		predmetiTable.setFont(f);
+		predmetiTable.setRowHeight(25);
+		predmetiTable.getTableHeader().setBackground(headerColor);
+		predmetiTable.getTableHeader().setPreferredSize(new Dimension(0, 25));
+		JScrollPane predmetiTab = new JScrollPane(predmetiTable);
 		predmetiTab.getViewport().setBackground(Color.WHITE);
 		
 		tabbedPane.addTab("Studenti", null, studentiTab, "Tabela sa studentima");

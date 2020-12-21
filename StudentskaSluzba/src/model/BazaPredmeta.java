@@ -71,6 +71,8 @@ public class BazaPredmeta {
 			case 2:
 				return Integer.toString(predmet.getBrojBodova());
 			case 3:
+				return Integer.toString(predmet.getGodinaStudija());
+			case 4:
 				{
 					if (predmet.getSemestar() == Semestar.LETNJI)
 						return "Letnji";
@@ -78,8 +80,6 @@ public class BazaPredmeta {
 						return "Zimski";
 					return "";
 				}
-			case 4:
-				return Integer.toString(predmet.getGodinaStudija());
 			default:
 				return null;
 		}
