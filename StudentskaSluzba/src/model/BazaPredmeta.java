@@ -11,7 +11,7 @@ public class BazaPredmeta {
 	private BazaPredmeta() {
 		this.predmeti = new ArrayList<Predmet>();
 		this.kolone = new ArrayList<String>();
-		this.kolone.add("Sifra");
+		this.kolone.add("Šifra");
 		this.kolone.add("Naziv");
 		this.kolone.add("ESPB bodovi");
 		this.kolone.add("Godina studija");
@@ -27,7 +27,7 @@ public class BazaPredmeta {
 		Predmet p1, p2, p3;
 		p1 = new Predmet("P012", "Algebra", Semestar.ZIMSKI, 1, null, 9);
 		p2 = new Predmet("A805", "Objektno programiranje", Semestar.ZIMSKI, 2, null, 8);
-		p3 = new Predmet("K156", "Arhitektura racunara", Semestar.LETNJI, 1, null, 9);
+		p3 = new Predmet("K156", "Arhitektura računara", Semestar.LETNJI, 1, null, 9);
 		this.predmeti.add(p1);
 		this.predmeti.add(p2);
 		this.predmeti.add(p3);

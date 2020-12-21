@@ -61,7 +61,7 @@ public NoviProfesorDialog() {
         pPrezime.setBackground(c);
 
         JPanel pDatum = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel lblDatum = new JLabel("Datum rodjenja*");
+        JLabel lblDatum = new JLabel("Datum rođenja*");
         lblDatum.setPreferredSize(lblDim);
         JTextField txtDatum = new JTextField();
         txtDatum.setPreferredSize(txtDim);
@@ -111,7 +111,7 @@ public NoviProfesorDialog() {
         pAdresaKancelarija.setBackground(c);
         
         JPanel pID = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel lblID = new JLabel("Broj licne karte*");
+        JLabel lblID = new JLabel("Broj lične karte*");
         lblID.setPreferredSize(lblDim);
         JTextField txtID = new JTextField();
         txtID.setPreferredSize(txtDim);
@@ -173,7 +173,7 @@ public NoviProfesorDialog() {
         Dimension btnDim = new Dimension(100, 30);
         
         JButton btnPotvrdi = new JButton("Potvrdi");
-		btnPotvrdi.setToolTipText("Sacuvaj unete podatke");
+		btnPotvrdi.setToolTipText("Sačuvaj unete podatke");
 		btnPotvrdi.setPreferredSize(btnDim);
 		pBottom.add(btnPotvrdi);
 		pBottom.add(Box.createHorizontalStrut(10));

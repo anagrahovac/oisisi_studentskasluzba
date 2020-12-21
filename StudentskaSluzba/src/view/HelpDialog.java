@@ -41,7 +41,7 @@ public class HelpDialog extends JDialog{
 		background.setBackground(c);
 		this.add(background, BorderLayout.CENTER);
 		
-		JLabel lblHeader = new JLabel("Uputstvo za koriscenje aplikacije:");
+		JLabel lblHeader = new JLabel("Uputstvo za korišćenje aplikacije:");
 		lblHeader.setFont(f);
 		
 		JLabel koriscenje = new JLabel(); 

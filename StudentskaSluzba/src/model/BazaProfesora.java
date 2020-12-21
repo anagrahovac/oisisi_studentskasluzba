@@ -25,12 +25,12 @@ public class BazaProfesora {
 		//String prezime, String ime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
 		//String emailAdresa, String adresaKancelarije, String brojLicneKarte, Titula titula, Zvanje zvanje
 		Profesor p1, p2, p3;
-		p1 = new Profesor("Petrovic", "Pera", "10.08.1975.", "Leptirova 52, Novi Sad", "0635248789", "pera.petrovic@gmail.com",
+		p1 = new Profesor("Petrović", "Pera", "10.08.1975.", "Leptirova 52, Novi Sad", "0635248789", "pera.petrovic@gmail.com",
 				"Maksima Gorkog 56, Novi Sad", "008456251", Titula.DOKTOR, Zvanje.DOCENT);
-		p2 = new Profesor("Markovic", "Filip", "17.02.1954.", "Cara Lazara 78, Novi Sad", "0635248789", "filip_markovic@uns.acs.rs",
-				"Strazilovska 44, Novi Sad", "007543541", Titula.DOKTOR, Zvanje.REDOVNI_PROFESOR);
-		p3 = new Profesor("Vasiljevic", "Jovan", "25.03.1969.", "Kralja Petra I, Novi Sad", "0635248789", "jvasiljevic@uns.acs.rs",
-				"Strazilovska 46, Novi Sad", "008053452", Titula.DOKTOR, Zvanje.VANREDNI_PROFESOR);
+		p2 = new Profesor("Marković", "Filip", "17.02.1954.", "Cara Lazara 78, Novi Sad", "0635248789", "filip_markovic@uns.acs.rs",
+				"Stražilovska 44, Novi Sad", "007543541", Titula.DOKTOR, Zvanje.REDOVNI_PROFESOR);
+		p3 = new Profesor("Vasiljević", "Jovan", "25.03.1969.", "Kralja Petra I, Novi Sad", "0635248789", "jvasiljevic@uns.acs.rs",
+				"Stražilovska 46, Novi Sad", "008053452", Titula.DOKTOR, Zvanje.VANREDNI_PROFESOR);
 		this.profesori.add(p1);
 		this.profesori.add(p2);
 		this.profesori.add(p3);
@@ -82,9 +82,9 @@ public class BazaProfesora {
 				if (profesor.getZvanje() == Zvanje.DOCENT)
 					return "Docent";
 				if (profesor.getZvanje() == Zvanje.REDOVNI_PROFESOR)
-					return "Redovni Profesor";
+					return "Redovni profesor";
 				if (profesor.getZvanje() == Zvanje.VANREDNI_PROFESOR)
-					return "Vanredni Profesor";
+					return "Vanredni profesor";
 				return "";
 			}
 		default:
