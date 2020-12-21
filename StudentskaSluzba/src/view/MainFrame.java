@@ -30,7 +30,7 @@ public class MainFrame extends JFrame {
 		setVisible(true);
 		this.getContentPane().setBackground(Color.WHITE);
 		
-		MyMenuBar menuBar = new MyMenuBar();
+		MyMenuBar menuBar = new MyMenuBar(this);
 		setJMenuBar(menuBar);
 		validate();
 		

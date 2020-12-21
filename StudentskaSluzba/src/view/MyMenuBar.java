@@ -4,20 +4,25 @@ import javax.swing.JMenuBar;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 //import javax.swing.ImageIcon;
 
+import view.AboutDialog;
+import view.HelpDialog;
+
 import java.awt.Color;
 
 public class MyMenuBar extends JMenuBar{
 
-	public MyMenuBar() {
+	public MyMenuBar(final JFrame parent) {
 		setVisible(true);
 		
 		Color c = new Color(245, 245, 245); //svetlo siva
@@ -80,6 +85,25 @@ public class MyMenuBar extends JMenuBar{
 		menuFileClose.setFont(f);
 		menuEditDelete.setFont(f);
 		menuHelpAbout.setFont(f);
+		
+		menuHelpHelp.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				HelpDialog dialog = new HelpDialog(parent, "Help");
+				dialog.setVisible(true);
+			}
+		});
+		
+		menuHelpAbout.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				AboutDialog dialog = new AboutDialog(parent,"About");
+				dialog.setVisible(true);
+			}
+		});
 
 	}
 }
