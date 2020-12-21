@@ -40,14 +40,14 @@ public class MyMenuBar extends JMenuBar{
 		menuFileClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_MASK));
 		
 		JMenuItem menuEditEdit = new JMenuItem("Edit",new ImageIcon("menubar_images/edit.png"));
-		menuEditEdit.setMnemonic(KeyEvent.VK_S);
+		menuEditEdit.setMnemonic(KeyEvent.VK_T);
 		menuEditEdit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_MASK));
 		JMenuItem menuEditDelete = new JMenuItem("Delete",new ImageIcon("menubar_images/delete.png"));
 		menuEditDelete.setMnemonic(KeyEvent.VK_D);
 		menuEditDelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_MASK));
 		
 		JMenuItem menuHelpHelp = new JMenuItem("Help",new ImageIcon("menubar_images/help.png"));
-		menuHelpHelp.setMnemonic(KeyEvent.VK_B);
+		menuHelpHelp.setMnemonic(KeyEvent.VK_P);
 		menuHelpHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, KeyEvent.CTRL_MASK));
 		JMenuItem menuHelpAbout = new JMenuItem("About",new ImageIcon("menubar_images/about.png"));
 		menuHelpAbout.setMnemonic(KeyEvent.VK_A);

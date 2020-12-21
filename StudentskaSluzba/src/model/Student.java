@@ -12,10 +12,10 @@ public class Student {
 	private String kontaktTelefon;
 	private String emailAdresa;
 	private String brojIndexa;
-	private int godinaUpisa;
-	private int trenutnaGodinaStudija;
+	private String godinaUpisa;
+	private String trenutnaGodinaStudija;
 	private Status status;
-	private double prosecnaocena;
+	private String prosecnaocena;
 	private ArrayList<Ocena> spisakPolozenihIspita;
 	private ArrayList<Ocena> spisakNepolozenihIspita;
 	
@@ -28,17 +28,17 @@ public class Student {
 		this.kontaktTelefon = null;
 		this.emailAdresa = null;
 		this.brojIndexa = null;
-		this.godinaUpisa = 0;
-		this.trenutnaGodinaStudija = 0;
+		this.godinaUpisa = null;
+		this.trenutnaGodinaStudija = null;
 		this.status = null;
-		this.prosecnaocena = 0;
+		this.prosecnaocena = null;
 		this.spisakPolozenihIspita = new ArrayList<Ocena>();
 		this.spisakNepolozenihIspita = new ArrayList<Ocena>();
 	}
 
 	public Student(String prezimeStudenta, String imeStudenta, String datumRodjenja, String adresaStanovanja,
-			String kontaktTelefon, String emailAdresa, String brojIndexa, int godinaUpisa, int trenutnaGodinaStudija,
-			Status status, double prosecnaocena) {
+			String kontaktTelefon, String emailAdresa, String brojIndexa, String godinaUpisa, String trenutnaGodinaStudija,
+			Status status, String prosecnaocena) {
 		super();
 		this.prezimeStudenta = prezimeStudenta;
 		this.imeStudenta = imeStudenta;
@@ -111,19 +111,19 @@ public class Student {
 		this.brojIndexa = brojIndexa;
 	}
 
-	public int getGodinaUpisa() {
+	public String getGodinaUpisa() {
 		return godinaUpisa;
 	}
 
-	public void setGodinaUpisa(int godinaUpisa) {
+	public void setGodinaUpisa(String godinaUpisa) {
 		this.godinaUpisa = godinaUpisa;
 	}
 
-	public int getTrenutnaGodinaStudija() {
+	public String getTrenutnaGodinaStudija() {
 		return trenutnaGodinaStudija;
 	}
 
-	public void setTrenutnaGodinaStudija(int trenutnaGodinaStudija) {
+	public void setTrenutnaGodinaStudija(String trenutnaGodinaStudija) {
 		this.trenutnaGodinaStudija = trenutnaGodinaStudija;
 	}
 
@@ -135,11 +135,11 @@ public class Student {
 		this.status = status;
 	}
 
-	public double getProsecnaocena() {
+	public String getProsecnaocena() {
 		return prosecnaocena;
 	}
 
-	public void setProsecnaocena(double prosecnaocena) {
+	public void setProsecnaocena(String prosecnaocena) {
 		this.prosecnaocena = prosecnaocena;
 	}
 }
