@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 public class MainFrame extends JFrame {
@@ -25,10 +26,7 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);
-
-		Color c = new Color(255, 255, 255);
-		this.getContentPane().setBackground(c);
-		validate();
+		this.getContentPane().setBackground(Color.WHITE);
 		
 		MyMenuBar menuBar = new MyMenuBar();
 		setJMenuBar(menuBar);
@@ -39,21 +37,36 @@ public class MainFrame extends JFrame {
 		validate();
 		
 		MyStatusBar statusBar = new MyStatusBar();
-		getContentPane().add(statusBar, BorderLayout.SOUTH);
+		add(statusBar, BorderLayout.SOUTH);
 		validate();
 		
+		
+		//prikaz - tabovi i tabele
+		Font f = new Font("Dialog", Font.PLAIN, 14);
+		Color headerColor = new Color(143, 180, 255);
+		
 		JTabbedPane tabbedPane = new JTabbedPane();
-		tabbedPane.setBackground(c);
-		Font f = new Font("Dialog", Font.PLAIN, 15);
+		tabbedPane.setBackground(Color.WHITE);
 		tabbedPane.setFont(f);
-		JPanel studentiTab = new JPanel();
-		studentiTab.setBackground(c);
+		
+		//dodati tabelu studenti 
+		JScrollPane studentiTab = new JScrollPane();
+		studentiTab.getViewport().setBackground(Color.WHITE);
+		
+		TableProfesori profesoriTable = new TableProfesori();
+		profesoriTable.setFont(f);
+		profesoriTable.setRowHeight(25);
+		profesoriTable.getTableHeader().setBackground(headerColor);
+		profesoriTable.getTableHeader().setPreferredSize(new Dimension(0, 25));
+		JScrollPane profesoriTab = new JScrollPane(profesoriTable);
+		profesoriTab.getViewport().setBackground(Color.WHITE);
+		
+		//dodati tabelu predmeti
+		JScrollPane predmetiTab = new JScrollPane();
+		predmetiTab.getViewport().setBackground(Color.WHITE);
+		
 		tabbedPane.addTab("Studenti", null, studentiTab, "Tabela sa studentima");
-		JPanel profesoriTab = new JPanel();
-		profesoriTab.setBackground(c);
 		tabbedPane.addTab("Profesori", null, profesoriTab, "Tabela sa profesorima");
-		JPanel predmetiTab = new JPanel();
-		predmetiTab.setBackground(c);
 		tabbedPane.addTab("Predmeti", null, predmetiTab, "Tabela sa predmetima");
 		this.add(tabbedPane, BorderLayout.CENTER);
 		validate();
