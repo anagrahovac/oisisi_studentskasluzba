@@ -4,8 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Toolkit;
+import java.awt.Font;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -16,137 +17,96 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class NoviProfesorDialog extends JDialog {
-public NoviProfesorDialog() {
+public class NoviProfesorDialog extends JDialog{
+
+	public NoviProfesorDialog() {
 		
-		Toolkit kit = Toolkit.getDefaultToolkit();
-		Dimension screenSize = kit.getScreenSize();
-		int screenHeight = screenSize.height * 11 / 20 ;
-		int screenWidth = screenSize.width * 3 / 12;
-		setSize(screenWidth, screenHeight);
-		setTitle("Dodavanje profesora");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setLocationRelativeTo(null);
-		Color c = new Color(245,245,245);
-		setBackground(c);
-		setVisible(true);
+		this.setSize(500, 600);
+		this.setTitle("Dodavanje profesora");
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setLocationRelativeTo(MainFrame.getInstance()); //?????????
+		this.setVisible(true);
+		this.setResizable(false);
+
+		Color gray = new Color(245,245,245);
+		this.setBackground(gray);
 		
 		JPanel pCenter = new JPanel();
-		pCenter.setBackground(c);
+		pCenter.setBackground(gray);
 		BoxLayout box = new BoxLayout(pCenter, BoxLayout.Y_AXIS);
 		pCenter.setLayout(box);
-		
-		
-		Dimension lblDim = new Dimension(150, 30);
-		Dimension txtDim = new Dimension(250, 30);
-		
+
 		JPanel pIme = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel lblIme = new JLabel("Ime*");
-        lblIme.setPreferredSize(lblDim);
-        JTextField txtIme=new JTextField();
-        txtIme.setPreferredSize(txtDim);
-		pIme.add(Box.createHorizontalStrut(10));
-        pIme.add(lblIme);
-        pIme.add(txtIme);
-        pIme.setBackground(c);
-        
+        JTextField txtIme = new JTextField();
+        this.formatLabel(lblIme);
+        this.formatTextField(txtIme);
+        this.formatRowPanel(pIme, lblIme, txtIme);
+		
         JPanel pPrezime = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel lblPrezime = new JLabel("Prezime*");
-        lblPrezime.setPreferredSize(lblDim);
         JTextField txtPrezime = new JTextField();
-        txtPrezime.setPreferredSize(txtDim);
-        pPrezime.add(Box.createHorizontalStrut(10));
-        pPrezime.add(lblPrezime);
-        pPrezime.add(txtPrezime);
-        pPrezime.setBackground(c);
+        this.formatLabel(lblPrezime);
+        this.formatTextField(txtPrezime);
+        this.formatRowPanel(pPrezime, lblPrezime, txtPrezime);
 
         JPanel pDatum = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel lblDatum = new JLabel("Datum rođenja*");
-        lblDatum.setPreferredSize(lblDim);
         JTextField txtDatum = new JTextField();
-        txtDatum.setPreferredSize(txtDim);
-        pDatum.add(Box.createHorizontalStrut(10));
-        pDatum.add(lblDatum);
-        pDatum.add(txtDatum);
-        pDatum.setBackground(c);
+        this.formatLabel(lblDatum);
+        this.formatTextField(txtDatum);
+        this.formatRowPanel(pDatum, lblDatum, txtDatum);
 
         JPanel pAdresaStan = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel lblAdresaStan = new JLabel("Adresa stanovanja*");
-        lblAdresaStan.setPreferredSize(lblDim);
         JTextField txtAdresaStan = new JTextField();
-        txtAdresaStan.setPreferredSize(txtDim);
-        pAdresaStan.add(Box.createHorizontalStrut(10));
-        pAdresaStan.add(lblAdresaStan);
-        pAdresaStan.add(txtAdresaStan);
-        pAdresaStan.setBackground(c);
+        this.formatLabel(lblAdresaStan);
+        this.formatTextField(txtAdresaStan);
+        this.formatRowPanel(pAdresaStan, lblAdresaStan, txtAdresaStan);
 
         JPanel pTelefon = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel lblTelefon = new JLabel("Kontakt telefon*");
-        lblTelefon.setPreferredSize(lblDim);
         JTextField txtTelefon = new JTextField();
-        txtTelefon.setPreferredSize(txtDim);
-        pTelefon.add(Box.createHorizontalStrut(10));
-        pTelefon.add(lblTelefon);
-        pTelefon.add(txtTelefon);
-        pTelefon.setBackground(c);
+        this.formatLabel(lblTelefon);
+        this.formatTextField(txtTelefon);
+        this.formatRowPanel(pTelefon, lblTelefon, txtTelefon);
 
         JPanel pMail = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel lblMail = new JLabel("E-mail adresa*");
-        lblMail.setPreferredSize(lblDim);
         JTextField txtMail = new JTextField();
-        txtMail.setPreferredSize(txtDim);
-        pMail.add(Box.createHorizontalStrut(10));
-        pMail.add(lblMail);
-        pMail.add(txtMail);
-        pMail.setBackground(c);
+        this.formatLabel(lblMail);
+        this.formatTextField(txtMail);
+        this.formatRowPanel(pMail, lblMail, txtMail);
         
         JPanel pAdresaKancelarija = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel lblAdresaKancelarija = new JLabel("Adresa kancelarije*");
-        lblAdresaKancelarija.setPreferredSize(lblDim);
         JTextField txtAdresaKancelarija = new JTextField();
-        txtAdresaKancelarija.setPreferredSize(txtDim);
-        pAdresaKancelarija.add(Box.createHorizontalStrut(10));
-        pAdresaKancelarija.add(lblAdresaKancelarija);
-        pAdresaKancelarija.add(txtAdresaKancelarija);
-        pAdresaKancelarija.setBackground(c);
+        this.formatLabel(lblAdresaKancelarija);
+        this.formatTextField(txtAdresaKancelarija);
+        this.formatRowPanel(pAdresaKancelarija, lblAdresaKancelarija, txtAdresaKancelarija);
         
         JPanel pID = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel lblID = new JLabel("Broj lične karte*");
-        lblID.setPreferredSize(lblDim);
         JTextField txtID = new JTextField();
-        txtID.setPreferredSize(txtDim);
-        pID.add(Box.createHorizontalStrut(10));
-        pID.add(lblID);
-        pID.add(txtID);
-        pID.setBackground(c);
-        
-        Color bgc = new Color(255, 255, 255);
+        this.formatLabel(lblID);
+        this.formatTextField(txtID);
+        this.formatRowPanel(pID, lblID, txtID);
         
         JPanel pTitula = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel lblTitula = new JLabel("Titula*");
-        lblTitula.setPreferredSize(lblDim);
         String[] titule = { "Doktor", };
 		final JComboBox<String> comboTitula = new JComboBox<String>(titule);
-		comboTitula.setSelectedIndex(0);
-		comboTitula.setPreferredSize(txtDim);
-		comboTitula.setBackground(bgc);
-        pTitula.add(Box.createHorizontalStrut(10));
-        pTitula.add(lblTitula);
-        pTitula.add(comboTitula);
-        pTitula.setBackground(c);
+        this.formatLabel(lblTitula);
+        this.formatComboBox(comboTitula);
+        this.formatRowPanel(pTitula, lblTitula, comboTitula);
         
         JPanel pZvanje = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel lblZvanje = new JLabel("Zvanje*");
-        lblZvanje.setPreferredSize(lblDim);
-        String[] zvanja = { "Docent", "Vanredni profesor", "Redovni profesor", };
+        String[] zvanja = {"Docent", "Vanredni profesor", "Redovni profesor", };
 		final JComboBox<String> comboZvanje = new JComboBox<String>(zvanja);
-		comboZvanje.setSelectedIndex(0);
-        comboZvanje.setPreferredSize(txtDim);
-		comboZvanje.setBackground(bgc);
-        pZvanje.add(Box.createHorizontalStrut(10));
-        pZvanje.add(lblZvanje);
-        pZvanje.add(comboZvanje);
-        pZvanje.setBackground(c);
+        this.formatLabel(lblZvanje);
+        this.formatComboBox(comboZvanje);
+        this.formatRowPanel(pZvanje, lblZvanje, comboZvanje);
         
         
         pCenter.add(Box.createVerticalStrut(30));  
@@ -161,32 +121,88 @@ public NoviProfesorDialog() {
         pCenter.add(pTitula); 
         pCenter.add(pZvanje);
         pCenter.add(Box.createVerticalStrut(30));
-		//pCenter.add(Box.createGlue());
 
-        add(pCenter, BorderLayout.CENTER);
+        this.add(pCenter, BorderLayout.CENTER);
         
         //panel pBotom za dugmad
         JPanel pBottom = new JPanel();
-        pBottom.setBackground(c);
+        pBottom.setPreferredSize(new Dimension(70, 70));
+        pBottom.setBackground(gray);
         pBottom.setLayout(new FlowLayout(FlowLayout.RIGHT));
         pBottom.setPreferredSize(new Dimension(50, 50));
-        Dimension btnDim = new Dimension(100, 30);
-        
+		
         JButton btnPotvrdi = new JButton("Potvrdi");
-		btnPotvrdi.setToolTipText("Sačuvaj unete podatke");
-		btnPotvrdi.setPreferredSize(btnDim);
+        this.formatButton(btnPotvrdi, 1);
 		pBottom.add(btnPotvrdi);
 		pBottom.add(Box.createHorizontalStrut(10));
 		
 		JButton btnOdbaci = new JButton("Odustani");
-		btnOdbaci.setToolTipText("Odbaci unete podatke");
-		btnOdbaci.setPreferredSize(btnDim);
+		this.formatButton(btnOdbaci, 0);
 		pBottom.add(btnOdbaci);
-		pBottom.add(Box.createHorizontalStrut(30));
+		pBottom.add(Box.createHorizontalStrut(50));
 		
         add(pBottom, BorderLayout.SOUTH);
         
         
 		validate();
+	}
+	
+	private void formatLabel(JLabel lbl) {
+		Dimension lblDim = new Dimension(150, 30);
+		Font dialog = new Font("Dialog", Font.ITALIC, 14);
+		lbl.setPreferredSize(lblDim);
+		lbl.setFont(dialog);
+	}
+	
+	private void formatTextField(JTextField txt) {
+		Dimension txtDim = new Dimension(250, 30);
+        Font dialog = new Font("Dialog", Font.PLAIN, 14);
+        txt.setPreferredSize(txtDim);
+		txt.setFont(dialog);
+	}
+	
+	private void formatComboBox(JComboBox cb) {
+		Dimension cbDim = new Dimension(250, 30);
+        Font dialog = new Font("Dialog", Font.PLAIN, 14);
+        cb.setPreferredSize(cbDim);
+        cb.setFont(dialog);
+		cb.setSelectedIndex(0);
+		cb.setBackground(Color.WHITE);
+	}
+	
+	private void formatRowPanel(JPanel pan, JLabel lbl, JTextField txt) {
+		Color gray = new Color(245,245,245);
+		pan.add(Box.createHorizontalStrut(20));
+        pan.add(lbl);
+        pan.add(txt);
+        pan.setBackground(gray);
+	}
+	
+	private void formatRowPanel(JPanel pan, JLabel lbl, JComboBox cb) {
+		Color gray = new Color(245,245,245);
+		pan.add(Box.createHorizontalStrut(20));
+        pan.add(lbl);
+        pan.add(cb);
+        pan.setBackground(gray);
+	}
+	
+	private void formatButton(JButton btn, int i) {
+        Dimension btnDim = new Dimension(100, 30);
+		Font f = new Font("Dialog", Font.PLAIN, 14);
+		Color g = new Color(230,230,230);
+		Color b = new Color(103, 140, 235);
+
+		btn.setPreferredSize(btnDim);
+		btn.setBackground(g);
+		btn.setFont(f);
+		if (i == 1) {
+			btn.setBorder(BorderFactory.createLineBorder(b, 2));
+			btn.setToolTipText("Sačuvaj unete podatke");
+		}
+		if (i == 0) {
+			btn.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+			btn.setToolTipText("Odbaci unete podatke");
+		}
+		
 	}
 }
