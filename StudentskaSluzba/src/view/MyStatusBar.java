@@ -12,12 +12,12 @@ import java.util.GregorianCalendar;
 import javax.swing.Timer;
 
 import javax.swing.BorderFactory;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
 
 public class MyStatusBar extends JPanel{
+	
+	private static final long serialVersionUID = 3261440627468087163L;
 	
 	protected JPanel leftPanel;
 	protected JPanel rightPanel;
@@ -34,7 +34,7 @@ public class MyStatusBar extends JPanel{
 		JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEADING,5,3));
 		leftPanel.setOpaque(false);
 		add(leftPanel,BorderLayout.WEST);
-		JLabel ss = new JLabel("Studentska sluûba FTN");
+		JLabel ss = new JLabel("Studentska slu≈æba FTN");
 		leftPanel.add(ss);
 		
 		JPanel rightPanel = new JPanel(new FlowLayout(FlowLayout.TRAILING,5,3));
@@ -55,7 +55,7 @@ public class MyStatusBar extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dateAndTime.setText( sdf.format( new GregorianCalendar().getTime() ) );	
+				dateAndTime.setText(sdf.format( new GregorianCalendar().getTime() ) );	
 				dateAndTime.setFont(f);
 			}
 		});

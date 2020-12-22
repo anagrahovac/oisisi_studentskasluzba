@@ -10,6 +10,8 @@ import javax.swing.table.TableCellRenderer;
 
 public class TableProfesori extends JTable{
 	
+	private static final long serialVersionUID = -4414307159355262250L;
+
 	public TableProfesori() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);

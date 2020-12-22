@@ -10,6 +10,8 @@ import javax.swing.table.TableCellRenderer;
 
 public class TableStudenti extends JTable{
 
+	private static final long serialVersionUID = -6842739591321070151L;
+
 	public TableStudenti() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);

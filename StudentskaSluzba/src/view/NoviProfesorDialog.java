@@ -19,6 +19,8 @@ import javax.swing.JTextField;
 
 public class NoviProfesorDialog extends JDialog{
 
+	private static final long serialVersionUID = -4480924644161247106L;
+
 	public NoviProfesorDialog() {
 		
 		this.setSize(500, 600);

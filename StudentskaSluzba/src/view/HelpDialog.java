@@ -14,7 +14,8 @@ import javax.swing.JPanel;
 
 public class HelpDialog extends JDialog{
 	
-	
+	private static final long serialVersionUID = -5214879780379601917L;
+
 	public HelpDialog(Frame parent,String title) {
 		super(parent,"Help");
 		setLayout(new BorderLayout());

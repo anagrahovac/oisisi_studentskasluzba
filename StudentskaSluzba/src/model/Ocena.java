@@ -1,8 +1,5 @@
 package model;
 
-import model.Predmet;
-import model.Student;
-
 public class Ocena {
 	private Student student;
 	private Predmet predmet;

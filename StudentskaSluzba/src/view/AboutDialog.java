@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 
 public class AboutDialog extends JDialog{
 	
+	private static final long serialVersionUID = 8956415914908634115L;
+
 	public AboutDialog(JFrame parent, String title) {
 
 	super(parent,"About");

@@ -13,20 +13,17 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
-//import javax.swing.ImageIcon;
-
-import view.AboutDialog;
-import view.HelpDialog;
 
 import java.awt.Color;
 
 public class MyMenuBar extends JMenuBar{
 
+	private static final long serialVersionUID = 290799305854846920L;
+
 	public MyMenuBar(final JFrame parent) {
 		setVisible(true);
 		
 		Color c = new Color(245, 245, 245); //svetlo siva
-		//(255, 255, 255); //bela
 		setBackground(c);
 		
 		JMenu menuFile = new JMenu("File");

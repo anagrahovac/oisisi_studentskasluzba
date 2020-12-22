@@ -5,6 +5,8 @@ import javax.swing.table.AbstractTableModel;
 
 public class AbstractTableModelProfesori extends AbstractTableModel {
 
+	private static final long serialVersionUID = 5464646286485340149L;
+
 	public AbstractTableModelProfesori() {}
 
 	@Override

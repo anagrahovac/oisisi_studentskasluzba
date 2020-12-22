@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 
 public class MyToolbar extends JToolBar {
 
+	private static final long serialVersionUID = -3666207502033139205L;
+
 	public MyToolbar() {
 		super(SwingConstants.HORIZONTAL);
 		

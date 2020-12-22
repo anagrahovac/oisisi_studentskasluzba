@@ -9,6 +9,8 @@ import javax.swing.table.TableCellRenderer;
 
 public class TablePredmeti extends JTable{
 
+	private static final long serialVersionUID = 6420742439440693518L;
+
 	public TablePredmeti() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
