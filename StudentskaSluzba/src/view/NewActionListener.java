@@ -10,7 +10,8 @@ public class NewActionListener implements ActionListener{
 		// TODO Auto-generated method stub
 		int tab = MainFrame.getInstance().getActiveTab();
 		if (tab == 0) {
-			//otvori dijalog za dodavanje studenta
+			NoviStudentDialog nsd = new NoviStudentDialog();
+			nsd.setVisible(true);
 		}
 		if (tab == 1) {
 			NoviProfesorDialog npd = new NoviProfesorDialog();
