@@ -25,11 +25,11 @@ public class BazaStudenata {
 	//obrisati
 	public void dodajStudenta() {
 		
-		Student s = new Student("Mirić", "Mitar", "23.01.1999.", "Safarikova 23", "0600000000", "mitarmiric@uns.ac.rs", "RA230-2018", "2018", "3", Status.B, "10.00");	
-		Student s1 = new Student("Obradović", "Dušan", "15.06.1995.", "Bulevar Oslobodjenja 67", "0610000000", "obradovicdusan@uns.ac.rs","RA5-2014", "2014", "4", Status.S, "8.5");
-		Student s2 = new Student("Mitrović","Anđela", "22.07.2000.", "Mostarska 50", "0620000000", "mitrovicandjela@uns.ac.rs", "RA35-2019", "2019", "2", Status.B , "8.95");
-		Student s3 = new Student("Kostovski", "Miloš", "11.05.1998.", "Mladosti 39", "0630000000", "kostovskimilos@uns.ac.rs", "RA56-2017", "2017", "4", Status.S, "7.25");
-		Student s4 = new Student("Antić", "Isidora", "14.12.2001.", "Radnicka 55", "0640000000", "anticisidora@uns.ac.rs", "RA23-2020", "2020", "1", Status.B, "9.45");
+		Student s = new Student("Mirić", "Mitar", "23.01.1999.", "Safarikova 23", "0600000000", "mitarmiric@uns.ac.rs", "RA230-2018", 2018, 3, Status.B, 10.00);	
+		Student s1 = new Student("Obradović", "Dušan", "15.06.1995.", "Bulevar Oslobodjenja 67", "0610000000", "obradovicdusan@uns.ac.rs","RA5-2014", 2014, 4, Status.S, 8.5);
+		Student s2 = new Student("Mitrović","Anđela", "22.07.2000.", "Mostarska 50", "0620000000", "mitrovicandjela@uns.ac.rs", "RA35-2019", 2019, 2, Status.B , 8.95);
+		Student s3 = new Student("Kostovski", "Miloš", "11.05.1998.", "Mladosti 39", "0630000000", "kostovskimilos@uns.ac.rs", "RA56-2017", 2017, 4, Status.S, 7.25);
+		Student s4 = new Student("Antić", "Isidora", "14.12.2001.", "Radnicka 55", "0640000000", "anticisidora@uns.ac.rs", "RA23-2020", 2020, 1, Status.B, 9.45);
 		
 		this.studenti.add(s);
 		this.studenti.add(s1);
@@ -90,7 +90,7 @@ public class BazaStudenata {
 			retVal = student.getPrezimeStudenta();
 			break;
 		case 3:
-			retVal = student.getTrenutnaGodinaStudija();
+			retVal = Integer.toString(student.getTrenutnaGodinaStudija());
 			break;
 		case 4:
 			{
@@ -101,7 +101,7 @@ public class BazaStudenata {
 			return "";
 			}
 		case 5:
-			retVal = student.getProsecnaocena();
+			retVal = String.format("%.2f", student.getProsecnaocena());
 			break;
 		default:
 			throw new IllegalArgumentException("Invalid column index");
