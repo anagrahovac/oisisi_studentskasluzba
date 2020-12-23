@@ -35,6 +35,8 @@ public class MainFrame extends JFrame {
 		setVisible(true);
 		this.getContentPane().setBackground(Color.WHITE);
 		
+		addWindowListener(new AppWindowListener());
+		
 		this.menuBar = new MyMenuBar(this);
 		setJMenuBar(menuBar);
 		this.add(toolbar, BorderLayout.NORTH);
