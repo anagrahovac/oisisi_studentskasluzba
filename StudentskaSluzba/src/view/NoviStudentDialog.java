@@ -122,6 +122,7 @@ public class NoviStudentDialog extends JDialog{
 						|| pBrojIndexa.getTextField().getText().trim().equals("") 
 						|| pGodinaUpisa.getTextField().getText().trim().equals(""))  {
 					//JOptionPane.showMessageDialog(background, "Sva polja moraju biti popunjena kako biste dodali studenta!");
+					btnPotvrdi.setEnabled(false);
 					btnPotvrdi.setForeground(new Color(150, 150, 150));
 					btnPotvrdi.setBackground(new Color(220, 220, 220));
 					btnPotvrdi.setForeground(new Color(150, 150, 150));
