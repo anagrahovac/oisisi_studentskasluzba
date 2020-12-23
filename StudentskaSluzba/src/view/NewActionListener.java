@@ -18,7 +18,8 @@ public class NewActionListener implements ActionListener{
 			npd.setVisible(true);
 		}
 		if (tab == 2) {
-			//otvori dijalog za dodavanje predmeta
+			NoviPredmetDialog npd = new NoviPredmetDialog();
+			npd.setVisible(true);
 		}
 	} 
 
