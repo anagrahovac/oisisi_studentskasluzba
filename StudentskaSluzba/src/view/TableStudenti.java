@@ -2,6 +2,8 @@ package view;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -16,7 +18,14 @@ public class TableStudenti extends JTable{
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		this.setModel(new AbstractTableModelStudenti());		
+		this.setModel(new AbstractTableModelStudenti());	
+		
+		Font f = new Font("Dialog", Font.PLAIN, 14);
+		Color headerColor = new Color(143, 180, 255);   //blue
+		this.setFont(f);
+		this.setRowHeight(25);
+		this.getTableHeader().setBackground(headerColor);
+		this.getTableHeader().setPreferredSize(new Dimension(0, 25));
 	}
 	
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {

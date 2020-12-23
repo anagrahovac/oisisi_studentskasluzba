@@ -17,6 +17,11 @@ public class MainFrame extends JFrame {
 	
 	private static MainFrame instance  = null;
 	
+	private MyMenuBar menuBar;
+	private JTabbedPane tabbedPane = new JTabbedPane();
+	private MyToolbar toolbar = new MyToolbar();
+	private MyStatusBar statusBar = new MyStatusBar();
+	
 	public MainFrame() {
 		
 		Toolkit kit = Toolkit.getDefaultToolkit();
@@ -30,49 +35,27 @@ public class MainFrame extends JFrame {
 		setVisible(true);
 		this.getContentPane().setBackground(Color.WHITE);
 		
-		MyMenuBar menuBar = new MyMenuBar(this);
+		this.menuBar = new MyMenuBar(this);
 		setJMenuBar(menuBar);
-		validate();
-		
-		MyToolbar toolbar = new MyToolbar();
 		this.add(toolbar, BorderLayout.NORTH);
-		validate();
-		
-		MyStatusBar statusBar = new MyStatusBar();
 		add(statusBar, BorderLayout.SOUTH);
 		validate();
 		
 		
 		//prikaz - tabovi i tabele
 		Font f = new Font("Dialog", Font.PLAIN, 14);
-		Color headerColor = new Color(143, 180, 255);   //blue
-		//Color headerColor = new Color(211,199,233);	//light pastel purple
-		
-		JTabbedPane tabbedPane = new JTabbedPane();
-		tabbedPane.setBackground(Color.WHITE);
-		tabbedPane.setFont(f);
+		this.tabbedPane.setBackground(Color.WHITE);
+		this.tabbedPane.setFont(f);
 		
 		TableStudenti studentiTable = new TableStudenti();
-		studentiTable.setFont(f);
-		studentiTable.setRowHeight(25);
-		studentiTable.getTableHeader().setBackground(headerColor);
-		studentiTable.getTableHeader().setPreferredSize(new Dimension(0, 25));
 		JScrollPane studentiTab = new JScrollPane(studentiTable);
 		studentiTab.getViewport().setBackground(Color.WHITE);
 		
 		TableProfesori profesoriTable = new TableProfesori();
-		profesoriTable.setFont(f);
-		profesoriTable.setRowHeight(25);
-		profesoriTable.getTableHeader().setBackground(headerColor);
-		profesoriTable.getTableHeader().setPreferredSize(new Dimension(0, 25));
 		JScrollPane profesoriTab = new JScrollPane(profesoriTable);
 		profesoriTab.getViewport().setBackground(Color.WHITE);
 		
 		TablePredmeti predmetiTable = new TablePredmeti();
-		predmetiTable.setFont(f);
-		predmetiTable.setRowHeight(25);
-		predmetiTable.getTableHeader().setBackground(headerColor);
-		predmetiTable.getTableHeader().setPreferredSize(new Dimension(0, 25));
 		JScrollPane predmetiTab = new JScrollPane(predmetiTable);
 		predmetiTab.getViewport().setBackground(Color.WHITE);
 		
@@ -82,6 +65,10 @@ public class MainFrame extends JFrame {
 		this.add(tabbedPane, BorderLayout.CENTER);
 		validate();
 		
+	}
+	
+	public int getActiveTab() {
+		return this.tabbedPane.getSelectedIndex();
 	}
 
 	public static MainFrame getInstance(){
