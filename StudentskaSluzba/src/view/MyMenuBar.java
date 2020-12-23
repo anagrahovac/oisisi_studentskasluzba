@@ -96,11 +96,12 @@ public class MyMenuBar extends JMenuBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				AboutDialog dialog = new AboutDialog(parent,"About");
 				dialog.setVisible(true);
 			}
 		});
+		
+		menuFileNew.addActionListener(new NewActionListener());
 
 	}
 }

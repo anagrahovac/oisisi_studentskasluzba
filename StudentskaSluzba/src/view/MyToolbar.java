@@ -54,6 +54,9 @@ public class MyToolbar extends JToolBar {
 		btnDelete.setBorderPainted(isDisplayable());
 		panTools.add(btnDelete);
 
+		//akcije
+		btnNew.addActionListener(new NewActionListener());
+		
 		add(panTools);
 
 		
