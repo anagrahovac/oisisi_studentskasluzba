@@ -16,6 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -107,11 +108,44 @@ public class NoviStudentDialog extends JDialog{
         buttons.setPreferredSize(new Dimension(50, 50));
 		
         JButton btnPotvrdi = new JButton("Potvrdi");
+        btnPotvrdi.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				if(pIme.getTextField().getText().trim().equals("") 
+						|| pPrezime.getTextField().getText().trim().equals("") 
+						|| pDatumRodjenja.getTextField().getText().trim().equals("")
+						|| pAdresaStanovanja.getTextField().getText().trim().equals("") 
+						|| pBrojTelefona.getTextField().getText().trim().equals("") 
+						|| pEMailAdresa.getTextField().getText().trim().equals("")
+						|| pBrojIndexa.getTextField().getText().trim().equals("") 
+						|| pGodinaUpisa.getTextField().getText().trim().equals(""))  {
+					//JOptionPane.showMessageDialog(background, "Sva polja moraju biti popunjena kako biste dodali studenta!");
+					btnPotvrdi.setForeground(new Color(150, 150, 150));
+					btnPotvrdi.setBackground(new Color(220, 220, 220));
+					btnPotvrdi.setForeground(new Color(150, 150, 150));
+				} else {
+				JOptionPane.showMessageDialog(null, "Student je dodat.");
+				btnPotvrdi.setEnabled(true);
+				setVisible(false);
+				}
+			}
+        	
+        });
         formatButton(btnPotvrdi, 1);
         buttons.add(btnPotvrdi);
         buttons.add(Box.createHorizontalStrut(10));
 		
 		JButton btnOdbaci = new JButton("Odustani");
+		btnOdbaci.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				setVisible(false);
+			}
+		});
 		formatButton(btnOdbaci, 0);
 		buttons.add(btnOdbaci);
 		buttons.add(Box.createHorizontalStrut(50));
