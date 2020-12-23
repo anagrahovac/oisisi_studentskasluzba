@@ -41,97 +41,47 @@ public class NoviStudentDialog extends JDialog{
 		StudentFocusListener focusListener = new StudentFocusListener();
 		
 
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx	polja		
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx	polja	
 		
-		JPanel pIme = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel lblIme = new JLabel("Ime*");
-		JTextField txtIme = new JTextField();
-		txtIme.setName("txtIme");
-		txtIme.addFocusListener(focusListener);
-		formatLabel(lblIme);
-        formatTextField(txtIme);
-        formatRowPanel(pIme, lblIme, txtIme);
-        
-        JPanel pPrezime = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel lblPrezime = new JLabel("Prezime*");
-		JTextField txtPrezime = new JTextField();
-		txtPrezime.setName("txtPrezime");
-		txtPrezime.addFocusListener(focusListener);
-		formatLabel(lblPrezime);
-        formatTextField(txtPrezime);
-        formatRowPanel(pPrezime, lblPrezime, txtPrezime);
-        
-        JPanel pDatumRodjenja = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel lblDatumRodjenja = new JLabel("Datum rodjenja*");
-		JTextField txtDatumRodjenja = new JTextField();
-		txtDatumRodjenja.setName("txtDatumRodjenja");
-		txtDatumRodjenja.addFocusListener(focusListener);
-		formatLabel(lblDatumRodjenja);
-        formatTextField(txtDatumRodjenja);
-        formatRowPanel(pDatumRodjenja, lblDatumRodjenja, txtDatumRodjenja);
-        
-        JPanel pAdresaStanovanja = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel lblAdresaStanovanja = new JLabel("Adresa stanovanja*");
-		JTextField txtAdresaStanovanja = new JTextField();
-		txtAdresaStanovanja.setName("txtAdresaStanovanja");
-		txtAdresaStanovanja.addFocusListener(focusListener);
-		formatLabel(lblAdresaStanovanja);
-        formatTextField(txtAdresaStanovanja);
-        formatRowPanel(pAdresaStanovanja, lblAdresaStanovanja, txtAdresaStanovanja);
-        
-        JPanel pBrojTelefona = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel lblBrojTelefona = new JLabel("Broj telefona*");
-		JTextField txtBrojTelefona = new JTextField();
-		txtBrojTelefona.setName("txtBrojTelefona");
-		txtBrojTelefona.addFocusListener(focusListener);
-		formatLabel(lblBrojTelefona);
-        formatTextField(txtBrojTelefona);
-        formatRowPanel(pBrojTelefona, lblBrojTelefona, txtBrojTelefona);
-        
-        JPanel pEMailAdresa = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel lblEMailAdresa = new JLabel("E-mail adresa*");
-		JTextField txtEMailAdresa = new JTextField();
-		txtEMailAdresa.setName("txtEMailAdresa");
-		txtEMailAdresa.addFocusListener(focusListener);
-		formatLabel(lblEMailAdresa);
-        formatTextField(txtEMailAdresa);
-        formatRowPanel(pEMailAdresa, lblEMailAdresa, txtEMailAdresa);
-        
-        JPanel pBrojIndexa = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel lblBrojIndexa = new JLabel("Broj indeksa*");
-		JTextField txtBrojIndexa = new JTextField();
-		txtBrojIndexa.setName("txtBrojIndexa");
-		txtBrojIndexa.addFocusListener(focusListener);
-		formatLabel(lblBrojIndexa);
-        formatTextField(txtBrojIndexa);
-        formatRowPanel(pBrojIndexa, lblBrojIndexa, txtBrojIndexa);
-        
-        JPanel pGodinaUpisa = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel lblGodinaUpisa = new JLabel("Godina upisa*");
-		JTextField txtGodinaUpisa = new JTextField();
-		txtGodinaUpisa.setName("txtGodinaUpisa");
-		txtGodinaUpisa.addFocusListener(focusListener);
-		formatLabel(lblGodinaUpisa);
-        formatTextField(txtGodinaUpisa);
-        formatRowPanel(pGodinaUpisa, lblGodinaUpisa, txtGodinaUpisa);
-        
-        JPanel pTrenutnaGodinaStudija = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel lblTrenutnaGodinaStudija = new JLabel("Godina studija*");
-		String[] godinaStudija = {"odaberite polje", "1 (prva)", "2 (druga)", "3 (treca)", "4 (četvrta)"};
-		final JComboBox<String> comboGodStu = new JComboBox<String>(godinaStudija);
-		formatLabel(lblTrenutnaGodinaStudija);
-        formatComboBox(comboGodStu);
-        formatRowPanel(pTrenutnaGodinaStudija, lblTrenutnaGodinaStudija, comboGodStu);
-        
-        JPanel pNacinFinansiranja = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel lblNacinFinansiranja = new JLabel("Način finansiranja*");
-		String[] nacinFinansiranja = {"odaberite polje", "Budžet", "Samofinansiranje"};
-		final JComboBox<String> comboNacFinan = new JComboBox<String>(nacinFinansiranja);
-		formatLabel(lblNacinFinansiranja);
-	    formatComboBox(comboNacFinan);
-	    formatRowPanel(pNacinFinansiranja, lblNacinFinansiranja, comboNacFinan);
-	   
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+		RowPanel pIme = new RowPanel("Ime*");
+		pIme.getTextField().setName("txtIme");
+		pIme.getTextField().addFocusListener(focusListener);
+		
+		RowPanel pPrezime = new RowPanel("Prezime*");
+		pPrezime.getTextField().setName("txtPrezime");
+		pPrezime.getTextField().addFocusListener(focusListener);
+		
+		RowPanel pDatumRodjenja = new RowPanel("Datum rodjenja*");
+		pDatumRodjenja.getTextField().setName("txtDatumRodjenja");
+		pDatumRodjenja.getTextField().addFocusListener(focusListener);
+		
+		RowPanel pAdresaStanovanja = new RowPanel("Adresa stanovanja*");
+		pAdresaStanovanja.getTextField().setName("txtAdresaStanovanja");
+		pAdresaStanovanja.getTextField().addFocusListener(focusListener);
+		
+		RowPanel pBrojTelefona = new RowPanel("Kontakt telefon*");
+		pBrojTelefona.getTextField().setName("txtBrojTelefona");
+		pBrojTelefona.getTextField().addFocusListener(focusListener);
+		
+		RowPanel pEMailAdresa = new RowPanel("E-mail adresa*");
+		pEMailAdresa.getTextField().setName("txtEMailAdresa");
+		pEMailAdresa.getTextField().addFocusListener(focusListener);
+		
+		RowPanel pBrojIndexa = new RowPanel("Broj indeksa");
+		pBrojIndexa.getTextField().setName("txtBrojIndexa");
+		pBrojIndexa.getTextField().addFocusListener(focusListener);
+		
+		RowPanel pGodinaUpisa = new RowPanel("Godina upisa*");
+		pGodinaUpisa.getTextField().setName("txtGodinaUpisa");
+		pGodinaUpisa.getTextField().addFocusListener(focusListener);
+		
+		String[] godinaStudija = {"1 (prva)", "2 (druga)", "3 (treca)", "4 (četvrta)"};
+		RowPanel pTrenutnaGodinaStudija = new RowPanel("Godina studija*", godinaStudija);
+
+		String[] nacinFinansiranja = {"Budžet", "Samofinansiranje"};
+		RowPanel pNacinFinansiranja = new RowPanel("Način finansiranja*", nacinFinansiranja);
+		
+		
         
 	    background.add(Box.createVerticalStrut(30));  
 	    background.add(pIme);
@@ -148,7 +98,7 @@ public class NoviStudentDialog extends JDialog{
 
         add(background, BorderLayout.CENTER);
         
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx	dugmad validacije
+
 	
         JPanel buttons = new JPanel();
         buttons.setPreferredSize(new Dimension(70,70));
@@ -171,47 +121,7 @@ public class NoviStudentDialog extends JDialog{
 		validate();
 	}
 	
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx	funkcije za formatiranje
-        
-        private void formatLabel(JLabel lbl) {
-    		Dimension lblDim = new Dimension(150, 30);
-    		Font dialog = new Font("Dialog", Font.ITALIC, 14);
-    		lbl.setPreferredSize(lblDim);
-    		lbl.setFont(dialog);
-    	}
-    	
-    	private void formatTextField(JTextField txt) {
-    		Dimension txtDim = new Dimension(250, 30);
-            Font dialog = new Font("Dialog", Font.PLAIN, 14);
-            txt.setPreferredSize(txtDim);
-    		txt.setFont(dialog);
-    	}
-    	
-    	private void formatComboBox(JComboBox cb) {
-    		Dimension cbDim = new Dimension(250, 30);
-            Font dialog = new Font("Dialog", Font.PLAIN, 14);
-            cb.setPreferredSize(cbDim);
-            cb.setFont(dialog);
-    		cb.setSelectedIndex(0);
-    		cb.setBackground(Color.WHITE);
-    	}
-    	
-    	private void formatRowPanel(JPanel pan, JLabel lbl, JTextField txt) {
-    		Color gray = new Color(245,245,245);
-    		pan.add(Box.createHorizontalStrut(20));
-            pan.add(lbl);
-            pan.add(txt);
-            pan.setBackground(gray);
-    	}
-    	
-    	private void formatRowPanel(JPanel pan, JLabel lbl, JComboBox cb) {
-    		Color gray = new Color(245,245,245);
-    		pan.add(Box.createHorizontalStrut(20));
-            pan.add(lbl);
-            pan.add(cb);
-            pan.setBackground(gray);
-    	}
-    	
+   	
     	private void formatButton(JButton btn, int i) {
             Dimension btnDim = new Dimension(100, 30);
     		Font f = new Font("Dialog", Font.PLAIN, 14);
