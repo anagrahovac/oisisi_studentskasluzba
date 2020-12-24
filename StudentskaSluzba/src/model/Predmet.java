@@ -2,9 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
-enum Semestar {LETNJI, ZIMSKI;}
-
 public class Predmet {
+	public enum Semestar {LETNJI, ZIMSKI;}
 	private String sifraPredmeta; 
 	private String nazivPredmeta;
 	private Semestar semestar;

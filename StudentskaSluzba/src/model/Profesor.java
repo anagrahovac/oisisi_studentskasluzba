@@ -2,10 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
-enum Titula {DOKTOR;}
-enum Zvanje {DOCENT, VANREDNI_PROFESOR, REDOVNI_PROFESOR;}
-
 public class Profesor {
+	public enum Titula {DOKTOR;}
+	public enum Zvanje {DOCENT, VANREDNI_PROFESOR, REDOVNI_PROFESOR;}
 	private String prezime;
 	private String ime;
 	private String datumRodjenja;

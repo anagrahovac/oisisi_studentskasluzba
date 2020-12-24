@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList;
+import model.Profesor.Titula;
+import model.Profesor.Zvanje;
 
 public class BazaProfesora {
 
@@ -92,8 +94,19 @@ public class BazaProfesora {
 		}
 	}
 	
-	public void dodajProfesora(Profesor p) {
+	public void dodajProfesoraUBazu(String prezime, String ime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
+			String emailAdresa, String adresaKancelarije, String brojLicneKarte, Titula titula, Zvanje zvanje) {
+		Profesor p = new Profesor(prezime, ime, datumRodjenja, adresaStanovanja, kontaktTelefon, emailAdresa, adresaKancelarije, brojLicneKarte, titula, zvanje);
 		this.profesori.add(p);
+	}
+	
+	public boolean pronadjiProfesora(String id) {
+		for(int i = 0; i < profesori.size(); i++) {
+			if (profesori.get(i).getBrojLicneKarte().equals(id)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	//prosledjuju se 

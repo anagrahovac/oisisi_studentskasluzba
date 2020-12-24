@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import model.Predmet.Semestar;
 
 public class BazaPredmeta {
 

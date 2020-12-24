@@ -21,6 +21,17 @@ public class MainFrame extends JFrame {
 	private JTabbedPane tabbedPane = new JTabbedPane();
 	private MyToolbar toolbar = new MyToolbar();
 	private MyStatusBar statusBar = new MyStatusBar();
+	private TableStudenti studentiTable = new TableStudenti();
+	private TableProfesori profesoriTable = new TableProfesori();
+	private TablePredmeti predmetiTable = new TablePredmeti();
+	
+
+	public static MainFrame getInstance(){
+		if(instance == null) {
+			instance = new MainFrame();
+		}
+		return instance;
+	}
 	
 	public MainFrame() {
 		
@@ -49,15 +60,14 @@ public class MainFrame extends JFrame {
 		this.tabbedPane.setBackground(Color.WHITE);
 		this.tabbedPane.setFont(f);
 		
-		TableStudenti studentiTable = new TableStudenti();
 		JScrollPane studentiTab = new JScrollPane(studentiTable);
 		studentiTab.getViewport().setBackground(Color.WHITE);
 		
-		TableProfesori profesoriTable = new TableProfesori();
+		//TableProfesori profesoriTable = new TableProfesori();
 		JScrollPane profesoriTab = new JScrollPane(profesoriTable);
 		profesoriTab.getViewport().setBackground(Color.WHITE);
+		this.updateProfesoriTable();
 		
-		TablePredmeti predmetiTable = new TablePredmeti();
 		JScrollPane predmetiTab = new JScrollPane(predmetiTable);
 		predmetiTab.getViewport().setBackground(Color.WHITE);
 		
@@ -69,14 +79,14 @@ public class MainFrame extends JFrame {
 		
 	}
 	
+	public void updateProfesoriTable() {
+			AbstractTableModelProfesori model = (AbstractTableModelProfesori) profesoriTable.getModel();
+			model.fireTableDataChanged();
+			validate();
+	}
+	
 	public int getActiveTab() {
 		return this.tabbedPane.getSelectedIndex();
 	}
 
-	public static MainFrame getInstance(){
-		if(instance == null) {
-			instance = new MainFrame();
-		}
-		return instance;
-	}
 }
