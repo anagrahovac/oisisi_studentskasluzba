@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.io.File;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -32,7 +33,7 @@ public class MyToolbar extends JToolBar {
 		
 		JButton btnNew = new JButton();
 		btnNew.setToolTipText("New");
-		btnNew.setIcon(new ImageIcon("toolbar_images/new.png"));
+		btnNew.setIcon(new ImageIcon("toolbar_images" + File.separator + "new.png"));
 		btnNew.setPreferredSize(btnDim);
 		btnNew.setBackground(c);
 		btnNew.setBorderPainted(isDisplayable());
@@ -40,7 +41,7 @@ public class MyToolbar extends JToolBar {
 		
 		JButton btnEdit = new JButton();
 		btnEdit.setToolTipText("Edit");
-		btnEdit.setIcon(new ImageIcon("toolbar_images/edit.png"));
+		btnEdit.setIcon(new ImageIcon("toolbar_images" + File.separator + "edit.png"));
 		btnEdit.setPreferredSize(btnDim);
 		btnEdit.setBackground(c);
 		btnEdit.setBorderPainted(isDisplayable());
@@ -48,7 +49,7 @@ public class MyToolbar extends JToolBar {
 		
 		JButton btnDelete = new JButton();
 		btnDelete.setToolTipText("Delete");
-		btnDelete.setIcon(new ImageIcon("toolbar_images/delete.png"));
+		btnDelete.setIcon(new ImageIcon("toolbar_images" + File.separator + "delete.png"));
 		btnDelete.setPreferredSize(btnDim);
 		btnDelete.setBackground(c);
 		btnDelete.setBorderPainted(isDisplayable());
@@ -70,7 +71,7 @@ public class MyToolbar extends JToolBar {
 		
 		JButton btnSearch = new JButton();
 		btnSearch.setToolTipText("Search");
-		btnSearch.setIcon(new ImageIcon("toolbar_images/search.png"));
+		btnSearch.setIcon(new ImageIcon("toolbar_images" + File.separator + "search.png"));
 		btnSearch.setPreferredSize(btnDim);
 		btnSearch.setBackground(c);
 		btnSearch.setBorderPainted(isDisplayable());

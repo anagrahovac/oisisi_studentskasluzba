@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -34,24 +35,24 @@ public class MyMenuBar extends JMenuBar{
 		menuEdit.setMnemonic(KeyEvent.VK_E);
 		menuHelp.setMnemonic(KeyEvent.VK_H);
 		
-		JMenuItem menuFileNew = new JMenuItem("New", new ImageIcon("menubar_images/new.png"));
+		JMenuItem menuFileNew = new JMenuItem("New", new ImageIcon("menubar_images" + File.separator + "new.png"));
 		menuFileNew.setMnemonic(KeyEvent.VK_N);
 		menuFileNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_MASK));		
-		JMenuItem menuFileClose = new JMenuItem("Close", new ImageIcon("menubar_images/close.png"));
+		JMenuItem menuFileClose = new JMenuItem("Close", new ImageIcon("menubar_images" + File.separator + "close.png"));
 		menuFileClose.setMnemonic(KeyEvent.VK_C);
 		menuFileClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_MASK));
 		
-		JMenuItem menuEditEdit = new JMenuItem("Edit",new ImageIcon("menubar_images/edit.png"));
+		JMenuItem menuEditEdit = new JMenuItem("Edit",new ImageIcon("menubar_images" + File.separator + "edit.png"));
 		menuEditEdit.setMnemonic(KeyEvent.VK_T);
 		menuEditEdit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_MASK));
-		JMenuItem menuEditDelete = new JMenuItem("Delete",new ImageIcon("menubar_images/delete.png"));
+		JMenuItem menuEditDelete = new JMenuItem("Delete",new ImageIcon("menubar_images" + File.separator + "delete.png"));
 		menuEditDelete.setMnemonic(KeyEvent.VK_D);
 		menuEditDelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_MASK));
 		
-		JMenuItem menuHelpHelp = new JMenuItem("Help",new ImageIcon("menubar_images/help.png"));
+		JMenuItem menuHelpHelp = new JMenuItem("Help",new ImageIcon("menubar_images" + File.separator + "help.png"));
 		menuHelpHelp.setMnemonic(KeyEvent.VK_P);
 		menuHelpHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, KeyEvent.CTRL_MASK));
-		JMenuItem menuHelpAbout = new JMenuItem("About",new ImageIcon("menubar_images/about.png"));
+		JMenuItem menuHelpAbout = new JMenuItem("About",new ImageIcon("menubar_images" + File.separator + "about.png"));
 		menuHelpAbout.setMnemonic(KeyEvent.VK_A);
 		menuHelpAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, KeyEvent.CTRL_MASK));
 		
