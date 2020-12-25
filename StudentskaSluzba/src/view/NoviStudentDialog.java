@@ -7,21 +7,38 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+
+import controller.StudentController;
 
 
 public class NoviStudentDialog extends JDialog{
+	
+	private static final long serialVersionUID = 0;
+	
+	private StudentController controller;
+	private RowPanel pIme;
+	private RowPanel pPrezime;
+	private RowPanel pDatumRodjenja;
+	private RowPanel pAdresaStanovanja;
+	private RowPanel pBrojTelefona;
+	private RowPanel pEMailAdresa;
+	private RowPanel pBrojIndexa;
+	private RowPanel pGodinaUpisa;
+	private RowPanel pTrenutnaGodinaStudija;
+	private RowPanel pNacinFinansiranja;
+	private JButton btnPotvrdi = new JButton("Potvrdi");
+	private JButton btnOdbaci = new JButton("Odustani");
 	
 	public NoviStudentDialog() {
 		
@@ -40,47 +57,49 @@ public class NoviStudentDialog extends JDialog{
 		background.setLayout(new BoxLayout(background, BoxLayout.Y_AXIS));
 		
 		StudentFocusListener focusListener = new StudentFocusListener();
+		controller = new StudentController(this);
 		
 
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx	polja	
 		
-		RowPanel pIme = new RowPanel("Ime*");
+		pIme = new RowPanel("Ime*");
 		pIme.getTextField().setName("txtIme");
 		pIme.getTextField().addFocusListener(focusListener);
 		
-		RowPanel pPrezime = new RowPanel("Prezime*");
+		pPrezime = new RowPanel("Prezime*");
 		pPrezime.getTextField().setName("txtPrezime");
 		pPrezime.getTextField().addFocusListener(focusListener);
 		
-		RowPanel pDatumRodjenja = new RowPanel("Datum rodjenja*");
+		pDatumRodjenja = new RowPanel("Datum rodjenja*");
+		pDatumRodjenja.getTextField().setToolTipText("Format: dd.mm.yyyy.");
 		pDatumRodjenja.getTextField().setName("txtDatumRodjenja");
 		pDatumRodjenja.getTextField().addFocusListener(focusListener);
 		
-		RowPanel pAdresaStanovanja = new RowPanel("Adresa stanovanja*");
+		pAdresaStanovanja = new RowPanel("Adresa stanovanja*");
 		pAdresaStanovanja.getTextField().setName("txtAdresaStanovanja");
 		pAdresaStanovanja.getTextField().addFocusListener(focusListener);
 		
-		RowPanel pBrojTelefona = new RowPanel("Kontakt telefon*");
+		pBrojTelefona = new RowPanel("Kontakt telefon*");
 		pBrojTelefona.getTextField().setName("txtBrojTelefona");
 		pBrojTelefona.getTextField().addFocusListener(focusListener);
 		
-		RowPanel pEMailAdresa = new RowPanel("E-mail adresa*");
+		pEMailAdresa = new RowPanel("E-mail adresa*");
 		pEMailAdresa.getTextField().setName("txtEMailAdresa");
 		pEMailAdresa.getTextField().addFocusListener(focusListener);
 		
-		RowPanel pBrojIndexa = new RowPanel("Broj indeksa");
+		pBrojIndexa = new RowPanel("Broj indeksa");
 		pBrojIndexa.getTextField().setName("txtBrojIndexa");
 		pBrojIndexa.getTextField().addFocusListener(focusListener);
 		
-		RowPanel pGodinaUpisa = new RowPanel("Godina upisa*");
+		pGodinaUpisa = new RowPanel("Godina upisa*");
 		pGodinaUpisa.getTextField().setName("txtGodinaUpisa");
 		pGodinaUpisa.getTextField().addFocusListener(focusListener);
 		
 		String[] godinaStudija = {"1 (prva)", "2 (druga)", "3 (treca)", "4 (četvrta)"};
-		RowPanel pTrenutnaGodinaStudija = new RowPanel("Godina studija*", godinaStudija);
+		pTrenutnaGodinaStudija = new RowPanel("Godina studija*", godinaStudija);
 
 		String[] nacinFinansiranja = {"Budžet", "Samofinansiranje"};
-		RowPanel pNacinFinansiranja = new RowPanel("Način finansiranja*", nacinFinansiranja);
+		pNacinFinansiranja = new RowPanel("Način finansiranja*", nacinFinansiranja);
 		
 		
         
@@ -129,11 +148,44 @@ public class NoviStudentDialog extends JDialog{
 				} else {
 				JOptionPane.showMessageDialog(null, "Student je dodat.");
 				btnPotvrdi.setEnabled(true);
-				setVisible(false);
+				dispose();
 				}
 			}
         	
-        });
+        });	
+        btnPotvrdi.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(btnPotvrdi.isEnabled()) {
+					boolean succ = controller.dodajStudenta();
+					if(succ == true) {
+						//JOptionPane.showMessageDialog(null, "Student uspešno dodat u bazu.");
+						dispose();
+					}
+					else {
+						//JOptionPane.showMessageDialog(null, "Broj indeksa već postoji u bazi!");
+					}
+				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(btnPotvrdi.isEnabled()) {
+					btnPotvrdi.setBackground(new Color(228, 244, 255));
+					btnPotvrdi.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 1));
+				}
+			}
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				if(btnPotvrdi.isEnabled()) {
+					btnPotvrdi.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 2));
+					btnPotvrdi.setBackground(new Color(230,230,230));
+				}
+			}
+			@Override
+			public void mousePressed(MouseEvent arg0) {}
+			@Override
+			public void mouseReleased(MouseEvent arg0) {}
+		});
         formatButton(btnPotvrdi, 1);
         buttons.add(btnPotvrdi);
         buttons.add(Box.createHorizontalStrut(10));
@@ -144,8 +196,28 @@ public class NoviStudentDialog extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				setVisible(false);
+				dispose();
 			}
+		});
+		btnOdbaci.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+			}
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				btnOdbaci.setBackground(new Color(228, 244, 255));
+				btnOdbaci.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 1));
+			}
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				btnOdbaci.setBackground(new Color(230,230,230));
+				btnOdbaci.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+			}
+			@Override
+			public void mousePressed(MouseEvent arg0) {}
+			@Override
+			public void mouseReleased(MouseEvent arg0) {}
 		});
 		formatButton(btnOdbaci, 0);
 		buttons.add(btnOdbaci);
@@ -175,5 +247,135 @@ public class NoviStudentDialog extends JDialog{
     			btn.setToolTipText("Odbaci unete podatke");
     		}
     		
-    	}		
+    	}
+
+
+		public StudentController getController() {
+			return controller;
+		}
+
+
+		public void setController(StudentController controller) {
+			this.controller = controller;
+		}
+
+
+		public RowPanel getpIme() {
+			return pIme;
+		}
+
+
+		public void setpIme(RowPanel pIme) {
+			this.pIme = pIme;
+		}
+
+
+		public RowPanel getpPrezime() {
+			return pPrezime;
+		}
+
+
+		public void setpPrezime(RowPanel pPrezime) {
+			this.pPrezime = pPrezime;
+		}
+
+
+		public RowPanel getpDatumRodjenja() {
+			return pDatumRodjenja;
+		}
+
+
+		public void setpDatumRodjenja(RowPanel pDatumRodjenja) {
+			this.pDatumRodjenja = pDatumRodjenja;
+		}
+
+
+		public RowPanel getpAdresaStanovanja() {
+			return pAdresaStanovanja;
+		}
+
+
+		public void setpAdresaStanovanja(RowPanel pAdresaStanovanja) {
+			this.pAdresaStanovanja = pAdresaStanovanja;
+		}
+
+
+		public RowPanel getpBrojTelefona() {
+			return pBrojTelefona;
+		}
+
+
+		public void setpBrojTelefona(RowPanel pBrojTelefona) {
+			this.pBrojTelefona = pBrojTelefona;
+		}
+
+
+		public RowPanel getpEMailAdresa() {
+			return pEMailAdresa;
+		}
+
+
+		public void setpEMailAdresa(RowPanel pEMailAdresa) {
+			this.pEMailAdresa = pEMailAdresa;
+		}
+
+
+		public RowPanel getpBrojIndexa() {
+			return pBrojIndexa;
+		}
+
+
+		public void setpBrojIndexa(RowPanel pBrojIndexa) {
+			this.pBrojIndexa = pBrojIndexa;
+		}
+
+
+		public RowPanel getpGodinaUpisa() {
+			return pGodinaUpisa;
+		}
+
+
+		public void setpGodinaUpisa(RowPanel pGodinaUpisa) {
+			this.pGodinaUpisa = pGodinaUpisa;
+		}
+
+
+		public RowPanel getpTrenutnaGodinaStudija() {
+			return pTrenutnaGodinaStudija;
+		}
+
+
+		public void setpTrenutnaGodinaStudija(RowPanel pTrenutnaGodinaStudija) {
+			this.pTrenutnaGodinaStudija = pTrenutnaGodinaStudija;
+		}
+
+
+		public RowPanel getpNacinFinansiranja() {
+			return pNacinFinansiranja;
+		}
+
+
+		public void setpNacinFinansiranja(RowPanel pNacinFinansiranja) {
+			this.pNacinFinansiranja = pNacinFinansiranja;
+		}
+
+
+		public JButton getBtnPotvrdi() {
+			return btnPotvrdi;
+		}
+
+
+		public void setBtnPotvrdi(JButton btnPotvrdi) {
+			this.btnPotvrdi = btnPotvrdi;
+		}
+
+
+		public JButton getBtnOdbaci() {
+			return btnOdbaci;
+		}
+
+
+		public void setBtnOdbaci(JButton btnOdbaci) {
+			this.btnOdbaci = btnOdbaci;
+		}
 }

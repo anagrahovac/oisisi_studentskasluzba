@@ -9,8 +9,8 @@ public class Validacija {
 	private boolean adresaStan = false;
 	private boolean telefon = false;
 	private boolean email = false;
-	//private boolean indeks = false;
-	//private boolean godinaUpisa = false;
+	private boolean indeks = false;
+	private boolean godinaUpisa = false;
 	private boolean adresaKancelarija = false;
 	private boolean brojLicne = false;
 	
@@ -21,14 +21,17 @@ public class Validacija {
 		adresaStan = false;
 		telefon = false;
 		email = false;
-		//indeks = false;
-		//godinaUpisa = false;
+		indeks = false;
+		godinaUpisa = false;
 		adresaKancelarija = false;
 		brojLicne = false;
 	}
 	
 	public boolean validirajStudenta() {
-		
+		if(ime == true && prezime == true && datum == true && adresaStan == true && telefon == true && email == true &&
+				indeks == true && godinaUpisa == true) {
+			return true;
+		}
 		return false;
 	}
 	
@@ -92,8 +95,21 @@ public class Validacija {
 		return this.email;
 	}
 	
-	//validirajBrojIndeksa
-	//validirajGodinuUpisa
+	public boolean validirajBrojIndeksa(String str) {
+		if(str.equals("") || str == null)
+			indeks = false;
+		else 
+			indeks = Pattern.matches("[A-Z]{2,3}[1-9]{1,3}/20[0-2][0-9]", str);
+		return indeks;
+		
+	}
+	public boolean validirajGodinuUpisa(String str) {
+		if(str.equals("") || str == null)
+			godinaUpisa = false;
+		else
+			godinaUpisa = Pattern.matches("20[0-2][0-9]", str);
+		return godinaUpisa;
+	}
 
 	public boolean validirajAdresuKancelarije(String str) {
 		if(str.equals("") || str == null)
@@ -142,6 +158,4 @@ public class Validacija {
 	public boolean isBrojLicne() {
 		return brojLicne;
 	}
-
-	
 }

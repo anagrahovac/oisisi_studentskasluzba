@@ -2,9 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
-enum Status{B,S};	
-
 public class Student {
+	public enum Status {B,S;}
 	private String prezimeStudenta;
 	private String imeStudenta;
 	private String datumRodjenja;

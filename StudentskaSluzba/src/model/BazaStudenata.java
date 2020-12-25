@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import model.Student.Status;
 
 public class BazaStudenata {
 	
@@ -108,5 +109,21 @@ public class BazaStudenata {
 		}
 		
 		return retVal;
+	}
+	
+	public void dodajStudentaUBazu(String prezime, String ime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
+			String emailAdresa, String brojIndexa, int godinaUpisa, int trenutnaGodinaStudija, Status status, double prosecnaocena) {
+		Student p = new Student(prezime, ime, datumRodjenja, adresaStanovanja, kontaktTelefon, emailAdresa,
+				brojIndexa, godinaUpisa, trenutnaGodinaStudija, status, prosecnaocena);
+		this.studenti.add(p);
+	}
+	
+	public boolean pronadjiStudenta(String indx) {
+		for(int i = 0; i < studenti.size(); i++) {
+			if (studenti.get(i).getBrojIndexa().equals(indx)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

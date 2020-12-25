@@ -77,7 +77,7 @@ public class NoviPredmetDialog extends JDialog{
 	    background.add(pPrezimeProfesor);
 	    background.add(pBrojESPB);
 	    background.add(pSemestar); 
-	    background.add(Box.createVerticalStrut(30));
+	    background.add(Box.createVerticalStrut(150));
 
         add(background, BorderLayout.CENTER);
 	
@@ -106,7 +106,7 @@ public class NoviPredmetDialog extends JDialog{
 				} else {
 				JOptionPane.showMessageDialog(null, "Predmet je dodat.");
 				btnPotvrdi.setEnabled(true);
-				setVisible(false);
+				dispose();
 				}
 			}
         	
@@ -121,7 +121,7 @@ public class NoviPredmetDialog extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				setVisible(false);
+				dispose();
 			}
 		});
 		formatButton(btnOdbaci, 0);
