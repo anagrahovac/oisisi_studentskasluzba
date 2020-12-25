@@ -47,7 +47,7 @@ public class Validacija {
 		if((str.equals("") || str == null))
 			this.ime = false;
 		else 
-			this.ime = Pattern.matches("([A-Z]([a-z]+)?| ?)+", str);
+			this.ime = Pattern.matches("([A-ZŠĐŽČĆ]([a-zšđžčć]+)?| ?)+", str);
 		
 			
 		return this.ime;
@@ -57,7 +57,7 @@ public class Validacija {
 		if((str.equals("") || str == null))
 			this.prezime = false;
 		else 
-			this.prezime = Pattern.matches("([A-Z]([a-z]+)?| ?)+", str);
+			this.prezime = Pattern.matches("([A-ZŠĐŽČĆ]([a-zšđžčć]+)?| ?)+", str);
 		
 		return this.prezime;
 	}
@@ -75,7 +75,7 @@ public class Validacija {
 		if((str.equals("") || str == null))
 			this.adresaStan = false;
 		else
-			this.adresaStan = Pattern.matches("([0-9]+|[A-Za-z][a-z]+| ?|,?)+", str);
+			this.adresaStan = Pattern.matches("([0-9]+|[A-ZŠĐŽČĆa-zšđžčć][a-zšđžčć]+| ?|,?)+", str);
 		return this.adresaStan;
 	}
 
@@ -115,7 +115,7 @@ public class Validacija {
 		if(str.equals("") || str == null)
 			this.adresaKancelarija = false;
 		else
-			this.adresaKancelarija = Pattern.matches("([0-9]+|[A-Za-z][a-z]+| ?|,?)+", str);
+			this.adresaKancelarija = Pattern.matches("([0-9]+|[A-ZŠĐŽČĆa-zšđžčć][a-zšđžčć]+| ?|,?)+", str);
 		return this.adresaKancelarija;
 	}
 

@@ -19,6 +19,8 @@ import javax.swing.JPanel;
 
 public class NoviPredmetDialog extends JDialog{
 	
+	private static final long serialVersionUID = -551273725662555210L;
+
 	public NoviPredmetDialog() {
 		
 		setSize(500, 600);

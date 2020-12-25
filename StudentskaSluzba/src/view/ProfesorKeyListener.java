@@ -1,36 +1,32 @@
 package view;
 
 import java.awt.Color;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 
 import controller.Validacija;
 
-public class ProfesorFocusListener implements FocusListener{
+public class ProfesorKeyListener implements KeyListener {
+	
 	private NoviProfesorDialog npd;
 	
-	public ProfesorFocusListener(NoviProfesorDialog n) {
+	public ProfesorKeyListener(NoviProfesorDialog n) {
 		super();
 		this.npd = n;
 	}
-
+	
 	@Override
-	public void focusGained(FocusEvent arg0) {
+	public void keyPressed(KeyEvent arg0) {
+		// TODO Auto-generated method stub
 		
-		JTextField txt = (JTextField) arg0.getComponent();
-		txt.setForeground(Color.BLACK);
-		txt.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		if(npd.getController().getValidacija().validirajProfesora() == true) {
-			npd.enablePotvrdi();
-		}
 	}
 
-
 	@Override
-	public void focusLost(FocusEvent arg0) {
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
 		JTextField txt = (JTextField) arg0.getComponent();
 		String name = txt.getName();
 		String tekst = txt.getText().trim();
@@ -57,10 +53,13 @@ public class ProfesorFocusListener implements FocusListener{
 		}
 		
 		if (ispravno == false) {
-			txt.setBorder(null);
 			txt.setBorder(BorderFactory.createLineBorder(new Color(221,119,119)));
 			txt.setForeground(new Color(221,119,119));
 			npd.disablePotvrdi();
+		}
+		else {
+			txt.setForeground(Color.BLACK);
+			txt.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		}
 		
 		if(v.validirajProfesora() == true) {
@@ -70,4 +69,10 @@ public class ProfesorFocusListener implements FocusListener{
 			npd.disablePotvrdi();
 		}
 	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+	}
+
 }

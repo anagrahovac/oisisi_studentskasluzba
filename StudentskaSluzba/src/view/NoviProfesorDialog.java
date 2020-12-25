@@ -12,12 +12,10 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import controller.ProfesorController;
 
@@ -41,14 +39,12 @@ public class NoviProfesorDialog extends JDialog{
 
 public NoviProfesorDialog() {
 		
-		//super(MainFrame.getInstance(), "Dodavanje profesora", true);
+		super(MainFrame.getInstance(), "Dodavanje profesora", true);
 		this.setSize(500, 600);
 		this.setTitle("Dodavanje profesora");
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setLocationRelativeTo(MainFrame.getInstance());
-		this.setVisible(true);
 		this.setResizable(false);
-		this.setModal(true); //NE RADI
 
 		Color gray = new Color(245,245,245);
 		this.setBackground(gray);
@@ -62,40 +58,39 @@ public NoviProfesorDialog() {
 		pCenter.setLayout(box);
 		this.add(pCenter, BorderLayout.CENTER);
 		
-		ProfesorFocusListener pl = new ProfesorFocusListener(this);
-
+		ProfesorKeyListener pl = new ProfesorKeyListener(this);
+		
 		pIme = new RowPanel("Ime*");
 		pIme.getTextField().setName("txtIme");
-		pIme.getTextField().addFocusListener(pl);
+		pIme.getTextField().addKeyListener(pl);
 		
 		pPrezime = new RowPanel("Prezime*");
 		pPrezime.getTextField().setName("txtPrezime");
-		pPrezime.getTextField().addFocusListener(pl);
+		pPrezime.getTextField().addKeyListener(pl);
 		
-		pDatum = new RowPanel("Datum rođenja*");
+		pDatum = new RowPanel("Datum rodjenja*");
 		pDatum.getTextField().setName("txtDatum");
-		pDatum.getTextField().setToolTipText("Format: dd.mm.yyyy.");
-		pDatum.getTextField().addFocusListener(pl);
+		pDatum.getTextField().addKeyListener(pl);
 		
 		pAdresaStan = new RowPanel("Adresa stanovanja*");
 		pAdresaStan.getTextField().setName("txtAdresaStan");
-		pAdresaStan.getTextField().addFocusListener(pl);
+		pAdresaStan.getTextField().addKeyListener(pl);
 	
 		pTelefon = new RowPanel("Kontakt telefon*");
 		pTelefon.getTextField().setName("txtTelefon");
-		pTelefon.getTextField().addFocusListener(pl);
+		pTelefon.getTextField().addKeyListener(pl);
 		
 		pEmail = new RowPanel("E-mail adresa*");
 		pEmail.getTextField().setName("txtEmail");
-		pEmail.getTextField().addFocusListener(pl);
+		pEmail.getTextField().addKeyListener(pl);
 		
 		pAdresaKancelarija = new RowPanel("Adresa kancelarije*");
 		pAdresaKancelarija.getTextField().setName("txtAdresaKancelarija");
-		pAdresaKancelarija.getTextField().addFocusListener(pl);
+		pAdresaKancelarija.getTextField().addKeyListener(pl);
 		
-		pID = new RowPanel("Broj lične karte*");
+		pID = new RowPanel("Broj licne karte*");
 		pID.getTextField().setName("txtID");
-		pID.getTextField().addFocusListener(pl);
+		pID.getTextField().addKeyListener(pl);
 		
 		String[] titule = { "Doktor", };
 		pTitula = new RowPanel("Titula*", titule);
@@ -146,11 +141,11 @@ public NoviProfesorDialog() {
 				if(btnPotvrdi.isEnabled()) {
 					boolean succ = controller.dodajProfesora();
 					if(succ == true) {
-						//JOptionPane.showMessageDialog(null, "Profesor uspesno dodat u bazu.");
+						JOptionPane.showMessageDialog(null, "Profesor uspesno dodat u bazu.");
 						dispose();
 					}
 					else {
-						//JOptionPane.showMessageDialog(null, "Broj licne karte vec postoji u bazi!");
+						JOptionPane.showMessageDialog(null, "Broj licne karte vec postoji u bazi!");
 					}
 				}
 			}

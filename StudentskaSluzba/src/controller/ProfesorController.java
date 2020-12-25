@@ -1,7 +1,5 @@
 package controller;
 
-import javax.swing.JOptionPane;
-
 import model.*;
 import view.*;
 import model.Profesor.Titula;
@@ -44,12 +42,10 @@ public class ProfesorController {
 			zvanje = Zvanje.REDOVNI_PROFESOR; break;
 		}
 		if(BazaProfesora.getInstance().pronadjiProfesora(id)) {
-			//JOptionPane.showMessageDialog(view, "Broj licne karte vec postoji u bazi!");
 			return false;
 		}
 		BazaProfesora.getInstance().dodajProfesoraUBazu(prezime, ime, datum, as, telefon, email, ak, id, titula, zvanje);
 		MainFrame.getInstance().updateProfesoriTable();
-		//JOptionPane.showMessageDialog(null, "Profesor uspesno dodat u bazu.");
 		return true;
 	}
 	

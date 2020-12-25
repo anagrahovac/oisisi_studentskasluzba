@@ -63,7 +63,6 @@ public class MainFrame extends JFrame {
 		JScrollPane studentiTab = new JScrollPane(studentiTable);
 		studentiTab.getViewport().setBackground(Color.WHITE);
 		
-		//TableProfesori profesoriTable = new TableProfesori();
 		JScrollPane profesoriTab = new JScrollPane(profesoriTable);
 		profesoriTab.getViewport().setBackground(Color.WHITE);
 		this.updateProfesoriTable();
@@ -89,7 +88,7 @@ public class MainFrame extends JFrame {
 		AbstractTableModelStudenti model = (AbstractTableModelStudenti) studentiTable.getModel();
 		model.fireTableDataChanged();
 		validate();
-}
+	}
 	
 	public int getActiveTab() {
 		return this.tabbedPane.getSelectedIndex();
