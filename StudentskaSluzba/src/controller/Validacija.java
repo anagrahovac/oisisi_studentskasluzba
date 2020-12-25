@@ -99,7 +99,7 @@ public class Validacija {
 		if(str.equals("") || str == null)
 			indeks = false;
 		else 
-			indeks = Pattern.matches("[a-z]{2,3}[1-9]{1,3}-20[0-2][0-9]", str);
+			indeks = Pattern.matches("[a-z]{2,3}-[1-9]{1,3}-20[0-2][0-9]", str);
 		return this.indeks;
 		
 	}

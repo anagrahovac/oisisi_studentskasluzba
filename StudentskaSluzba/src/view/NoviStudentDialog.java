@@ -40,12 +40,11 @@ public class NoviStudentDialog extends JDialog{
 	
 	public NoviStudentDialog() {
 		
+		super(MainFrame.getInstance(), "Dodavanje studenta", true);
 		setSize(500, 600);
-		setTitle("Dodavanje studenta");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null); 
 		setResizable(false);
-		setVisible(true);
 
 		Color c = new Color(245,245,245);
 		setBackground(c);
@@ -55,6 +54,7 @@ public class NoviStudentDialog extends JDialog{
 		background.setLayout(new BoxLayout(background, BoxLayout.Y_AXIS));
 		
 		StudentFocusListener focusListener = new StudentFocusListener(this);
+		StudentKeyListener keyListener = new StudentKeyListener(this);
 		controller = new StudentController(this);
 		
 
@@ -63,6 +63,7 @@ public class NoviStudentDialog extends JDialog{
 		pIme = new RowPanel("Ime*");
 		pIme.getTextField().setName("txtIme");
 		pIme.getTextField().addFocusListener(focusListener);
+		pIme.getTextField().addKeyListener(keyListener);
 		
 		pPrezime = new RowPanel("Prezime*");
 		pPrezime.getTextField().setName("txtPrezime");
@@ -86,7 +87,7 @@ public class NoviStudentDialog extends JDialog{
 		pEMailAdresa.getTextField().addFocusListener(focusListener);
 		
 		pBrojIndexa = new RowPanel("Broj indeksa*");
-		pBrojIndexa.getTextField().setToolTipText("Format: ssBBB-GGG,");
+		pBrojIndexa.getTextField().setToolTipText("Format: ss-BBB-GGGG");
 		pBrojIndexa.getTextField().setName("txtBrojIndexa");
 		pBrojIndexa.getTextField().addFocusListener(focusListener);
 		
@@ -189,9 +190,13 @@ public class NoviStudentDialog extends JDialog{
 				btnOdbaci.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
 			}
 			@Override
-			public void mousePressed(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+			}
 			@Override
-			public void mouseReleased(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+			}
 		});
 	
         add(buttons, BorderLayout.SOUTH);      
