@@ -24,8 +24,6 @@ import controller.StudentController;
 
 public class NoviStudentDialog extends JDialog{
 	
-	private static final long serialVersionUID = 0;
-	
 	private StudentController controller;
 	private RowPanel pIme;
 	private RowPanel pPrezime;
@@ -56,7 +54,7 @@ public class NoviStudentDialog extends JDialog{
 		background.setBackground(c);
 		background.setLayout(new BoxLayout(background, BoxLayout.Y_AXIS));
 		
-		StudentFocusListener focusListener = new StudentFocusListener();
+		StudentFocusListener focusListener = new StudentFocusListener(this);
 		controller = new StudentController(this);
 		
 
@@ -87,7 +85,8 @@ public class NoviStudentDialog extends JDialog{
 		pEMailAdresa.getTextField().setName("txtEMailAdresa");
 		pEMailAdresa.getTextField().addFocusListener(focusListener);
 		
-		pBrojIndexa = new RowPanel("Broj indeksa");
+		pBrojIndexa = new RowPanel("Broj indeksa*");
+		pBrojIndexa.getTextField().setToolTipText("Format: ssBBB-GGG,");
 		pBrojIndexa.getTextField().setName("txtBrojIndexa");
 		pBrojIndexa.getTextField().addFocusListener(focusListener);
 		
@@ -117,8 +116,6 @@ public class NoviStudentDialog extends JDialog{
 	    background.add(Box.createVerticalStrut(30));
 
         add(background, BorderLayout.CENTER);
-        
-
 	
         JPanel buttons = new JPanel();
         buttons.setPreferredSize(new Dimension(70,70));
@@ -126,79 +123,56 @@ public class NoviStudentDialog extends JDialog{
         buttons.setLayout(new FlowLayout(FlowLayout.RIGHT));
         buttons.setPreferredSize(new Dimension(50, 50));
 		
-        JButton btnPotvrdi = new JButton("Potvrdi");
-        btnPotvrdi.addActionListener(new ActionListener() {
+        formatButton(btnPotvrdi, 1);
+        buttons.add(btnPotvrdi);
+        buttons.add(Box.createHorizontalStrut(10));
+        btnPotvrdi.addMouseListener(new MouseListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				if(pIme.getTextField().getText().trim().equals("") 
-						|| pPrezime.getTextField().getText().trim().equals("") 
-						|| pDatumRodjenja.getTextField().getText().trim().equals("")
-						|| pAdresaStanovanja.getTextField().getText().trim().equals("") 
-						|| pBrojTelefona.getTextField().getText().trim().equals("") 
-						|| pEMailAdresa.getTextField().getText().trim().equals("")
-						|| pBrojIndexa.getTextField().getText().trim().equals("") 
-						|| pGodinaUpisa.getTextField().getText().trim().equals(""))  {
-					//JOptionPane.showMessageDialog(background, "Sva polja moraju biti popunjena kako biste dodali studenta!");
-					btnPotvrdi.setEnabled(false);
-					btnPotvrdi.setForeground(new Color(150, 150, 150));
-					btnPotvrdi.setBackground(new Color(220, 220, 220));
-					btnPotvrdi.setForeground(new Color(150, 150, 150));
-				} else {
-				JOptionPane.showMessageDialog(null, "Student je dodat.");
-				btnPotvrdi.setEnabled(true);
-				dispose();
-				}
-			}
-        	
-        });	
-        btnPotvrdi.addMouseListener(new MouseListener() {
-			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
 				if(btnPotvrdi.isEnabled()) {
-					boolean succ = controller.dodajStudenta();
-					if(succ == true) {
-						//JOptionPane.showMessageDialog(null, "Student uspešno dodat u bazu.");
-						dispose();
-					}
-					else {
-						//JOptionPane.showMessageDialog(null, "Broj indeksa već postoji u bazi!");
-					}
+					boolean temp = controller.dodajStudenta();
+					if(temp == true) 
+						dispose();			
 				}
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
 				if(btnPotvrdi.isEnabled()) {
 					btnPotvrdi.setBackground(new Color(228, 244, 255));
 					btnPotvrdi.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 1));
 				}
 			}
+
 			@Override
 			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
 				if(btnPotvrdi.isEnabled()) {
 					btnPotvrdi.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 2));
 					btnPotvrdi.setBackground(new Color(230,230,230));
 				}
 			}
+
 			@Override
-			public void mousePressed(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
 			@Override
-			public void mouseReleased(MouseEvent arg0) {}
-		});
-        formatButton(btnPotvrdi, 1);
-        buttons.add(btnPotvrdi);
-        buttons.add(Box.createHorizontalStrut(10));
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+        });
 		
 		JButton btnOdbaci = new JButton("Odustani");
-		btnOdbaci.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				dispose();
-			}
-		});
+		formatButton(btnOdbaci, 0);
+		buttons.add(btnOdbaci);
+		buttons.add(Box.createHorizontalStrut(50));
 		btnOdbaci.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -219,10 +193,7 @@ public class NoviStudentDialog extends JDialog{
 			@Override
 			public void mouseReleased(MouseEvent arg0) {}
 		});
-		formatButton(btnOdbaci, 0);
-		buttons.add(btnOdbaci);
-		buttons.add(Box.createHorizontalStrut(50));
-		
+	
         add(buttons, BorderLayout.SOUTH);      
         
 		validate();
@@ -247,6 +218,20 @@ public class NoviStudentDialog extends JDialog{
     			btn.setToolTipText("Odbaci unete podatke");
     		}
     		
+    	}
+    	
+    	public void disablePotvrdi() {
+    		btnPotvrdi.setEnabled(false);
+    		btnPotvrdi.setForeground(new Color(150, 150, 150));
+    		btnPotvrdi.setBackground(new Color(220, 220, 220));
+    		btnPotvrdi.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+    	}
+    	
+    	public void enablePotvrdi() {
+    		btnPotvrdi.setEnabled(true);
+    		btnPotvrdi.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 2));
+    		btnPotvrdi.setBackground(new Color(230,230,230));
+    		btnPotvrdi.setForeground(Color.BLACK);
     	}
 
 
@@ -378,4 +363,5 @@ public class NoviStudentDialog extends JDialog{
 		public void setBtnOdbaci(JButton btnOdbaci) {
 			this.btnOdbaci = btnOdbaci;
 		}
+
 }

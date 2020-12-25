@@ -85,6 +85,12 @@ public class MainFrame extends JFrame {
 			validate();
 	}
 	
+	public void updateStudentiTable() {
+		AbstractTableModelStudenti model = (AbstractTableModelStudenti) studentiTable.getModel();
+		model.fireTableDataChanged();
+		validate();
+}
+	
 	public int getActiveTab() {
 		return this.tabbedPane.getSelectedIndex();
 	}

@@ -1,6 +1,8 @@
 package controller;
 
 
+import javax.swing.JOptionPane;
+
 import model.BazaStudenata;
 import model.Student.Status;
 import view.MainFrame;
@@ -12,24 +14,12 @@ public class StudentController {
 	private Validacija validacija;
 	
 	public StudentController(NoviStudentDialog view) {
-		view = view;
-		validacija = new Validacija();		
-	}
-
-	public NoviStudentDialog getView() {
-		return view;
-	}
-
-	public void setView(NoviStudentDialog view) {
 		this.view = view;
+		this.validacija = new Validacija();		
 	}
 
 	public Validacija getValidacija() {
 		return validacija;
-	}
-
-	public void setValidacija(Validacija validacija) {
-		this.validacija = validacija;
 	}
 
 	public boolean dodajStudenta() {
@@ -41,7 +31,6 @@ public class StudentController {
 		String eMailAdresa = view.getpEMailAdresa().getTextField().getText();
 		String brIndexa = view.getpBrojIndexa().getTextField().getText();
 		int godU = Integer.valueOf(view.getpGodinaUpisa().getTextField().getText());
-		//double = view.getPr 
 		Status status = Status.B;
 		switch(view.getpNacinFinansiranja().getComboBox().getSelectedIndex()) {
 		case 0:
@@ -67,12 +56,12 @@ public class StudentController {
 			break;
 		}
 		if(BazaStudenata.getInstance().pronadjiStudenta(brIndexa)) {
-			//JOptionPane.showMessageDialog(view, "Broj indeksa vec postoji u bazi!");
+			JOptionPane.showMessageDialog(view, "Broj indeksa vec postoji u bazi!");
 			return false;
 		}
-		//BazaStudenata.getInstance().dodajStudentaUBazu(prezime, ime, datumRodj, adresaStan, brTelefona, eMailAdresa, brIndexa, godU,trGodStu, status, prosOcena);
-		MainFrame.getInstance().updateProfesoriTable();
-		//JOptionPane.showMessageDialog(null, "Student uspesno dodat u bazu.");
+		BazaStudenata.getInstance().dodajStudentaUBazu(prezime, ime, datumRodj, adresaStan, brTelefona, eMailAdresa, brIndexa, godU,trGodStu, status, 0.0);
+		MainFrame.getInstance().updateStudentiTable();
+		JOptionPane.showMessageDialog(null, "Student uspesno dodat u bazu.");
 		return true;
 	}
 }

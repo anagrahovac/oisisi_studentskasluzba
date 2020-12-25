@@ -99,8 +99,8 @@ public class Validacija {
 		if(str.equals("") || str == null)
 			indeks = false;
 		else 
-			indeks = Pattern.matches("[A-Z]{2,3}[1-9]{1,3}/20[0-2][0-9]", str);
-		return indeks;
+			indeks = Pattern.matches("[a-z]{2,3}[1-9]{1,3}-20[0-2][0-9]", str);
+		return this.indeks;
 		
 	}
 	public boolean validirajGodinuUpisa(String str) {
@@ -108,7 +108,7 @@ public class Validacija {
 			godinaUpisa = false;
 		else
 			godinaUpisa = Pattern.matches("20[0-2][0-9]", str);
-		return godinaUpisa;
+		return this.godinaUpisa;
 	}
 
 	public boolean validirajAdresuKancelarije(String str) {
@@ -150,7 +150,15 @@ public class Validacija {
 	public boolean isEmail() {
 		return email;
 	}
+	
+	public boolean isIndeks() {
+		return indeks;
+	}
 
+	public boolean isGodinaUpisa() {
+		return godinaUpisa;
+	}
+	
 	public boolean isAdresaKancelarija() {
 		return adresaKancelarija;
 	}
