@@ -56,12 +56,12 @@ public class StudentController {
 			break;
 		}
 		if(BazaStudenata.getInstance().pronadjiStudenta(brIndexa)) {
-			JOptionPane.showMessageDialog(view, "Broj indeksa vec postoji u bazi!");
+			JOptionPane.showMessageDialog(view, "Broj indeksa već postoji u bazi!");
 			return false;
 		}
 		BazaStudenata.getInstance().dodajStudentaUBazu(prezime, ime, datumRodj, adresaStan, brTelefona, eMailAdresa, brIndexa, godU,trGodStu, status, 0.0);
 		MainFrame.getInstance().updateStudentiTable();
-		JOptionPane.showMessageDialog(null, "Student uspesno dodat u bazu.");
+		JOptionPane.showMessageDialog(null, "Student uspešno dodat u bazu.");
 		return true;
 	}
 }

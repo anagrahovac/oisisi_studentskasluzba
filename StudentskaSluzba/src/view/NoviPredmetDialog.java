@@ -24,7 +24,7 @@ public class NoviPredmetDialog extends JDialog{
 	public NoviPredmetDialog() {
 		
 		setSize(500, 600);
-		setTitle("Dodavanje predmetaa");
+		setTitle("Dodavanje predmeta");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null); 
 		setResizable(false);

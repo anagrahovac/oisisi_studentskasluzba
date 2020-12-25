@@ -52,7 +52,6 @@ public class NoviStudentDialog extends JDialog{
 		background.setBackground(c);
 		background.setLayout(new BoxLayout(background, BoxLayout.Y_AXIS));
 		
-		StudentFocusListener focusListener = new StudentFocusListener(this);
 		StudentKeyListener keyListener = new StudentKeyListener(this);
 		controller = new StudentController(this);
 		
@@ -61,46 +60,44 @@ public class NoviStudentDialog extends JDialog{
 		
 		pIme = new RowPanel("Ime*");
 		pIme.getTextField().setName("txtIme");
-		pIme.getTextField().addFocusListener(focusListener);
 		pIme.getTextField().addKeyListener(keyListener);
 		
 		pPrezime = new RowPanel("Prezime*");
 		pPrezime.getTextField().setName("txtPrezime");
-		pPrezime.getTextField().addFocusListener(focusListener);
+		pPrezime.getTextField().addKeyListener(keyListener);
 		
 		pDatumRodjenja = new RowPanel("Datum rodjenja*");
 		pDatumRodjenja.getTextField().setToolTipText("Format: dd.mm.yyyy.");
 		pDatumRodjenja.getTextField().setName("txtDatumRodjenja");
-		pDatumRodjenja.getTextField().addFocusListener(focusListener);
+		pDatumRodjenja.getTextField().addKeyListener(keyListener);
 		
 		pAdresaStanovanja = new RowPanel("Adresa stanovanja*");
 		pAdresaStanovanja.getTextField().setName("txtAdresaStanovanja");
-		pAdresaStanovanja.getTextField().addFocusListener(focusListener);
+		pAdresaStanovanja.getTextField().addKeyListener(keyListener);
 		
 		pBrojTelefona = new RowPanel("Kontakt telefon*");
 		pBrojTelefona.getTextField().setName("txtBrojTelefona");
-		pBrojTelefona.getTextField().addFocusListener(focusListener);
+		pBrojTelefona.getTextField().addKeyListener(keyListener);
 		
 		pEMailAdresa = new RowPanel("E-mail adresa*");
 		pEMailAdresa.getTextField().setName("txtEMailAdresa");
-		pEMailAdresa.getTextField().addFocusListener(focusListener);
+		pEMailAdresa.getTextField().addKeyListener(keyListener);
 		
 		pBrojIndexa = new RowPanel("Broj indeksa*");
 		pBrojIndexa.getTextField().setToolTipText("Format: ss-BBB-GGGG");
 		pBrojIndexa.getTextField().setName("txtBrojIndexa");
-		pBrojIndexa.getTextField().addFocusListener(focusListener);
+		pBrojIndexa.getTextField().addKeyListener(keyListener);
 		
 		pGodinaUpisa = new RowPanel("Godina upisa*");
 		pGodinaUpisa.getTextField().setName("txtGodinaUpisa");
-		pGodinaUpisa.getTextField().addFocusListener(focusListener);
+		pGodinaUpisa.getTextField().addKeyListener(keyListener);
 		
 		String[] godinaStudija = {"1 (prva)", "2 (druga)", "3 (treca)", "4 (četvrta)"};
 		pTrenutnaGodinaStudija = new RowPanel("Godina studija*", godinaStudija);
 
 		String[] nacinFinansiranja = {"Budžet", "Samofinansiranje"};
 		pNacinFinansiranja = new RowPanel("Način finansiranja*", nacinFinansiranja);
-		
-		
+	
         
 	    background.add(Box.createVerticalStrut(30));  
 	    background.add(pIme);
@@ -116,7 +113,8 @@ public class NoviStudentDialog extends JDialog{
 	    background.add(Box.createVerticalStrut(30));
 
         add(background, BorderLayout.CENTER);
-	
+
+        
         JPanel buttons = new JPanel();
         buttons.setPreferredSize(new Dimension(70,70));
         buttons.setBackground(c);
@@ -124,6 +122,7 @@ public class NoviStudentDialog extends JDialog{
         buttons.setPreferredSize(new Dimension(50, 50));
 		
         formatButton(btnPotvrdi, 1);
+        this.disablePotvrdi();
         buttons.add(btnPotvrdi);
         buttons.add(Box.createHorizontalStrut(10));
         btnPotvrdi.addMouseListener(new MouseListener() {
@@ -133,7 +132,7 @@ public class NoviStudentDialog extends JDialog{
 				// TODO Auto-generated method stub
 				if(btnPotvrdi.isEnabled()) {
 					boolean temp = controller.dodajStudenta();
-					if(temp == true) 
+					if(temp) 
 						dispose();			
 				}
 			}

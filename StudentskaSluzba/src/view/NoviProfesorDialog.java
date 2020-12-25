@@ -88,7 +88,7 @@ public NoviProfesorDialog() {
 		pAdresaKancelarija.getTextField().setName("txtAdresaKancelarija");
 		pAdresaKancelarija.getTextField().addKeyListener(pl);
 		
-		pID = new RowPanel("Broj licne karte*");
+		pID = new RowPanel("Broj lične karte*");
 		pID.getTextField().setName("txtID");
 		pID.getTextField().addKeyListener(pl);
 		
@@ -141,11 +141,11 @@ public NoviProfesorDialog() {
 				if(btnPotvrdi.isEnabled()) {
 					boolean succ = controller.dodajProfesora();
 					if(succ == true) {
-						JOptionPane.showMessageDialog(null, "Profesor uspesno dodat u bazu.");
+						JOptionPane.showMessageDialog(null, "Profesor uspešno dodat u bazu.");
 						dispose();
 					}
 					else {
-						JOptionPane.showMessageDialog(null, "Broj licne karte vec postoji u bazi!");
+						JOptionPane.showMessageDialog(null, "Broj lične karte već postoji u bazi!");
 					}
 				}
 			}
