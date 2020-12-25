@@ -71,6 +71,7 @@ public NoviProfesorDialog() {
 		pDatum = new RowPanel("Datum rodjenja*");
 		pDatum.getTextField().setName("txtDatum");
 		pDatum.getTextField().addKeyListener(pl);
+		pDatum.getTextField().setToolTipText("Format: dd.mm.yyyy.");
 		
 		pAdresaStan = new RowPanel("Adresa stanovanja*");
 		pAdresaStan.getTextField().setName("txtAdresaStan");

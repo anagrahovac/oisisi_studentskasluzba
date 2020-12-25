@@ -1,5 +1,8 @@
 package controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.regex.Pattern;
 
 public class Validacija {
@@ -49,7 +52,6 @@ public class Validacija {
 		else 
 			this.ime = Pattern.matches("([A-ZŠĐŽČĆ]([a-zšđžčć]+)?| ?)+", str);
 		
-			
 		return this.ime;
 	}
 	
@@ -63,11 +65,19 @@ public class Validacija {
 	}
 	
 	public boolean validirajDatum(String str) {
-		if((str.equals("") || str == null))
+		if((str.equals("") || str == null)) {
 			this.datum = false;
-		else 
-			this.datum = Pattern.matches("((0?[1-9]|[12]?[0-9])|(3[01]))\\.((0?[1-9])|(1[0-2]))\\.((19[0-9][0-9])|(20[01][0-9])|(2020))\\.", str);
-		
+			return false;
+		}
+		this.datum = Pattern.matches("((0[1-9]|[12][0-9])|(3[01]))\\.((0[1-9])|(1[0-2]))\\.((19[0-9][0-9])|(20[01][0-9])|(2020))\\.", str);
+		try {
+			final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+			final LocalDate datum = LocalDate.parse(str, dtf);
+		}
+		catch(DateTimeParseException e) {
+			this.datum = false;
+			return false;
+		}
 		return this.datum;
 	}
 

@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Profesor {
@@ -7,7 +8,7 @@ public class Profesor {
 	public enum Zvanje {DOCENT, VANREDNI_PROFESOR, REDOVNI_PROFESOR;}
 	private String prezime;
 	private String ime;
-	private String datumRodjenja;
+	private LocalDate datumRodjenja;
 	private String adresaStanovanja;
 	private String kontaktTelefon;
 	private String emailAdresa;
@@ -32,7 +33,7 @@ public class Profesor {
 		this.spisakPredmeta = new ArrayList<Predmet>();
 	}
 	
-	public Profesor(String prezime, String ime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
+	public Profesor(String prezime, String ime, LocalDate datumRodjenja, String adresaStanovanja, String kontaktTelefon,
 			String emailAdresa, String adresaKancelarije, String brojLicneKarte, Titula titula, Zvanje zvanje) {
 		super();
 		this.prezime = prezime;
@@ -64,11 +65,11 @@ public class Profesor {
 		this.ime = ime;
 	}
 
-	public String getDatumRodjenja() {
+	public LocalDate getDatumRodjenja() {
 		return datumRodjenja;
 	}
 
-	public void setDatumRodjenja(String datumRodjenja) {
+	public void setDatumRodjenja(LocalDate datumRodjenja) {
 		this.datumRodjenja = datumRodjenja;
 	}
 

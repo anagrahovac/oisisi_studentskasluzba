@@ -1,5 +1,11 @@
 package controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import javax.swing.JOptionPane;
+
 import model.*;
 import view.*;
 import model.Profesor.Titula;
@@ -21,7 +27,16 @@ public class ProfesorController {
 	public boolean dodajProfesora() {
 		String ime = view.getpIme().getTextField().getText();
 		String prezime = view.getpPrezime().getTextField().getText();
-		String datum = view.getpDatum().getTextField().getText();
+		String d = view.getpDatum().getTextField().getText();
+		LocalDate datum = null;
+		try {
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+			datum = LocalDate.parse(d, dtf);
+		}
+		catch(DateTimeParseException e) {
+			JOptionPane.showMessageDialog(null, "Datum je nepostojeci!");
+			return false;
+		}
 		String as = view.getpAdresaStan().getTextField().getText();
 		String telefon = view.getpTelefon().getTextField().getText();
 		String email = view.getpEmail().getTextField().getText();
