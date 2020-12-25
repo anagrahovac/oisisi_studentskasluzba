@@ -1,12 +1,13 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Student {
 	public enum Status {B,S;}
 	private String prezimeStudenta;
 	private String imeStudenta;
-	private String datumRodjenja;
+	private LocalDate datumRodjenja;
 	private String adresaStanovanja;
 	private String kontaktTelefon;
 	private String emailAdresa;
@@ -35,7 +36,7 @@ public class Student {
 		this.spisakNepolozenihIspita = new ArrayList<Ocena>();
 	}
 
-	public Student(String prezimeStudenta, String imeStudenta, String datumRodjenja, String adresaStanovanja,
+	public Student(String prezimeStudenta, String imeStudenta, LocalDate datumRodjenja, String adresaStanovanja,
 			String kontaktTelefon, String emailAdresa, String brojIndexa, int godinaUpisa, int trenutnaGodinaStudija,
 			Status status, double prosecnaocena) {
 		super();
@@ -70,11 +71,11 @@ public class Student {
 		this.imeStudenta = imeStudenta;
 	}
 
-	public String getDatumRodjenja() {
+	public LocalDate getDatumRodjenja() {
 		return datumRodjenja;
 	}
 
-	public void setDatumRodjenja(String datumRodjenja) {
+	public void setDatumRodjenja(LocalDate datumRodjenja) {
 		this.datumRodjenja = datumRodjenja;
 	}
 

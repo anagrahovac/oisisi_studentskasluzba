@@ -55,8 +55,7 @@ public class NoviStudentDialog extends JDialog{
 		StudentKeyListener keyListener = new StudentKeyListener(this);
 		controller = new StudentController(this);
 		
-
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx	polja	
+		
 		
 		pIme = new RowPanel("Ime*");
 		pIme.getTextField().setName("txtIme");
@@ -114,6 +113,7 @@ public class NoviStudentDialog extends JDialog{
 
         add(background, BorderLayout.CENTER);
 
+        
         
         JPanel buttons = new JPanel();
         buttons.setPreferredSize(new Dimension(70,70));

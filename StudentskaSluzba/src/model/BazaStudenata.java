@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import model.Student.Status;
 
@@ -26,11 +27,11 @@ public class BazaStudenata {
 	//obrisati
 	public void dodajStudenta() {
 		
-		Student s = new Student("Mirić", "Mitar", "23.01.1999.", "Šafarikova 23", "0600000000", "mitarmiric@uns.ac.rs", "ra-230-2018", 2018, 3, Status.B, 10.00);	
-		Student s1 = new Student("Obradović", "Dušan", "15.06.1995.", "Bulevar Oslobodjenja 67", "0610000000", "obradovicdusan@uns.ac.rs","ra-5-2014", 2014, 4, Status.S, 8.5);
-		Student s2 = new Student("Mitrović","Anđela", "22.07.2000.", "Mostarska 50", "0620000000", "mitrovicandjela@uns.ac.rs", "ra-35-2019", 2019, 2, Status.B , 8.95);
-		Student s3 = new Student("Kostovski", "Miloš", "11.05.1998.", "Mladosti 39", "0630000000", "kostovskimilos@uns.ac.rs", "ra-56-2017", 2017, 4, Status.S, 7.25);
-		Student s4 = new Student("Antić", "Isidora", "14.12.2001.", "Radnička 55", "0640000000", "anticisidora@uns.ac.rs", "ra-23-2020", 2020, 1, Status.B, 9.45);
+		Student s = new Student("Mirić", "Mitar", LocalDate.of(2017, 1, 13), "Šafarikova 23", "0600000000", "mitarmiric@uns.ac.rs", "ra-230-2018", 2018, 3, Status.B, 10.00);	
+		Student s1 = new Student("Obradović", "Dušan", LocalDate.of(1995, 6, 15), "Bulevar Oslobodjenja 67", "0610000000", "obradovicdusan@uns.ac.rs","sw-5-2014", 2014, 4, Status.S, 8.5);
+		Student s2 = new Student("Mitrović","Anđela", LocalDate.of(2000, 7, 22), "Mostarska 50", "0620000000", "mitrovicandjela@uns.ac.rs", "ra-35-2019", 2019, 2, Status.B , 8.95);
+		Student s3 = new Student("Kostovski", "Miloš", LocalDate.of(1998, 5, 11), "Mladosti 39", "0630000000", "kostovskimilos@uns.ac.rs", "in-56-2017", 2017, 4, Status.S, 7.25);
+		Student s4 = new Student("Antić", "Isidora", LocalDate.of(2001, 12, 14), "Radnička 55", "0640000000", "anticisidora@uns.ac.rs", "mh-23-2020", 2020, 1, Status.B, 9.45);
 		
 		this.studenti.add(s);
 		this.studenti.add(s1);
@@ -111,7 +112,7 @@ public class BazaStudenata {
 		return retVal;
 	}
 	
-	public void dodajStudentaUBazu(String prezime, String ime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
+	public void dodajStudentaUBazu(String prezime, String ime, LocalDate datumRodjenja, String adresaStanovanja, String kontaktTelefon,
 			String emailAdresa, String brojIndexa, int godinaUpisa, int trenutnaGodinaStudija, Status status, double prosecnaocena) {
 		Student p = new Student(prezime, ime, datumRodjenja, adresaStanovanja, kontaktTelefon, emailAdresa,
 				brojIndexa, godinaUpisa, trenutnaGodinaStudija, status, prosecnaocena);

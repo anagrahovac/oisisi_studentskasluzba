@@ -34,7 +34,7 @@ public class ProfesorController {
 			datum = LocalDate.parse(d, dtf);
 		}
 		catch(DateTimeParseException e) {
-			JOptionPane.showMessageDialog(null, "Datum je nepostojeci!");
+			JOptionPane.showMessageDialog(null, "Datum je nepostojeći!");
 			return false;
 		}
 		String as = view.getpAdresaStan().getTextField().getText();

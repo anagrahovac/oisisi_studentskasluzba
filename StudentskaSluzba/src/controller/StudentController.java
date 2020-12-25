@@ -1,6 +1,10 @@
 package controller;
 
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import javax.swing.JOptionPane;
 
 import model.BazaStudenata;
@@ -25,7 +29,16 @@ public class StudentController {
 	public boolean dodajStudenta() {
 		String ime = view.getpIme().getTextField().getText();
 		String prezime = view.getpPrezime().getTextField().getText();
-		String datumRodj = view.getpDatumRodjenja().getTextField().getText();
+		String datum = view.getpDatumRodjenja().getTextField().getText();
+			LocalDate datumRodj = null;
+			try {
+				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+				datumRodj = LocalDate.parse(datum, dtf);
+			}
+			catch(DateTimeParseException e) {
+				JOptionPane.showMessageDialog(null, "Datum je nepostojeći!");
+				return false;
+			}
 		String adresaStan = view.getpAdresaStanovanja().getTextField().getText();
 		String brTelefona = view.getpBrojTelefona().getTextField().getText();
 		String eMailAdresa = view.getpEMailAdresa().getTextField().getText();
@@ -59,9 +72,9 @@ public class StudentController {
 			JOptionPane.showMessageDialog(view, "Broj indeksa već postoji u bazi!");
 			return false;
 		}
-		BazaStudenata.getInstance().dodajStudentaUBazu(prezime, ime, datumRodj, adresaStan, brTelefona, eMailAdresa, brIndexa, godU,trGodStu, status, 0.0);
-		MainFrame.getInstance().updateStudentiTable();
-		JOptionPane.showMessageDialog(null, "Student uspešno dodat u bazu.");
-		return true;
+			BazaStudenata.getInstance().dodajStudentaUBazu(prezime, ime, datumRodj, adresaStan, brTelefona, eMailAdresa, brIndexa, godU,trGodStu, status, 0.0);
+			MainFrame.getInstance().updateStudentiTable();
+			JOptionPane.showMessageDialog(null, "Student uspešno dodat u bazu.");
+			return true;
 	}
 }
