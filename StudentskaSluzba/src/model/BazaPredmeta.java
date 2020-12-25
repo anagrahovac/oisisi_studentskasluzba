@@ -25,13 +25,17 @@ public class BazaPredmeta {
 	//obrisati posle
 	private void dodajPredmete() {
 		//String sifraPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudija, Profesor predmetniProfesor, int brojBodova
-		Predmet p1, p2, p3;
+		Predmet p1, p2, p3, p4, p5;
 		p1 = new Predmet("P012", "Algebra", Semestar.ZIMSKI, 1, null, 9);
 		p2 = new Predmet("A805", "Objektno programiranje", Semestar.ZIMSKI, 2, null, 8);
 		p3 = new Predmet("K156", "Arhitektura računara", Semestar.LETNJI, 1, null, 9);
+		p4 = new Predmet("T488", "Osnovi elekrotehnike", Semestar.LETNJI, 1, null, 8);
+		p5 = new Predmet("F137", "Baze podataka 1", Semestar.ZIMSKI, 3, null, 7);
 		this.predmeti.add(p1);
 		this.predmeti.add(p2);
 		this.predmeti.add(p3);
+		this.predmeti.add(p4);
+		this.predmeti.add(p5);
 		
 	}
 	
