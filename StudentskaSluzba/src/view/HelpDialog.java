@@ -12,6 +12,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 public class HelpDialog extends JDialog{
 	
@@ -27,7 +28,7 @@ public class HelpDialog extends JDialog{
 		
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
-		int sizeHeight = (screenSize.height * 3 / 4) * 7/8;
+		int sizeHeight = (screenSize.height * 3 / 4) * 3/4;
 		int sizeWidth = (screenSize.width * 3 / 4) / 2;
 		
 		setSize(sizeWidth, sizeHeight);
@@ -46,35 +47,40 @@ public class HelpDialog extends JDialog{
 		JLabel lblHeader = new JLabel("Način korišćenja aplikacije i opis iste");
 		lblHeader.setFont(f);
 		
-		JLabel koriscenje = new JLabel(); 
-		koriscenje.setText("<html><body>Pred vama se nalazi aplikacija koja predstavlja studentsku službu Fakulteta<br>"
-									+ "Tehničkih Nauka u Novom Sadu. Studentska služba rukuje bazom studenata,<br>"
-									+ "profesora i predmeta. U centralnom delu aplikacije nalaze se tabele sa datim<br>"
-									+ "entitetima. Prethodne entitete studentska služba ima pravo da dodaje, menja<br>"
-									+ "briše... Referent dodaje entitet selektovanjem odgovarajuće tabele (npr. ako<br>"
-									+ "želi da doda predmet, prethodno mora selektovana tabela predmeta). Nakon<br>"
-									+ "dodatog entiteta, tabela se ažurira i on postaje vidljiv. Entitet se može<br>"
-									+ "dodati iz stavke glavnog menija \"New\", pritiskom prvog dugmeta toolbar-a<br>"
-									+ "ili upotrebom odgovarajućih mnemonika i akceleratora."
-									+ " <br>"
-									+ "<br>"
-									+ "ALT+F - otvara File stavku menija<br>"
-									+ "ALT+E - otvara Edit stavku menija<br>"
-									+ "ALT+H - otvara Help stavku menija<br>"
-									+ "CTRL+N - prečica za dodavanje novog entiteta u sistem<br>"
-									+ "CTRL+C - prečica za zatvaranje aplikacije<br>"
-									+ "CTRL+T - prečica za izmenu entiteta iz sistema<br>"
-									+ "CTRL+D - prečica za brisanje postojećeg entiteta iz sistema<br>"
-									+ "CTRL+B - prečica za otvaranje submenija za pomoć o radu aplikacije<br>"
-									+ "CTRL+A - prečica za otvaranje submenija za opis autora<br>");
-		koriscenje.setFont(f1);
-		
+		JTextArea koriscenje = new JTextArea();
+		koriscenje.setText("    U centralnom delu aplikacije nalaze se tabele sa datim "
+									+ "entitetima. Prethodne entitete studentska služba ima pravo da dodaje, menja, "
+									+ "briše... Referent dodaje entitet selektovanjem odgovarajuće tabele (npr. ako "
+									+ "želi da doda predmet, prethodno mora biti selektovan tab predmeta). Entitet se može "
+									+ "dodati iz stavke glavnog menija \"New\", pritiskom dugmeta toolbar-a "
+									+ "ili upotrebom odgovarajućih mnemonika i akceleratora. Pri dodavanju entiteta "
+									+ "svaki unos ima proveru da li je uneta vrednost moguća. Nakon provere entitet "
+									+ "se dodaje u tabelu, ona se ažurira i on postaje vidljiv korisniku. Ukoliko "
+									+ "referent odustane od dodavanja entiteta, to može učiniti pritiskom na dugme \"Odustani\".\n\n"
+
+									+ "ALT+F - otvara File stavku menija\n"
+									+ "ALT+E - otvara Edit stavku menija\n"
+									+ "ALT+H - otvara Help stavku menija\n"
+									+ "CTRL+N - prečica za dodavanje novog entiteta u sistem\n"
+									+ "CTRL+C - prečica za zatvaranje aplikacije\n"
+									+ "CTRL+T - prečica za izmenu entiteta iz sistema\n"
+									+ "CTRL+D - prečica za brisanje postojećeg entiteta iz sistema\n"
+									+ "CTRL+B - prečica za otvaranje submenija za pomoć o radu aplikacije\n"
+									+ "CTRL+A - prečica za otvaranje submenija za opis autora\n");
+		koriscenje.setLineWrap(true);
+		koriscenje.setFont(f1);	
+		koriscenje.setOpaque(true);
+		koriscenje.setEditable(false);
 		
 		header.setBackground(c);
 		koriscenje.setBackground(c);
 		
 		header.add(lblHeader);
 		background.add(koriscenje);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		add(scrollPane,BorderLayout.CENTER);
+		scrollPane.setViewportView(koriscenje);
 	}
 
 }
