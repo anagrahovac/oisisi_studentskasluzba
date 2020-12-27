@@ -57,6 +57,7 @@ public class MyToolbar extends JToolBar {
 
 		//akcije
 		btnNew.addActionListener(new NewActionListener());
+		btnDelete.addActionListener(new DeleteActionListener());
 		
 		add(panTools);
 

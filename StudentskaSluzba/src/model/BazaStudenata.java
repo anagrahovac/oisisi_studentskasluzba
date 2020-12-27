@@ -127,4 +127,8 @@ public class BazaStudenata {
 		}
 		return false;
 	}
+	
+	public void izbrisiStudenta(int i) {
+		this.studenti.remove(i);
+	}
 }
