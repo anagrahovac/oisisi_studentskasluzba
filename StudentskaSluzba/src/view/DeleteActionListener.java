@@ -17,8 +17,7 @@ public class DeleteActionListener implements ActionListener{
 		// TODO Auto-generated method stub
 		int tab = MainFrame.getInstance().getActiveTab();
 		if (tab == 0) {
-			TableStudenti tabela = new TableStudenti();			
-			int i = tabela.getSelectedRow();
+			int i = MainFrame.getInstance().getStudentiTable().getSelectedRow();
 			if(i == -1) {
 				JOptionPane.showMessageDialog(null, "Niste selektovali studenta koga želite da obrišete.");
 				return;
@@ -29,15 +28,14 @@ public class DeleteActionListener implements ActionListener{
 				if (code != JOptionPane.YES_OPTION) {
 					
 				} else {
-					//BazaStudenata.getInstance().izbrisiStudenta(i);
-					//MainFrame.getInstance().updateStudentiTable();
+					BazaStudenata.getInstance().izbrisiStudenta(i);
+					MainFrame.getInstance().updateStudentiTable();
 					JOptionPane.showMessageDialog(null, "Student obrisan iz baze.");
 				}
 			}
 		}
-		if (tab == 1) {
-			TableProfesori tabela = new TableProfesori();	
-			int i = tabela.getSelectedRow();
+		if (tab == 1) {	
+			int i = MainFrame.getInstance().getProfesoriTable().getSelectedRow();
 			if(i == -1) {
 				JOptionPane.showMessageDialog(null, "Niste selektovali profesora koga želite da obrišete.");
 				return;
@@ -48,8 +46,8 @@ public class DeleteActionListener implements ActionListener{
 				if (code != JOptionPane.YES_OPTION) {
 					
 				} else {
-					//BazaProfesora.getInstance().izbrisiProfesora(i);
-					//MainFrame.getInstance().updateProfesoriTable();
+					BazaProfesora.getInstance().izbrisiProfesora(i);
+					MainFrame.getInstance().updateProfesoriTable();
 					JOptionPane.showMessageDialog(null, "Profesor obrisan iz baze.");
 				}
 			}

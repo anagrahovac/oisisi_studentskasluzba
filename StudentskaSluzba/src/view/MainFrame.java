@@ -99,4 +99,16 @@ public class MainFrame extends JFrame {
 	public int getActiveTab() {
 		return this.tabbedPane.getSelectedIndex();
 	}
+
+	public TableStudenti getStudentiTable() {
+		return studentiTable;
+	}
+
+	public TableProfesori getProfesoriTable() {
+		return profesoriTable;
+	}
+
+	public TablePredmeti getPredmetiTable() {
+		return predmetiTable;
+	}	
 }
