@@ -90,8 +90,13 @@ public class MainFrame extends JFrame {
 		validate();
 	}
 	
+	public void updatePredmetiTable() {
+		AbstractTableModelPredmeti model = (AbstractTableModelPredmeti) predmetiTable.getModel();
+		model.fireTableDataChanged();
+		validate();
+	}
+	
 	public int getActiveTab() {
 		return this.tabbedPane.getSelectedIndex();
 	}
-
 }

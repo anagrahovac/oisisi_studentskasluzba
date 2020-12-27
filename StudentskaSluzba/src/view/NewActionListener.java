@@ -18,7 +18,7 @@ public class NewActionListener implements ActionListener{
 			npd.setVisible(true);
 		}
 		if (tab == 2) {
-			NoviPredmetDialog npd = new NoviPredmetDialog();
+			NoviPredmetDialog npd = new NoviPredmetDialog(MainFrame.getInstance());
 			npd.setVisible(true);
 		}
 	} 

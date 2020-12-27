@@ -16,6 +16,10 @@ public class Validacija {
 	private boolean godinaUpisa = false;
 	private boolean adresaKancelarija = false;
 	private boolean brojLicne = false;
+	private boolean sifra = false;
+	private boolean naziv = false;
+	private boolean godStud = false;
+	private boolean brESPB = false;
 	
 	public Validacija() {
 		ime = false;
@@ -28,6 +32,10 @@ public class Validacija {
 		godinaUpisa = false;
 		adresaKancelarija = false;
 		brojLicne = false;
+		sifra = false;
+		naziv = false;
+		godStud = false;
+		brESPB = false;
 	}
 	
 	public boolean validirajStudenta() {
@@ -41,6 +49,13 @@ public class Validacija {
 	public boolean validirajProfesora() {
 		if(ime == true && prezime == true && datum == true && adresaStan == true && telefon == true && email == true &&
 				adresaKancelarija == true && brojLicne == true) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean validirajPredmet() {
+		if(sifra == true && naziv == true && godStud == true && brESPB == true) {
 			return true;
 		}
 		return false;
@@ -136,6 +151,38 @@ public class Validacija {
 			this.brojLicne = Pattern.matches("[0-9]{9}", str);
 		return this.brojLicne;
 	}
+	
+	public boolean validirajSifru(String str) {
+		if(str.equals("") || str == null)
+			this.sifra = false;
+		else
+			this.sifra = Pattern.matches("[A-Z][0-9]{3}", str);
+		return this.sifra;
+	}
+	
+	public boolean validirajNaziv(String str) {
+		if(str.equals("") || str == null)
+			this.naziv = false;
+		else
+			this.naziv = Pattern.matches("([A-ZŠĐŽČĆ]([a-zšđžčć]+)?| ?)+", str);
+		return this.naziv;
+	}
+	
+	public boolean validirajGodinuStudija(String str) {
+		if(str.equals("") || str == null)
+			this.godStud = false;
+		else
+			this.godStud = Pattern.matches("[1-4]", str);
+		return this.godStud;
+	}
+	
+	public boolean validirajBrojESPB(String str) {
+		if(str.equals("") || str == null)
+			this.brESPB = false;
+		else
+			this.brESPB = Pattern.matches("[1-9]", str);
+		return this.brESPB;
+	}
 
 	public boolean isIme() {
 		return ime;
@@ -175,5 +222,21 @@ public class Validacija {
 
 	public boolean isBrojLicne() {
 		return brojLicne;
+	}
+	
+	public boolean isSifra() {
+		return sifra;
+	}
+	
+	public boolean isNaziv() {
+		return naziv;
+	}
+	
+	public boolean isGodinaStudija() {
+		return godStud;
+	}
+	
+	public boolean isBrojESPB() {
+		return brESPB;
 	}
 }

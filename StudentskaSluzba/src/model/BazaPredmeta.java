@@ -90,8 +90,18 @@ public class BazaPredmeta {
 		}
 	}
 	
-	public void dodajPredmet(Predmet p) {
+	public void dodajPredmetUBazu(String sifra, String naziv, Semestar semestar, int godStudija, Profesor predProfesor, int brESPB) {
+		Predmet p = new Predmet(sifra, naziv, semestar, godStudija, predProfesor, brESPB);
 		this.predmeti.add(p);
+	}
+	
+	public boolean pronadjiPredmet(String sifra) {
+		for(int i = 0; i < predmeti.size(); i++) {
+			if (predmeti.get(i).getSifraPredmeta().equals(sifra)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public void izmeniPredmet(int i,String sifraPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudija,
