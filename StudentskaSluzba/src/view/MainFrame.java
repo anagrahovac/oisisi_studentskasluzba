@@ -62,6 +62,7 @@ public class MainFrame extends JFrame {
 		
 		JScrollPane studentiTab = new JScrollPane(studentiTable);
 		studentiTab.getViewport().setBackground(Color.WHITE);
+		this.updateStudentiTable();
 		
 		JScrollPane profesoriTab = new JScrollPane(profesoriTable);
 		profesoriTab.getViewport().setBackground(Color.WHITE);
@@ -69,6 +70,7 @@ public class MainFrame extends JFrame {
 		
 		JScrollPane predmetiTab = new JScrollPane(predmetiTable);
 		predmetiTab.getViewport().setBackground(Color.WHITE);
+		this.updatePredmetiTable();
 		
 		tabbedPane.addTab("Studenti", null, studentiTab, "Tabela sa studentima");
 		tabbedPane.addTab("Profesori", null, profesoriTab, "Tabela sa profesorima");

@@ -128,6 +128,29 @@ public class BazaStudenata {
 		return false;
 	}
 	
+	public Student studentDatogIndeksa(String indx) {
+		Student s = new Student();
+		for(int i = 0; i < studenti.size(); i++) {
+			if (studenti.get(i).getBrojIndexa().equals(indx)) {
+				String ime = studenti.get(i).getImeStudenta();
+				String prezime = studenti.get(i).getPrezimeStudenta();
+				LocalDate datum = studenti.get(i).getDatumRodjenja();
+				String adresa = studenti.get(i).getAdresaStanovanja();
+				String kontakt = studenti.get(i).getKontaktTelefon();
+				String email = studenti.get(i).getEmailAdresa();
+				String indeks = studenti.get(i).getBrojIndexa();
+				int godina = studenti.get(i).getGodinaUpisa();
+				int trenutno = studenti.get(i).getTrenutnaGodinaStudija();
+				Status status = studenti.get(i).getStatus();
+				double prosek = studenti.get(i).getProsecnaocena();
+						
+				s = new Student(ime,prezime, datum, adresa, kontakt, email, indeks, godina, trenutno, status,prosek);
+				return s;
+			}
+		}
+		return s;
+	}
+	
 	public void izbrisiStudenta(int i) {
 		this.studenti.remove(i);
 	}

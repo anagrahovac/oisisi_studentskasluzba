@@ -103,6 +103,7 @@ public class MyMenuBar extends JMenuBar{
 		});
 		
 		menuFileNew.addActionListener(new NewActionListener());
+		menuEditEdit.addActionListener(new EditActionListener());
 		menuEditDelete.addActionListener(new DeleteActionListener());
 
 	}
