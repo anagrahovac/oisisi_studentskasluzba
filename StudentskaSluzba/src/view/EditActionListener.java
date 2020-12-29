@@ -12,6 +12,7 @@ public class EditActionListener implements ActionListener{
 		if (tab == 0) {
 			IzmenaStudentaDialog isd = new IzmenaStudentaDialog();
 			isd.setVisible(true);
+			
 		}
 		if (tab == 1) {
 			

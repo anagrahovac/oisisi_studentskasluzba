@@ -3,6 +3,7 @@ package model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import model.Student.Status;
+import view.MainFrame;
 
 public class BazaStudenata {
 	
@@ -128,6 +129,16 @@ public class BazaStudenata {
 		return false;
 	}
 	
+	public String stariIndeks() {
+		int row = MainFrame.getInstance().getStudentiTable().getSelectedRow();
+		
+		if(row != -1)
+			return (String) MainFrame.getInstance().getStudentiTable().getValueAt(row, 0);
+		else
+			return "";
+		
+	}
+	
 	public Student studentDatogIndeksa(String indx) {
 		Student s = new Student();
 		for(int i = 0; i < studenti.size(); i++) {
@@ -144,11 +155,30 @@ public class BazaStudenata {
 				Status status = studenti.get(i).getStatus();
 				double prosek = studenti.get(i).getProsecnaocena();
 						
-				s = new Student(ime,prezime, datum, adresa, kontakt, email, indeks, godina, trenutno, status,prosek);
+				s = new Student(prezime,ime, datum, adresa, kontakt, email, indeks, godina, trenutno, status,prosek);
 				return s;
 			}
 		}
 		return s;
+	}
+	
+	public void izmeniStudenta(String stariBrojIndexa, String prezime, String ime, LocalDate datumRodjenja, String adresaStanovanja, String kontaktTelefon,
+			String emailAdresa, String brojIndexa, int godinaUpisa, int trenutnaGodinaStudija, Status status, double prosecnaocena) {
+		for(int i = 0; i < studenti.size(); i++) {
+			 if(studenti.get(i).getBrojIndexa().equals(stariBrojIndexa)) {
+				 studenti.get(i).setPrezimeStudenta(prezime);
+				 studenti.get(i).setImeStudenta(ime);
+				 studenti.get(i).setDatumRodjenja(datumRodjenja);
+				 studenti.get(i).setAdresaStanovanja(adresaStanovanja);
+				 studenti.get(i).setKontaktTelefon(kontaktTelefon);
+				 studenti.get(i).setEmailAdresa(emailAdresa);
+				 studenti.get(i).setBrojIndexa(brojIndexa);
+				 studenti.get(i).setGodinaUpisa(godinaUpisa);
+				 studenti.get(i).setTrenutnaGodinaStudija(trenutnaGodinaStudija);
+				 studenti.get(i).setStatus(status);
+				 studenti.get(i).setProsecnaocena(prosecnaocena);
+			 }
+		}
 	}
 	
 	public void izbrisiStudenta(int i) {
