@@ -42,7 +42,8 @@ public class IzmenaStudentaDialog extends JDialog{
 	private JButton btnPotvrdi = new JButton("Potvrdi");
 	private JButton btnOdbaci = new JButton("Odustani");
 	
-	public IzmenaStudentaDialog() {
+	public IzmenaStudentaDialog(String stariIndeks) {
+		
 		super(MainFrame.getInstance(), "Izmena studenta", true);
 		
 		setSize(600, 600);
@@ -72,16 +73,9 @@ public class IzmenaStudentaDialog extends JDialog{
 		
 		informacije.setBackground(c);
 		informacije.setLayout(new BoxLayout(informacije, BoxLayout.Y_AXIS));
-		
-		int i = MainFrame.getInstance().getStudentiTable().getSelectedRow();
+
 		Student s = new Student();
-		if(i == -1) {
-			JOptionPane.showMessageDialog(this, "Niste selektovali studenta za izmenu!");
-			return;
-		}else {
-			String indeks = (String) MainFrame.getInstance().getStudentiTable().getValueAt(i, 0);
-			s = BazaStudenata.getInstance().studentDatogIndeksa(indeks);
-		}	
+		s = BazaStudenata.getInstance().studentDatogIndeksa(stariIndeks);
 		
 		pIme = new RowPanel("Ime*");
 			pIme.getTextField().setText(s.getImeStudenta());
