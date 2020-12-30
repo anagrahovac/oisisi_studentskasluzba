@@ -58,12 +58,11 @@ public class StudentIzmenaKeyListener implements KeyListener{
 		
 		if (!validno) {
 			isd.disablePotvrdi();
-
 			txt.setBorder(null);
 			txt.setBorder(BorderFactory.createLineBorder(new Color(221,119,119)));
 			txt.setForeground(new Color(221,119,119));
 		} else {
-			isd.enablePotvrdi();
+			isd.enablePotvrdi();			
 			txt.setForeground(Color.black);
 			txt.setBorder(BorderFactory.createLineBorder(Color.gray));
 		}

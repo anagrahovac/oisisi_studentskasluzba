@@ -1,0 +1,396 @@
+package view;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+
+import controller.PredmetController;
+import controller.StudentController;
+import model.BazaPredmeta;
+import model.Predmet;
+
+public class IzmenaPredmetaDialog extends JDialog{
+
+	private PredmetController controller;
+	private RowPanel pSifra;
+	private RowPanel pNaziv;
+	private RowPanel pGodinaStudija;
+	private RowPanel pBrojESPB;
+	private RowPanel pSemestar;
+	private JButton btnPotvrdi = new JButton("Potvrdi");
+	private JButton btnOdbaci = new JButton("Odustani");
+	
+	public IzmenaPredmetaDialog(String staraSifra,final JFrame parent) {
+		
+		super(MainFrame.getInstance(), "Izmena predmeta", true);
+		
+		setSize(600, 600);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null); 
+		setResizable(false);
+		
+		Color c = new Color(245,245,245);
+		setBackground(c);
+		
+		PredmetIzmenaKeyListener keyListener = new PredmetIzmenaKeyListener(this);
+		controller = new PredmetController(this);
+		
+		JTabbedPane tabbedPane = new JTabbedPane();
+		Font f = new Font("Dialog", Font.PLAIN, 14);
+		tabbedPane.setBackground(Color.WHITE);
+		tabbedPane.setFont(f);
+		
+		JPanel informacije = new JPanel();
+		JPanel studentiPolozili = new JPanel();
+		JPanel studentiNisuPolozili = new JPanel();
+		
+		tabbedPane.addTab("Informacije", null, informacije, "Panel s informacijama");
+		tabbedPane.addTab("Položeni", null, studentiPolozili, "Panel s studentima koji su položili predmet");
+		tabbedPane.addTab("Nepoloženi", null, studentiNisuPolozili, "Panel s studentima koji nisu položili predmet");
+		this.add(tabbedPane, BorderLayout.CENTER);
+		
+		informacije.setBackground(c);
+		informacije.setLayout(new BoxLayout(informacije, BoxLayout.Y_AXIS));
+		
+		Predmet p = new Predmet();
+		p = BazaPredmeta.getInstance().predmetDateSifre(staraSifra);
+		
+		pSifra = new RowPanel("Šifra predmeta*");
+			pSifra.getTextField().setToolTipText("Format: SBBB, npr: T123");
+			pSifra.getTextField().setText(p.getSifraPredmeta());
+			pSifra.getTextField().setName("txtSifra");
+			pSifra.getTextField().addKeyListener(keyListener);
+		
+		pNaziv = new RowPanel("Naziv*");
+			pNaziv.getTextField().setText(p.getNazivPredmeta());
+			pNaziv.getTextField().setName("txtNaziv");
+			pNaziv.getTextField().addKeyListener(keyListener);
+		
+		pGodinaStudija = new RowPanel("Godina studija*");
+			pGodinaStudija.getTextField().setText(Integer.toString(p.getGodinaStudija()));
+			pGodinaStudija.getTextField().setName("txtGodinaStudija");
+			pGodinaStudija.getTextField().addKeyListener(keyListener);
+		
+		Color gray = new Color(245,245,245);
+		JPanel pProfesor = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JLabel lblProfesor = new JLabel("Profesor*");
+			Dimension lblDim = new Dimension(150, 30);
+			Font dialog = new Font("Dialog", Font.ITALIC, 14);
+			lblProfesor.setPreferredSize(lblDim);
+			lblProfesor.setFont(dialog);
+		JTextField txtProfesor = new JTextField();
+		txtProfesor.setName("txtProfesor");
+		//txtProfesor.setText("ZDRAVOOO!!");
+		txtProfesor.setEditable(false);
+		txtProfesor.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
+		txtProfesor.setBackground(Color.white);
+			Dimension txtDim = new Dimension(180, 30);
+	        Font dialog1 = new Font("Dialog", Font.PLAIN, 14);
+	        txtProfesor.setPreferredSize(txtDim);
+	        txtProfesor.setFont(dialog1);
+	    JButton btnPlus = new JButton("+");
+	    	Dimension btnDim = new Dimension(30,30);
+	    	Font dialog2 = new Font("Dialog", Font.BOLD, 14);
+	    	btnPlus.setPreferredSize(btnDim);
+	    	btnPlus.setFont(dialog2);
+	    	btnPlus.setBackground(Color.white);
+	    	btnPlus.setToolTipText("Dodaj profesora");
+	    	btnPlus.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
+	    
+	    btnPlus.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+					DodajProfDialog dialog = new DodajProfDialog(parent);
+					dialog.setVisible(true);
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+        });
+	    
+	    JButton btnMinus = new JButton("-");
+	    	btnMinus.setPreferredSize(btnDim);
+	    	btnMinus.setFont(dialog2);
+	    	btnMinus.setBackground(Color.white);
+	    	btnMinus.setToolTipText("Obriši profesora");
+	    	btnMinus.setBorder(BorderFactory.createLineBorder(Color.gray,1));
+	    	
+	    btnMinus.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				if(txtProfesor.getText() != "") {
+					txtProfesor.setText("");
+				}
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	    	
+	    pProfesor.add(Box.createHorizontalStrut(20));
+	    pProfesor.add(lblProfesor);
+	    pProfesor.add(txtProfesor);
+	    pProfesor.add(btnPlus);
+	    pProfesor.add(btnMinus);
+		pProfesor.setBackground(gray);
+		//txtProfesor.setText(p.getPredmetniProfesor());
+		
+		pBrojESPB = new RowPanel("Broj ESPB bodova*");
+			pBrojESPB.getTextField().setText(Integer.toString(p.getBrojBodova()));
+			pBrojESPB.getTextField().setName("txtBrojESPB");
+			pBrojESPB.getTextField().addKeyListener(keyListener);
+		
+		String[] semestar = { "letnji", "zimski"};
+		pSemestar = new RowPanel("Semestar*", semestar);
+		pSemestar.getComboBox().setSelectedIndex(p.getSemestar().ordinal());
+		
+		
+		
+		informacije.add(Box.createVerticalStrut(30));  
+		informacije.add(pSifra);
+		informacije.add(pNaziv); 
+		informacije.add(pGodinaStudija);
+		informacije.add(pProfesor);
+		informacije.add(pBrojESPB);
+		informacije.add(pSemestar); 
+		informacije.add(Box.createVerticalStrut(150));
+		
+	    
+		
+	    JPanel buttons = new JPanel();
+        buttons.setPreferredSize(new Dimension(70,70));
+        buttons.setBackground(c);
+        buttons.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        buttons.setPreferredSize(new Dimension(50, 50));
+		
+        formatButton(btnPotvrdi, 1);
+        formatButton(btnOdbaci, 0);
+		btnPotvrdi.setToolTipText("Izmeni predmet");
+		btnOdbaci.setToolTipText("Odustani od izmene predmeta");
+		
+				
+		btnPotvrdi.addMouseListener(new MouseListener() {
+
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					// TODO Auto-generated method stub
+					if(btnPotvrdi.isEnabled()) {
+						controller.izmeniPredmet();	
+						dispose();
+					}
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent arg0) {
+					// TODO Auto-generated method stub
+					if(btnPotvrdi.isEnabled()) {
+						btnPotvrdi.setBackground(new Color(228, 244, 255));
+						btnPotvrdi.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 1));
+					}
+				}
+
+				@Override
+				public void mouseExited(MouseEvent arg0) {
+					// TODO Auto-generated method stub
+					if(btnPotvrdi.isEnabled()) {
+						btnPotvrdi.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 2));
+						btnPotvrdi.setBackground(new Color(230,230,230));
+					}
+				}
+
+				@Override
+				public void mousePressed(MouseEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mouseReleased(MouseEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+	        });
+		 
+		 btnOdbaci.addMouseListener(new MouseListener() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					Object[] daNe = {"Da", "Ne"};
+					int code = JOptionPane.showOptionDialog(null, "Da li ste sigurni da želite da odbacite izmene?", "Message", JOptionPane.YES_NO_OPTION, 
+															JOptionPane.QUESTION_MESSAGE, null, daNe, daNe[0]);
+					if (code == JOptionPane.YES_OPTION) 
+						dispose();
+				}
+				@Override
+				public void mouseEntered(MouseEvent arg0) {
+					btnOdbaci.setBackground(new Color(228, 244, 255));
+					btnOdbaci.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 1));
+				}
+				@Override
+				public void mouseExited(MouseEvent arg0) {
+					btnOdbaci.setBackground(new Color(230,230,230));
+					btnOdbaci.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+				}
+				@Override
+				public void mousePressed(MouseEvent arg0) {
+					// TODO Auto-generated method stub
+				}
+				@Override
+				public void mouseReleased(MouseEvent arg0) {
+					// TODO Auto-generated method stub
+				}
+			});
+		
+        buttons.add(btnPotvrdi);
+        buttons.add(btnOdbaci);
+        buttons.add(Box.createHorizontalStrut(10));
+        
+        informacije.add(buttons, BorderLayout.SOUTH);      
+	    	    
+	    validate();
+	}
+	
+	private void formatButton(JButton btn, int i) {
+        Dimension btnDim = new Dimension(100, 30);
+		Font f = new Font("Dialog", Font.PLAIN, 14);
+		Color g = new Color(230,230,230);
+		Color b = new Color(103, 140, 235);
+
+		btn.setPreferredSize(btnDim);
+		btn.setBackground(g);
+		btn.setFont(f);
+		if (i == 1) {
+			btn.setBorder(BorderFactory.createLineBorder(b, 2));
+			btn.setToolTipText("Sačuvaj unete podatke");
+		}
+		if (i == 0) {
+			btn.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+			btn.setToolTipText("Odbaci unete podatke");
+		}
+		
+	}
+	
+	public void disablePotvrdi() {
+		btnPotvrdi.setEnabled(false);
+		btnPotvrdi.setForeground(new Color(150, 150, 150));
+		btnPotvrdi.setBackground(new Color(220, 220, 220));
+		btnPotvrdi.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+	}
+	
+	public void enablePotvrdi() {
+		btnPotvrdi.setEnabled(true);
+		btnPotvrdi.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 2));
+		btnPotvrdi.setBackground(new Color(230,230,230));
+		btnPotvrdi.setForeground(Color.BLACK);
+	}
+	
+	public PredmetController getController() {
+		return controller;
+	}
+	public void setController(PredmetController controller) {
+		this.controller = controller;
+	}
+	public RowPanel getpSifra() {
+		return pSifra;
+	}
+	public void setpSifra(RowPanel pSifra) {
+		this.pSifra = pSifra;
+	}
+	public RowPanel getpNaziv() {
+		return pNaziv;
+	}
+	public void setpNaziv(RowPanel pNaziv) {
+		this.pNaziv = pNaziv;
+	}
+	public RowPanel getpGodinaStudija() {
+		return pGodinaStudija;
+	}
+	public void setpGodinaStudija(RowPanel pGodinaStudija) {
+		this.pGodinaStudija = pGodinaStudija;
+	}
+	public RowPanel getpBrojESPB() {
+		return pBrojESPB;
+	}
+	public void setpBrojESPB(RowPanel pBrojESPB) {
+		this.pBrojESPB = pBrojESPB;
+	}
+	public RowPanel getpSemestar() {
+		return pSemestar;
+	}
+	public void setpSemestar(RowPanel pSemestar) {
+		this.pSemestar = pSemestar;
+	}
+	public JButton getBtnPotvrdi() {
+		return btnPotvrdi;
+	}
+	public void setBtnPotvrdi(JButton btnPotvrdi) {
+		this.btnPotvrdi = btnPotvrdi;
+	}
+	public JButton getBtnOdbaci() {
+		return btnOdbaci;
+	}
+	public void setBtnOdbaci(JButton btnOdbaci) {
+		this.btnOdbaci = btnOdbaci;
+	}
+}

@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -17,13 +15,10 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 
 import controller.PredmetController;
-import javafx.geometry.Insets;
 
 public class NoviPredmetDialog extends JDialog{
 	
@@ -33,7 +28,7 @@ public class NoviPredmetDialog extends JDialog{
 	private RowPanel pSifra;
 	private RowPanel pNaziv;
 	private RowPanel pGodinaStudija;
-	//private RowPanel pProfesor;
+	private JTextField txtProfesor;
 	private RowPanel pBrojESPB;
 	private RowPanel pSemestar;
 	private JButton btnPotvrdi = new JButton("Potvrdi");
@@ -80,9 +75,9 @@ public class NoviPredmetDialog extends JDialog{
 			Font dialog = new Font("Dialog", Font.ITALIC, 14);
 			lblProfesor.setPreferredSize(lblDim);
 			lblProfesor.setFont(dialog);
-		JTextField txtProfesor = new JTextField();
+		txtProfesor = new JTextField();
 		txtProfesor.setName("txtProfesor");
-		txtProfesor.setText("ZDRAVOOO!!");
+		//txtProfesor.setText("ZDRAVOOO!!");
 		txtProfesor.setEditable(false);
 		txtProfesor.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
 		txtProfesor.setBackground(Color.white);
@@ -421,4 +416,16 @@ public class NoviPredmetDialog extends JDialog{
 		public static long getSerialversionuid() {
 			return serialVersionUID;
 		}
+
+
+		public JTextField getTxtProfesor() {
+			return txtProfesor;
+		}
+
+
+		public void setTxtProfesor(JTextField txtProfesor) {
+			this.txtProfesor = txtProfesor;
+		}
+		
+		
 }

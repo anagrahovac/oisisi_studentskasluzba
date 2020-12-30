@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import model.BazaPredmeta;
 import model.BazaStudenata;
 
 public class EditActionListener implements ActionListener{
@@ -28,8 +29,13 @@ public class EditActionListener implements ActionListener{
 			
 		}
 		if (tab == 2) {
-			//IzmenaPredmetaDialog ipd = new IzmenaPredmetaDialog();
-			//ipd.setVisible(true);
+			String staraSifra = BazaPredmeta.getInstance().staraSifra();
+			if( staraSifra.equals("")) {
+				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste selektovali predmet za izmenu!");
+				return;
+			}
+			IzmenaPredmetaDialog ipd = new IzmenaPredmetaDialog(staraSifra,MainFrame.getInstance());
+			ipd.setVisible(true);
 		}
 	}
 

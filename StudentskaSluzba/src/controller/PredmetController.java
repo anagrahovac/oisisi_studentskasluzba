@@ -7,17 +7,27 @@ import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
 
 import model.BazaPredmeta;
+import model.BazaStudenata;
 import model.Predmet.Semestar;
+import model.Profesor;
+import model.Student.Status;
+import view.IzmenaPredmetaDialog;
 import view.MainFrame;
 import view.NoviPredmetDialog;
 
 public class PredmetController {
 
 	private NoviPredmetDialog npd;
+	private IzmenaPredmetaDialog izmena;
 	private Validacija val;
 	
 	public PredmetController(NoviPredmetDialog n) {
 		this.npd = n;
+		this.val = new Validacija();
+	}
+	
+	public PredmetController(IzmenaPredmetaDialog i) {
+		this.izmena = i;
 		this.val = new Validacija();
 	}
 
@@ -47,6 +57,29 @@ public class PredmetController {
 			BazaPredmeta.getInstance().dodajPredmetUBazu(sifra, naziv, semestar, godStudija, null, brESPB);
 			MainFrame.getInstance().updatePredmetiTable();
 			JOptionPane.showMessageDialog(null, "Predmet uspešno dodat u bazu.");
+			return true;
+	}
+	
+	public boolean izmeniPredmet() {
+		String sifra = izmena.getpSifra().getTextField().getText();
+		String naziv = izmena.getpNaziv().getTextField().getText();
+		Semestar semestar = Semestar.LETNJI;
+		switch(izmena.getpSemestar().getComboBox().getSelectedIndex()) {
+		case 0:
+			semestar = Semestar.LETNJI; 
+			break;
+		case 1:
+			semestar = Semestar.ZIMSKI;
+			break;
+		}
+		int godinaStudija = Integer.valueOf(izmena.getpGodinaStudija().getTextField().getText());
+		Profesor profesor = new Profesor();
+		int brESPB = Integer.valueOf(izmena.getpBrojESPB().getTextField().getText());
+		
+		String staraSifra = BazaPredmeta.getInstance().staraSifra();
+			BazaPredmeta.getInstance().izmeniPredmet(staraSifra,sifra, naziv, semestar, godinaStudija, profesor, brESPB);
+			MainFrame.getInstance().updatePredmetiTable();
+			JOptionPane.showMessageDialog(null, "Predmet uspešno izmenjen.");
 			return true;
 	}
 	

@@ -13,16 +13,25 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.JTableHeader;
 
 import model.BazaProfesora;
+import model.BazaStudenata;
 
 public class DodajProfDialog extends JDialog{
 
 	private static final long serialVersionUID = 1L;
+	
+	private TableProfesori tabela;
+	
+	public DodajProfDialog() {
+		super();
+		this.tabela = new TableProfesori();
+	}
 
 	public DodajProfDialog(JFrame parent) {
 		super(parent, "Dodaj profesora",true);
@@ -32,9 +41,9 @@ public class DodajProfDialog extends JDialog{
 		setLocationRelativeTo(null);
 		
 		JPanel background = new JPanel();
-		TableProfesori tabela = new TableProfesori();
 		JScrollPane scroll = new JScrollPane(tabela);
 		
+		tabela = new TableProfesori();
 		tabela.setBackground(Color.white);
 		background.add(tabela.getTableHeader(), BorderLayout.NORTH);
 		background.add(tabela, BorderLayout.CENTER);
@@ -51,7 +60,7 @@ public class DodajProfDialog extends JDialog{
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
+				// TODO Auto-generated method stub			
 				dispose();
 			}
 
@@ -128,5 +137,13 @@ public class DodajProfDialog extends JDialog{
 		background.add(buttons, BorderLayout.SOUTH);
 		
 		this.add(background);
+	}
+
+	public TableProfesori getTabela() {
+		return tabela;
+	}
+
+	public void setTabela(TableProfesori tabela) {
+		this.tabela = tabela;
 	}
 }

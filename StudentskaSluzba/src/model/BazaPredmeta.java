@@ -1,7 +1,10 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import model.Predmet.Semestar;
+import model.Student.Status;
+import view.MainFrame;
 
 public class BazaPredmeta {
 
@@ -104,14 +107,46 @@ public class BazaPredmeta {
 		return false;
 	}
 	
-	public void izmeniPredmet(int i,String sifraPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudija,
+	public String staraSifra() {
+		int row = MainFrame.getInstance().getPredmetiTable().getSelectedRow();
+		
+		if(row != -1)
+			return (String) MainFrame.getInstance().getPredmetiTable().getValueAt(row, 0);
+		else
+			return "";
+		
+	}
+	
+	public Predmet predmetDateSifre(String sfr) {
+		Predmet p = new Predmet();
+		for(int i = 0; i < predmeti.size(); i++) {
+			if (predmeti.get(i).getSifraPredmeta().equals(sfr)) {
+				String sifra = predmeti.get(i).getSifraPredmeta();
+				String naziv = predmeti.get(i).getNazivPredmeta();
+				Semestar semestar = predmeti.get(i).getSemestar();
+				int godinaStud = predmeti.get(i).getGodinaStudija();
+				Profesor profesor = predmeti.get(i).getPredmetniProfesor();
+				int brESPB = predmeti.get(i).getBrojBodova();
+				
+				p = new Predmet(sifra, naziv, semestar, godinaStud, profesor, brESPB);
+				return p;
+			}
+		}
+		return p;
+	}
+	
+	public void izmeniPredmet(String staraSifra,String sifraPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudija,
 			Profesor predmetniProfesor, int brojBodova) {
-		this.predmeti.get(i).setSifraPredmeta(sifraPredmeta);
-		this.predmeti.get(i).setNazivPredmeta(nazivPredmeta);
-		this.predmeti.get(i).setSemestar(semestar);
-		this.predmeti.get(i).setGodinaStudija(godinaStudija);
-		this.predmeti.get(i).setPredmetniProfesor(predmetniProfesor);
-		this.predmeti.get(i).setBrojBodova(brojBodova);
+		for(int i = 0; i < predmeti.size(); i++) {
+			if(predmeti.get(i).getSifraPredmeta().equals(staraSifra)) {
+				this.predmeti.get(i).setSifraPredmeta(sifraPredmeta);
+				this.predmeti.get(i).setNazivPredmeta(nazivPredmeta);
+				this.predmeti.get(i).setSemestar(semestar);
+				this.predmeti.get(i).setGodinaStudija(godinaStudija);
+				this.predmeti.get(i).setPredmetniProfesor(predmetniProfesor);
+				this.predmeti.get(i).setBrojBodova(brojBodova);
+			}
+		}
 	}
 	
 	public void izbrisiPredmet(int i) {

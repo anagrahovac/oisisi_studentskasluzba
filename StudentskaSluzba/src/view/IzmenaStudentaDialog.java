@@ -103,6 +103,7 @@ public class IzmenaStudentaDialog extends JDialog{
 			pEMailAdresa.getTextField().addKeyListener(keyListener);
 		pBrojIndexa = new RowPanel("Broj indeksa*");
 			pBrojIndexa.getTextField().setText(s.getBrojIndexa());
+			pBrojIndexa.getTextField().setToolTipText("Format: ss-BBB-GGGG");
 			pBrojIndexa.getTextField().setName("txtBrojIndexa");
 			pBrojIndexa.getTextField().addKeyListener(keyListener);
 		pGodinaUpisa = new RowPanel("Godina upisa*");
