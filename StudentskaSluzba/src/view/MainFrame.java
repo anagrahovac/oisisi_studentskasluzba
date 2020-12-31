@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.table.TableRowSorter;
 
 
 public class MainFrame extends JFrame {
@@ -76,6 +77,9 @@ public class MainFrame extends JFrame {
 		tabbedPane.addTab("Profesori", null, profesoriTab, "Tabela sa profesorima");
 		tabbedPane.addTab("Predmeti", null, predmetiTab, "Tabela sa predmetima");
 		this.add(tabbedPane, BorderLayout.CENTER);
+		
+		studentiTable.setAutoCreateRowSorter(true);
+		
 		validate();
 		
 	}
