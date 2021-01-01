@@ -26,7 +26,8 @@ public class EditActionListener implements ActionListener{
 			
 		}
 		if (tab == 1) {
-			
+			IzmenaProfesoraDialog ipd = new IzmenaProfesoraDialog("007543541");
+			ipd.setVisible(true);
 		}
 		if (tab == 2) {
 			String staraSifra = BazaPredmeta.getInstance().staraSifra();

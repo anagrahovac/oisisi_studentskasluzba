@@ -109,13 +109,13 @@ public class BazaProfesora {
 		this.profesori.add(p);
 	}
 	
-	public boolean pronadjiProfesora(String id) {
+	public Profesor pronadjiProfesora(String id) {
 		for(int i = 0; i < profesori.size(); i++) {
 			if (profesori.get(i).getBrojLicneKarte().equals(id)) {
-				return true;
+				return profesori.get(i);
 			}
 		}
-		return false;
+		return null;
 	}
 	
 	//prosledjuju se 
