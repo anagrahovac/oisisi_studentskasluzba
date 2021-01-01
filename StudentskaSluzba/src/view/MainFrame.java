@@ -109,6 +109,14 @@ public class MainFrame extends JFrame {
 	public int getActiveTab() {
 		return this.tabbedPane.getSelectedIndex();
 	}
+	
+	public String getProfesorID() {
+		int row = profesoriTable.getSelectedRow();
+		if(row != -1)
+			return (String) profesoriTable.getValueAt(row, 2);
+		else
+			return "";
+	}
 
 	public TableStudenti getStudentiTable() {
 		return studentiTable;

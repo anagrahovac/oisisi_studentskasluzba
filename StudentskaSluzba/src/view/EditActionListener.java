@@ -26,7 +26,12 @@ public class EditActionListener implements ActionListener{
 			
 		}
 		if (tab == 1) {
-			IzmenaProfesoraDialog ipd = new IzmenaProfesoraDialog("007543541");
+			String id = MainFrame.getInstance().getProfesorID();
+			if(id.equals("")) {
+				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste selektovali profesora kojeg zelite da izmenite!");
+				return;
+			}
+			IzmenaProfesoraDialog ipd = new IzmenaProfesoraDialog(id);
 			ipd.setVisible(true);
 		}
 		if (tab == 2) {

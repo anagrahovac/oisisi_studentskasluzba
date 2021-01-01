@@ -108,7 +108,7 @@ public class Validacija {
 		if(str.equals("") || str == null)
 			this.telefon = false;
 		else
-			this.telefon = Pattern.matches("\\+?[0-9]{5,12}", str);//?
+			this.telefon = Pattern.matches("\\+?[0-9]{5,14}", str);//?
 		return this.telefon;
 	}
 
@@ -116,7 +116,7 @@ public class Validacija {
 		if(str.equals("") || str == null)
 			this.email = false;
 		else
-			this.email = Pattern.matches("([a-z0-9]|\\.|_|-)+@[a-z]+(\\.[a-z]+)?", str);
+			this.email = Pattern.matches("([a-z0-9]|\\.|_|-)+@[a-z]+(\\.[a-z]+){0,6}", str);
 		return this.email;
 	}
 	
@@ -182,6 +182,23 @@ public class Validacija {
 		else
 			this.brESPB = Pattern.matches("[1-9]", str);
 		return this.brESPB;
+	}
+	
+	public void setAllTrue() {
+		ime = true;
+		prezime = true;
+		datum = true;
+		adresaStan = true;
+		telefon = true;
+		email = true;
+		indeks = true;
+		godinaUpisa = true;
+		adresaKancelarija = true;
+		brojLicne = true;
+		sifra = true;
+		naziv = true;
+		godStud = true;
+		brESPB = true;
 	}
 
 	public boolean isIme() {

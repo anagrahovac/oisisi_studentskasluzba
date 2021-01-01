@@ -109,13 +109,22 @@ public class BazaProfesora {
 		this.profesori.add(p);
 	}
 	
-	public Profesor pronadjiProfesora(String id) {
+	/*public Profesor pronadjiProfesora(String id) {
 		for(int i = 0; i < profesori.size(); i++) {
 			if (profesori.get(i).getBrojLicneKarte().equals(id)) {
 				return profesori.get(i);
 			}
 		}
 		return null;
+	}*/
+	
+	public int pronadjiProfesora(String id) {
+		for(int i = 0; i < profesori.size(); i++) {
+			if (profesori.get(i).getBrojLicneKarte().equals(id)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 	
 	//prosledjuju se 

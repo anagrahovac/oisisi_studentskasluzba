@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.time.format.DateTimeFormatter;
 
 import javax.swing.BorderFactory;
@@ -13,6 +15,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -50,7 +53,9 @@ public class IzmenaProfesoraDialog extends JDialog {
 
 		this.getContentPane().setBackground(Color.WHITE);
 		controller = new ProfesorController(this);
-		profesor = BazaProfesora.getInstance().pronadjiProfesora(id);
+		controller.getValidacija().setAllTrue();
+		int redniBr = BazaProfesora.getInstance().pronadjiProfesora(id);
+		profesor = BazaProfesora.getInstance().getProfesori().get(redniBr);
 		
 		Font f = new Font("Dialog", Font.PLAIN, 14);
 		this.tabbedPane.setBackground(Color.WHITE);
@@ -67,38 +72,48 @@ public class IzmenaProfesoraDialog extends JDialog {
 		infoTab.setLayout(box);
 		this.add(infoTab, BorderLayout.CENTER);
 		
+		ProfesorIzmenaKeyListener pl = new ProfesorIzmenaKeyListener(this);
+		
 		pIme = new RowPanel("Ime*");
 		pIme.getTextField().setName("txtIme");
 		pIme.getTextField().setText(profesor.getIme());
+		pIme.getTextField().addKeyListener(pl);
 		
 		pPrezime = new RowPanel("Prezime*");
 		pPrezime.getTextField().setName("txtPrezime");
 		pPrezime.getTextField().setText(profesor.getPrezime());
+		pPrezime.getTextField().addKeyListener(pl);
 		
 		pDatum = new RowPanel("Datum rodjenja*");
 		pDatum.getTextField().setName("txtDatum");
 		pDatum.getTextField().setText(profesor.getDatumRodjenja().format(DateTimeFormatter.ofPattern("dd.MM.yyyy.")));
+		pDatum.getTextField().addKeyListener(pl);
 		pDatum.getTextField().setToolTipText("Format: dd.mm.yyyy.");
 		
 		pAdresaStan = new RowPanel("Adresa stanovanja*");
 		pAdresaStan.getTextField().setName("txtAdresaStan");
 		pAdresaStan.getTextField().setText(profesor.getAdresaStanovanja());
+		pAdresaStan.getTextField().addKeyListener(pl);
 	
 		pTelefon = new RowPanel("Kontakt telefon*");
 		pTelefon.getTextField().setName("txtTelefon");
 		pTelefon.getTextField().setText(profesor.getKontaktTelefon());
+		pTelefon.getTextField().addKeyListener(pl);
 		
 		pEmail = new RowPanel("E-mail adresa*");
 		pEmail.getTextField().setName("txtEmail");
 		pEmail.getTextField().setText(profesor.getEmailAdresa());
+		pEmail.getTextField().addKeyListener(pl);
 		
 		pAdresaKancelarija = new RowPanel("Adresa kancelarije*");
 		pAdresaKancelarija.getTextField().setName("txtAdresaKancelarija");
 		pAdresaKancelarija.getTextField().setText(profesor.getAdresaKancelarije());
+		pAdresaKancelarija.getTextField().addKeyListener(pl);
 		
 		pID = new RowPanel("Broj lične karte*");
 		pID.getTextField().setName("txtID");
 		pID.getTextField().setText(profesor.getBrojLicneKarte());
+		pID.getTextField().addKeyListener(pl);
 		
 		String[] titule = { "Doktor", };
 		pTitula = new RowPanel("Titula*", titule);
@@ -130,13 +145,15 @@ public class IzmenaProfesoraDialog extends JDialog {
         infoTab.add(pBottom, BorderLayout.SOUTH);
 		
         this.formatButton(btnPotvrdi, 1);
-        this.disablePotvrdi();
+        this.enablePotvrdi();
 		pBottom.add(btnPotvrdi);
 		pBottom.add(Box.createHorizontalStrut(10));
+		this.dodajListenerPotvrdi();
 		
 		this.formatButton(btnOdbaci, 0);
 		pBottom.add(btnOdbaci);
 		pBottom.add(Box.createHorizontalStrut(100));
+        this.dodajListenerOdbaci();
 		
 		
 		tabbedPane.addTab("Info", null, infoTab, "Informacije o profesoru");
@@ -146,6 +163,64 @@ public class IzmenaProfesoraDialog extends JDialog {
 		validate();
 	 }
 	
+	private void dodajListenerPotvrdi() {
+		btnPotvrdi.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(btnPotvrdi.isEnabled()) {
+					boolean succ = controller.izmeniProfesora(BazaProfesora.getInstance().pronadjiProfesora(profesor.getBrojLicneKarte()));
+					if(succ == true) {
+						JOptionPane.showMessageDialog(null, "Profesor uspešno izmenjen u bazi.");
+						dispose();
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Broj lične karte već postoji u bazi!");
+					}
+				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(btnPotvrdi.isEnabled()) {
+					btnPotvrdi.setBackground(new Color(228, 244, 255));
+					btnPotvrdi.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 1));
+				}
+			}
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				if(btnPotvrdi.isEnabled()) {
+					btnPotvrdi.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 2));
+					btnPotvrdi.setBackground(new Color(230,230,230));
+				}
+			}
+			@Override
+			public void mousePressed(MouseEvent arg0) {}
+			@Override
+			public void mouseReleased(MouseEvent arg0) {}
+		});
+	}
+	
+	private void dodajListenerOdbaci() {
+		btnOdbaci.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+			}
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				btnOdbaci.setBackground(new Color(228, 244, 255));
+				btnOdbaci.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 1));
+			}
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				btnOdbaci.setBackground(new Color(230,230,230));
+				btnOdbaci.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+			}
+			@Override
+			public void mousePressed(MouseEvent arg0) {}
+			@Override
+			public void mouseReleased(MouseEvent arg0) {}
+		});
+	}
 
 	private void formatButton(JButton btn, int i) {
         Dimension btnDim = new Dimension(100, 30);
@@ -232,4 +307,5 @@ public class IzmenaProfesoraDialog extends JDialog {
 	public ProfesorController getController() {
 		return controller;
 	}
+	
 }
