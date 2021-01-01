@@ -80,6 +80,7 @@ public class MainFrame extends JFrame {
 		
 		studentiTable.setAutoCreateRowSorter(true);
 		profesoriTable.setAutoCreateRowSorter(true);
+		predmetiTable.setAutoCreateRowSorter(true);
 		
 		validate();
 		
