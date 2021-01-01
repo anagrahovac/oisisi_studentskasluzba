@@ -2,6 +2,8 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import model.Predmet.Semestar;
 import model.Student.Status;
 import view.MainFrame;
 
@@ -10,6 +12,7 @@ public class BazaStudenata {
 	private static BazaStudenata instance = null;
 	private ArrayList<Student> studenti;
 	private ArrayList<String> columnNames;
+	private ArrayList<String> columnNamesPolozeni;
 
 	public BazaStudenata() {
 		this.studenti = new ArrayList<Student>();
@@ -21,8 +24,65 @@ public class BazaStudenata {
 		columnNames.add("Status");
 		columnNames.add("Prosek");
 		
+		this.columnNamesPolozeni = new ArrayList<String>();
+		columnNamesPolozeni.add("Šifra predmeta");
+		columnNamesPolozeni.add("Naziv predmeta");
+		columnNamesPolozeni.add("ESPB");
+		columnNamesPolozeni.add("Ocena");
+		columnNamesPolozeni.add("Datum");
+		
 		//obrisati
 		this.dodajStudenta();
+	}
+	
+	private ArrayList<Ocena> initPredmeteMitar() {
+		ArrayList<Ocena> ocene = new ArrayList<Ocena>();
+ 
+		Ocena o1 = new Ocena();
+		o1.setPredmet(new Predmet("E2212", "Matematička analiza 1", Semestar.ZIMSKI, 1, null, 9 ));
+		o1.setOcena(9);
+		o1.setDatumPolaganjaispita("14.10.1999.");
+		ocene.add(o1);
+		Ocena o2 = new Ocena();
+		o2.setPredmet(new Predmet("E2214", "Objektno programiranje",Semestar.ZIMSKI, 2, null, 4));
+		o2.setOcena(10);
+		o2.setDatumPolaganjaispita("10.11.2020.");
+		ocene.add(o2);
+		Ocena o3 = new Ocena();
+		o3.setPredmet(new Predmet("E2216", "Sistemi automatskog upravljanja",Semestar.LETNJI, 3, null, 7));
+		o3.setOcena(10);
+		o3.setDatumPolaganjaispita("13.4.2828.");
+		ocene.add(o3);
+ 
+		return ocene;
+	}
+ 
+	//----
+	private ArrayList<Ocena> initPredmeteMarija() {
+		ArrayList<Ocena> ocene = new ArrayList<Ocena>();
+ 
+		Ocena o2 = new Ocena();
+		//o2.setPredmet(new Predmet("E2214", "Objektno programiranje", 8, 2, Semestar.ZIMSKI));
+		ocene.add(o2);
+		Ocena o1 = new Ocena();
+		//o1.setPredmet(new Predmet("E2218", "Operativni sistemi", 8, 2, Semestar.LETNJI));
+		ocene.add(o1);
+		Ocena o3 = new Ocena();
+		//o3.setPredmet(new Predmet("E2216", "Sistemi automatskog upravljanja", 8, 2, Semestar.LETNJI));
+		ocene.add(o3);
+ 
+		return ocene;
+	}
+ 
+	//------
+	private ArrayList<Ocena> initPredmeteNikola() {
+		ArrayList<Ocena> ocene = new ArrayList<Ocena>();
+ 
+		Ocena o3 = new Ocena();
+		//o3.setPredmet(new Predmet("E2216", "Sistemi automatskog upravljanja", 8, 2, Semestar.LETNJI));
+		ocene.add(o3);
+ 
+		return ocene;
 	}
 	
 	//obrisati
@@ -33,7 +93,7 @@ public class BazaStudenata {
 		Student s2 = new Student("Mitrović","Anđela", LocalDate.of(2000, 7, 22), "Mostarska 50", "0620000000", "mitrovicandjela@uns.ac.rs", "ra-35-2019", 2019, 2, Status.B , 8.95);
 		Student s3 = new Student("Kostovski", "Miloš", LocalDate.of(1998, 5, 11), "Mladosti 39", "0630000000", "kostovskimilos@uns.ac.rs", "in-56-2017", 2017, 4, Status.S, 7.25);
 		Student s4 = new Student("Antić", "Isidora", LocalDate.of(2001, 12, 14), "Radnička 55", "0640000000", "anticisidora@uns.ac.rs", "mh-23-2020", 2020, 1, Status.B, 9.45);
-		
+		s.setSpisakPolozenihIspita(initPredmeteMitar());
 		this.studenti.add(s);
 		this.studenti.add(s1);
 		this.studenti.add(s2);
@@ -64,6 +124,10 @@ public class BazaStudenata {
 	public String getColumnNames(int index) {
 		return this.columnNames.get(index);
 	}	
+	
+	public String getColumnNamesPolozeni(int index){		
+		return this.columnNamesPolozeni.get(index);
+	}
 
 	public void setColumnNames(ArrayList<String> columnNames) {
 		this.columnNames = columnNames;
@@ -71,6 +135,10 @@ public class BazaStudenata {
 	
 	public int getColumnCount() {
 		return this.columnNames.size();
+	}
+	
+	public int getColumnCountPolozeni() {
+		return 5;
 	}
 	
 	public int getRowCount() {

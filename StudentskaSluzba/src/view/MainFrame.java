@@ -24,7 +24,7 @@ public class MainFrame extends JFrame {
 	private MyStatusBar statusBar = new MyStatusBar();
 	private TableStudenti studentiTable = new TableStudenti();
 	private TableProfesori profesoriTable = new TableProfesori();
-	private TablePredmeti predmetiTable = new TablePredmeti();
+	private TablePredmeti predmetiTable;
 	
 
 	public static MainFrame getInstance(){
@@ -69,6 +69,8 @@ public class MainFrame extends JFrame {
 		profesoriTab.getViewport().setBackground(Color.WHITE);
 		this.updateProfesoriTable();
 		
+		AbstractTableModelPredmeti atm = new AbstractTableModelPredmeti();
+		predmetiTable = new TablePredmeti(atm);
 		JScrollPane predmetiTab = new JScrollPane(predmetiTable);
 		predmetiTab.getViewport().setBackground(Color.WHITE);
 		this.updatePredmetiTable();

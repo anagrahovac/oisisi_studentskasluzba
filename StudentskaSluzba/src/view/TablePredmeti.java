@@ -7,17 +7,18 @@ import java.awt.Font;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 
 public class TablePredmeti extends JTable{
 
 	private static final long serialVersionUID = 6420742439440693518L;
 
-	public TablePredmeti() {
+	public TablePredmeti(AbstractTableModel atm) {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		this.setModel(new AbstractTableModelPredmeti());
+		this.setModel(atm);
 		
 		Font f = new Font("Dialog", Font.PLAIN, 14);
 		Color headerColor = new Color(143, 180, 255);   //blue

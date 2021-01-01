@@ -37,13 +37,14 @@ public class DodajProfDialog extends JDialog{
 		super(parent, "Dodaj profesora",true);
 		setLayout(new BorderLayout());
 		
-		setSize(350,250);
+		setSize(450,280);
 		setLocationRelativeTo(null);
 		
 		JPanel background = new JPanel();
 		JScrollPane scroll = new JScrollPane(tabela);
 		
-		tabela = new TableProfesori();
+		//tabela = new TableProfesori();
+		tabela = MainFrame.getInstance().getProfesoriTable();
 		tabela.setBackground(Color.white);
 		background.add(tabela.getTableHeader(), BorderLayout.NORTH);
 		background.add(tabela, BorderLayout.CENTER);

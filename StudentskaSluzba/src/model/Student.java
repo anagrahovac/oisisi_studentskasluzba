@@ -3,6 +3,8 @@ package model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import model.Student.Status;
+
 public class Student {
 	public enum Status {B,S;}
 	private String prezimeStudenta;
@@ -145,6 +147,59 @@ public class Student {
 
 	public ArrayList<Ocena> getSpisakPolozenihIspita() {
 		return spisakPolozenihIspita;
+	}
+	
+	
+	public String getValueAtPolozeni(int row, int column) {
+		// TODO Auto-generated method stub
+		Ocena o = this.getSpisakPolozenihIspita().get(row);
+		String retVal = null;
+		
+		switch(column) {
+		case 0:
+			retVal = o.getPredmet().getSifraPredmeta();
+			break;
+		case 1:
+			retVal = o.getPredmet().getNazivPredmeta();
+			break;
+		case 2:
+			retVal = Integer.toString(o.getPredmet().getBrojBodova());
+			break;
+		case 3:
+			retVal = Integer.toString(o.getOcena());
+			break;
+		case 4:
+			retVal = o.getDatumPolaganjaispita();
+		default:
+			throw new IllegalArgumentException("Invalid column index");
+		}
+		
+		return retVal;
+	}
+	
+	public int prosecnaOcena() {
+		int prosek = 0;
+		if(spisakPolozenihIspita.size() != 0) {
+		for(int i = 0; i < spisakPolozenihIspita.size(); i ++) {
+			prosek += spisakPolozenihIspita.get(i).getOcena(); 
+		}
+		prosek = prosek / spisakPolozenihIspita.size();
+		} else {
+			return 0;
+		}
+		return prosek;
+	}
+	
+	public int ukupnoESPB() {
+		int espb = 0;
+		if(spisakPolozenihIspita.size() != 0) {
+		for(int i = 0; i < spisakPolozenihIspita.size(); i++) {
+			espb += spisakPolozenihIspita.get(i).getPredmet().getBrojBodova();
+		}} else {
+			return 0;
+		}
+		
+		return espb;
 	}
 
 	public void setSpisakPolozenihIspita(ArrayList<Ocena> spisakPolozenihIspita) {

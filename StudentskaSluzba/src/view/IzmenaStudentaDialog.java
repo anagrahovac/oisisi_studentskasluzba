@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -17,12 +19,17 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.WindowConstants;
+import javax.swing.border.MatteBorder;
 
 import controller.StudentController;
+import javafx.geometry.Insets;
 import model.BazaStudenata;
 import model.Student;
 
@@ -218,6 +225,69 @@ public class IzmenaStudentaDialog extends JDialog{
         buttons.add(Box.createHorizontalStrut(10));
         
         informacije.add(buttons, BorderLayout.SOUTH);      
+        
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        
+        polozeni.setBackground(c);
+        polozeni.setLayout(new BoxLayout(polozeni, BoxLayout.Y_AXIS));
+        
+        JPanel btn = new JPanel();
+        JPanel table = new JPanel();
+        JPanel ocenaESPB = new JPanel();
+        
+        btn.setLayout(new GridBagLayout());
+        btn.setBackground(c);
+        ocenaESPB.setLayout(new GridBagLayout());
+        
+        JButton ponistiOcenu = new JButton("Poništi ocenu");
+        formatButton(ponistiOcenu, 0);
+        ponistiOcenu.setPreferredSize(new Dimension(120,30));
+        GridBagConstraints gbc = new GridBagConstraints();     
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 100;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.insets = new java.awt.Insets(20, 10, 20, 0);
+        
+        btn.add(ponistiOcenu, gbc);
+        
+        AbstractTableModelPolozeniIspiti atm = new AbstractTableModelPolozeniIspiti();
+        TablePredmeti polozeniPredmeti = new TablePredmeti(atm);
+        JScrollPane polozeniScroll = new JScrollPane(polozeniPredmeti);
+        
+        polozeniPredmeti.setAutoCreateRowSorter(true);
+        
+        ocenaESPB.setPreferredSize(new Dimension(polozeni.getWidth(), 130));
+        ocenaESPB.setBackground(c);
+        
+        JLabel ocena = new JLabel("Prosečna ocena: ");
+        GridBagConstraints gbc1 = new GridBagConstraints();     
+        gbc1.gridx = 0;
+        gbc1.gridy = 0;
+        gbc1.weightx = 100;
+        gbc1.anchor = GridBagConstraints.EAST;
+        gbc1.fill = GridBagConstraints.NONE;
+        gbc1.insets = new java.awt.Insets(20, 0, 7, 30);
+        JLabel espb = new JLabel("Ukupno ESPB: ");
+        GridBagConstraints gbc2 = new GridBagConstraints();     
+        gbc2.gridx = 0;
+        gbc2.gridy = 1;
+        gbc2.weightx = 100;
+        gbc2.anchor = GridBagConstraints.EAST;
+        gbc2.fill = GridBagConstraints.NONE;
+        gbc2.insets = new java.awt.Insets(7, 0, 20, 30);
+        
+        ocenaESPB.add(ocena, gbc1);
+        ocenaESPB.add(espb, gbc2);
+        
+        polozeni.add(Box.createVerticalStrut(10)); 
+        polozeni.add(btn, BorderLayout.NORTH);
+        //polozeni.add(Box.createHorizontalStrut(50)); 
+        //polozeni.add(Box.createVerticalStrut(0));
+        polozeni.add(polozeniScroll,BorderLayout.CENTER);
+        polozeni.add(ocenaESPB, BorderLayout.SOUTH);
+        
 	    	    
 	    validate();
 	}
