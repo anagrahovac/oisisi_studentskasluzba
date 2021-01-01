@@ -16,6 +16,7 @@ public class BazaProfesora {
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Ime");
 		this.kolone.add("Prezime");
+		this.kolone.add("Broj lične karte");
 		this.kolone.add("Titula");
 		this.kolone.add("Zvanje");
 		
@@ -35,7 +36,7 @@ public class BazaProfesora {
 		p3 = new Profesor("Vasiljević", "Jovan", LocalDate.of(1969, 3, 25), "Kralja Petra I, Novi Sad", "0635248789", "jvasiljevic@uns.acs.rs",
 				"Stražilovska 46, Novi Sad", "008053452", Titula.DOKTOR, Zvanje.VANREDNI_PROFESOR);
 		p4 = new Profesor("Blagojević", "Dušan", LocalDate.of(1980, 8, 16), "Pariska ulica 78, Beograd", "0665874454", "blagojevicd@hotmail.com",
-				"Somborski Bulevar 13, Novi Sad", "007543541", Titula.DOKTOR, Zvanje.VANREDNI_PROFESOR);
+				"Somborski Bulevar 13, Novi Sad", "007712971", Titula.DOKTOR, Zvanje.VANREDNI_PROFESOR);
 		p5 = new Profesor("Vukašinović", "Aleksa", LocalDate.of(1976, 3, 1), "Futoški put 96, Novi Sad", "0635589979", "vuksa@gmail.com",
 				"Zlatne grede 3, Novi Sad", "008651856", Titula.DOKTOR, Zvanje.DOCENT);
 		this.profesori.add(p1);
@@ -80,12 +81,14 @@ public class BazaProfesora {
 		case 1:
 			return profesor.getPrezime();
 		case 2:
+			return profesor.getBrojLicneKarte();
+		case 3:
 			{
 				if (profesor.getTitula() == Titula.DOKTOR)
 					return "Doktor";
 				return "";
 			}
-		case 3:
+		case 4:
 			{
 				if (profesor.getZvanje() == Zvanje.DOCENT)
 					return "Docent";

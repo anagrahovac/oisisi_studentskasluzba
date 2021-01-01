@@ -79,6 +79,7 @@ public class MainFrame extends JFrame {
 		this.add(tabbedPane, BorderLayout.CENTER);
 		
 		studentiTable.setAutoCreateRowSorter(true);
+		profesoriTable.setAutoCreateRowSorter(true);
 		
 		validate();
 		
