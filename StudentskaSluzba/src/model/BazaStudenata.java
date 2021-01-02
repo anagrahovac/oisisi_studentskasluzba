@@ -41,45 +41,53 @@ public class BazaStudenata {
 		Ocena o1 = new Ocena();
 		o1.setPredmet(new Predmet("E2212", "Matematička analiza 1", Semestar.ZIMSKI, 1, null, 9 ));
 		o1.setOcena(9);
-		o1.setDatumPolaganjaispita("14.10.1999.");
+		o1.setDatumPolaganjaispita(LocalDate.of(2017, 1, 13));
 		ocene.add(o1);
 		Ocena o2 = new Ocena();
 		o2.setPredmet(new Predmet("E2214", "Objektno programiranje",Semestar.ZIMSKI, 2, null, 4));
 		o2.setOcena(10);
-		o2.setDatumPolaganjaispita("10.11.2020.");
+		o2.setDatumPolaganjaispita(LocalDate.of(2021, 1, 3));
 		ocene.add(o2);
 		Ocena o3 = new Ocena();
 		o3.setPredmet(new Predmet("E2216", "Sistemi automatskog upravljanja",Semestar.LETNJI, 3, null, 7));
 		o3.setOcena(10);
-		o3.setDatumPolaganjaispita("13.4.2828.");
+		o3.setDatumPolaganjaispita(LocalDate.of(2019, 8, 25));
 		ocene.add(o3);
  
 		return ocene;
 	}
  
 	//----
-	private ArrayList<Ocena> initPredmeteMarija() {
+	private ArrayList<Ocena> initPredmeteDusan() {
 		ArrayList<Ocena> ocene = new ArrayList<Ocena>();
  
 		Ocena o2 = new Ocena();
-		//o2.setPredmet(new Predmet("E2214", "Objektno programiranje", 8, 2, Semestar.ZIMSKI));
+		o2.setPredmet(new Predmet("E2214", "Objektno programiranje",Semestar.ZIMSKI, 2, null, 9));
+		o2.setOcena(8);
+		o2.setDatumPolaganjaispita(LocalDate.of(2018, 6, 10));
 		ocene.add(o2);
 		Ocena o1 = new Ocena();
-		//o1.setPredmet(new Predmet("E2218", "Operativni sistemi", 8, 2, Semestar.LETNJI));
+		o1.setPredmet(new Predmet("E2218", "Operativni sistemi", Semestar.LETNJI, 4, null, 5));
+		o1.setOcena(6);
+		o1.setDatumPolaganjaispita(LocalDate.of(2020, 5, 16));
 		ocene.add(o1);
 		Ocena o3 = new Ocena();
-		//o3.setPredmet(new Predmet("E2216", "Sistemi automatskog upravljanja", 8, 2, Semestar.LETNJI));
+		o3.setPredmet(new Predmet("E2216", "Sistemi automatskog upravljanja", Semestar.LETNJI, 3, null, 7));
+		o3.setOcena(10);
+		o3.setDatumPolaganjaispita(LocalDate.of(2021, 2, 2));
 		ocene.add(o3);
  
 		return ocene;
 	}
  
 	//------
-	private ArrayList<Ocena> initPredmeteNikola() {
+	private ArrayList<Ocena> initPredmeteAndjela() {
 		ArrayList<Ocena> ocene = new ArrayList<Ocena>();
  
 		Ocena o3 = new Ocena();
-		//o3.setPredmet(new Predmet("E2216", "Sistemi automatskog upravljanja", 8, 2, Semestar.LETNJI));
+		o3.setPredmet(new Predmet("E2216", "Sistemi automatskog upravljanja", Semestar.LETNJI, 1, null, 3));
+		o3.setOcena(10);
+		o3.setDatumPolaganjaispita(LocalDate.of(2021, 1, 1));
 		ocene.add(o3);
  
 		return ocene;
@@ -94,6 +102,8 @@ public class BazaStudenata {
 		Student s3 = new Student("Kostovski", "Miloš", LocalDate.of(1998, 5, 11), "Mladosti 39", "0630000000", "kostovskimilos@uns.ac.rs", "in-56-2017", 2017, 4, Status.S, 7.25);
 		Student s4 = new Student("Antić", "Isidora", LocalDate.of(2001, 12, 14), "Radnička 55", "0640000000", "anticisidora@uns.ac.rs", "mh-23-2020", 2020, 1, Status.B, 9.45);
 		s.setSpisakPolozenihIspita(initPredmeteMitar());
+		s1.setSpisakPolozenihIspita(initPredmeteDusan());
+		s2.setSpisakPolozenihIspita(initPredmeteAndjela());
 		this.studenti.add(s);
 		this.studenti.add(s1);
 		this.studenti.add(s2);
@@ -197,6 +207,15 @@ public class BazaStudenata {
 		return false;
 	}
 	
+	public int pronadjiStudenta1(String indx) {
+		for(int i = 0; i < studenti.size(); i++) {
+			if (studenti.get(i).getBrojIndexa().equals(indx)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
 	public String stariIndeks() {
 		int row = MainFrame.getInstance().getStudentiTable().getSelectedRow();
 		
@@ -211,21 +230,6 @@ public class BazaStudenata {
 		Student s = new Student();
 		for(int i = 0; i < studenti.size(); i++) {
 			if (studenti.get(i).getBrojIndexa().equals(indx)) {
-				/*
-				String ime = studenti.get(i).getImeStudenta();
-				String prezime = studenti.get(i).getPrezimeStudenta();
-				LocalDate datum = studenti.get(i).getDatumRodjenja();
-				String adresa = studenti.get(i).getAdresaStanovanja();
-				String kontakt = studenti.get(i).getKontaktTelefon();
-				String email = studenti.get(i).getEmailAdresa();
-				String indeks = studenti.get(i).getBrojIndexa();
-				int godina = studenti.get(i).getGodinaUpisa();
-				int trenutno = studenti.get(i).getTrenutnaGodinaStudija();
-				Status status = studenti.get(i).getStatus();
-				double prosek = studenti.get(i).getProsecnaocena();
-						
-				s = new Student(prezime,ime, datum, adresa, kontakt, email, indeks, godina, trenutno, status,prosek);
-				*/
 				return studenti.get(i);
 			}
 		}

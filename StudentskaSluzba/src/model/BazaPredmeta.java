@@ -107,6 +107,15 @@ public class BazaPredmeta {
 		return false;
 	}
 	
+	public int pronadjiPredmet1(String sifra) {
+		for(int i = 0; i < predmeti.size(); i++) {
+			if (predmeti.get(i).getSifraPredmeta().equals(sifra)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
 	public String staraSifra() {
 		int row = MainFrame.getInstance().getPredmetiTable().getSelectedRow();
 		
@@ -121,15 +130,7 @@ public class BazaPredmeta {
 		Predmet p = new Predmet();
 		for(int i = 0; i < predmeti.size(); i++) {
 			if (predmeti.get(i).getSifraPredmeta().equals(sfr)) {
-				String sifra = predmeti.get(i).getSifraPredmeta();
-				String naziv = predmeti.get(i).getNazivPredmeta();
-				Semestar semestar = predmeti.get(i).getSemestar();
-				int godinaStud = predmeti.get(i).getGodinaStudija();
-				Profesor profesor = predmeti.get(i).getPredmetniProfesor();
-				int brESPB = predmeti.get(i).getBrojBodova();
-				
-				p = new Predmet(sifra, naziv, semestar, godinaStud, profesor, brESPB);
-				return p;
+				return predmeti.get(i);
 			}
 		}
 		return p;

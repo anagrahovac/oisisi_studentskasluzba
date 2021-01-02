@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import controller.PredmetController;
 import controller.StudentController;
 import model.BazaPredmeta;
+import model.BazaStudenata;
 import model.Predmet;
 
 public class IzmenaPredmetaDialog extends JDialog{
@@ -42,7 +43,7 @@ public class IzmenaPredmetaDialog extends JDialog{
 		
 		setSize(600, 600);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setLocationRelativeTo(null); 
+		setLocationRelativeTo(MainFrame.getInstance()); 
 		setResizable(false);
 		
 		Color c = new Color(245,245,245);
@@ -50,6 +51,7 @@ public class IzmenaPredmetaDialog extends JDialog{
 		
 		PredmetIzmenaKeyListener keyListener = new PredmetIzmenaKeyListener(this);
 		controller = new PredmetController(this);
+		controller.getVal().setAllTrue();
 		
 		JTabbedPane tabbedPane = new JTabbedPane();
 		Font f = new Font("Dialog", Font.PLAIN, 14);
@@ -96,7 +98,7 @@ public class IzmenaPredmetaDialog extends JDialog{
 			lblProfesor.setFont(dialog);
 		JTextField txtProfesor = new JTextField();
 		txtProfesor.setName("txtProfesor");
-		//txtProfesor.setText("ZDRAVOOO!!");
+		txtProfesor.setText("ZDRAVOOO!!");
 		txtProfesor.setEditable(false);
 		txtProfesor.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
 		txtProfesor.setBackground(Color.white);
@@ -195,7 +197,13 @@ public class IzmenaPredmetaDialog extends JDialog{
 	    pProfesor.add(btnPlus);
 	    pProfesor.add(btnMinus);
 		pProfesor.setBackground(gray);
-		//txtProfesor.setText(p.getPredmetniProfesor());
+		//txtProfesor.setText(p.getPredmetniProfesor().getImePrezimeProfesora());
+		
+		//if(txtProfesor.getText().isEmpty() || txtProfesor.getText() == null ) {
+		//	btnPlus.setEnabled(true);		
+		//} else {
+		//	btnPlus.setEnabled(false);
+		//}
 		
 		pBrojESPB = new RowPanel("Broj ESPB bodova*");
 			pBrojESPB.getTextField().setText(Integer.toString(p.getBrojBodova()));
@@ -229,16 +237,21 @@ public class IzmenaPredmetaDialog extends JDialog{
         formatButton(btnOdbaci, 0);
 		btnPotvrdi.setToolTipText("Izmeni predmet");
 		btnOdbaci.setToolTipText("Odustani od izmene predmeta");
-		
+		enablePotvrdi();
 				
 		btnPotvrdi.addMouseListener(new MouseListener() {
 
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					// TODO Auto-generated method stub
 					if(btnPotvrdi.isEnabled()) {
-						controller.izmeniPredmet();	
-						dispose();
+						boolean succ = controller.izmeniPredmet(BazaPredmeta.getInstance().pronadjiPredmet1(staraSifra));
+						if(succ == true) {
+							JOptionPane.showMessageDialog(null, "Predmet uspešno izmenjen.");
+							dispose();
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Šifra predmeta već postoji u bazi!");
+						}
 					}
 				}
 

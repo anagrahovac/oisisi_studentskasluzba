@@ -7,6 +7,8 @@ import java.awt.event.KeyListener;
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 
+import controller.Validacija;
+
 public class PredmetIzmenaKeyListener implements KeyListener{
 	
 	private IzmenaPredmetaDialog ipd;
@@ -27,6 +29,7 @@ public class PredmetIzmenaKeyListener implements KeyListener{
 		// TODO Auto-generated method stub
 		JTextField txt = (JTextField) e.getComponent();
 		String val = txt.getText().trim();
+		Validacija v = ipd.getController().getVal();
 		boolean validno = false;		
 		
 		switch(txt.getName()) {
@@ -49,11 +52,17 @@ public class PredmetIzmenaKeyListener implements KeyListener{
 			txt.setBorder(null);
 			txt.setBorder(BorderFactory.createLineBorder(new Color(221,119,119)));
 			txt.setForeground(new Color(221,119,119));
-		} else {
-			ipd.enablePotvrdi();			
+		} else {			
 			txt.setForeground(Color.black);
 			txt.setBorder(BorderFactory.createLineBorder(Color.gray));
 		}	
+		
+		if(v.validirajPredmet() == true) {
+			ipd.enablePotvrdi();
+		}
+		else {
+			ipd.disablePotvrdi();
+		}
 	}
 
 	@Override

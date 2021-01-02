@@ -1,10 +1,12 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Ocena {
 	private Student student;
 	private Predmet predmet;
 	private int ocena;
-	private String datumPolaganjaispita;
+	private LocalDate datumPolaganjaispita;
 	
 	public Ocena() {
 		super();
@@ -14,7 +16,7 @@ public class Ocena {
 		this.datumPolaganjaispita = null;
 	}
 
-	public Ocena(Student student, Predmet predmet, int ocena, String datumPolaganjaispita) {
+	public Ocena(Student student, Predmet predmet, int ocena, LocalDate datumPolaganjaispita) {
 		super();
 		this.student = student;
 		this.predmet = predmet;
@@ -46,11 +48,11 @@ public class Ocena {
 		this.ocena = ocena;
 	}
 
-	public String getDatumPolaganjaispita() {
+	public LocalDate getDatumPolaganjaispita() {
 		return datumPolaganjaispita;
 	}
 
-	public void setDatumPolaganjaispita(String datumPolaganjaispita) {
+	public void setDatumPolaganjaispita(LocalDate datumPolaganjaispita) {
 		this.datumPolaganjaispita = datumPolaganjaispita;
 	};
 }

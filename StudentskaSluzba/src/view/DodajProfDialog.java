@@ -38,7 +38,7 @@ public class DodajProfDialog extends JDialog{
 		setLayout(new BorderLayout());
 		
 		setSize(450,280);
-		setLocationRelativeTo(null);
+		setLocationRelativeTo(MainFrame.getInstance());
 		
 		JPanel background = new JPanel();
 		JScrollPane scroll = new JScrollPane(tabela);

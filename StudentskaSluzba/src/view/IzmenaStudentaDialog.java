@@ -30,6 +30,7 @@ import javax.swing.border.MatteBorder;
 
 import controller.StudentController;
 import javafx.geometry.Insets;
+import model.BazaProfesora;
 import model.BazaStudenata;
 import model.Student;
 
@@ -48,6 +49,7 @@ public class IzmenaStudentaDialog extends JDialog{
 	private RowPanel pNacinFinansiranja;
 	private JButton btnPotvrdi = new JButton("Potvrdi");
 	private JButton btnOdbaci = new JButton("Odustani");
+	private TablePredmeti polozeniPredmeti;
 	
 	public IzmenaStudentaDialog(String stariIndeks) {
 		
@@ -55,7 +57,7 @@ public class IzmenaStudentaDialog extends JDialog{
 		
 		setSize(600, 600);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setLocationRelativeTo(null); 
+		setLocationRelativeTo(MainFrame.getInstance()); 
 		setResizable(false);
 		
 		Color c = new Color(245,245,245);
@@ -63,6 +65,7 @@ public class IzmenaStudentaDialog extends JDialog{
 		
 		StudentIzmenaKeyListener keyListener = new StudentIzmenaKeyListener(this);
 		controller = new StudentController(this);
+		controller.getValidacija().setAllTrue();
 		
 		JTabbedPane tabbedPane = new JTabbedPane();
 		Font f = new Font("Dialog", Font.PLAIN, 14);
@@ -147,7 +150,7 @@ public class IzmenaStudentaDialog extends JDialog{
         formatButton(btnOdbaci, 0);
 		btnPotvrdi.setToolTipText("Izmeni studenta");
 		btnOdbaci.setToolTipText("Odustani od izmene studenta");
-		
+		enablePotvrdi();
 				
 		btnPotvrdi.addMouseListener(new MouseListener() {
 
@@ -155,8 +158,14 @@ public class IzmenaStudentaDialog extends JDialog{
 				public void mouseClicked(MouseEvent arg0) {
 					// TODO Auto-generated method stub
 					if(btnPotvrdi.isEnabled()) {
-						controller.izmeniStudenta();	
-						dispose();
+						boolean succ = controller.izmeniStudenta(BazaStudenata.getInstance().pronadjiStudenta1(stariIndeks));
+						if(succ == true) {
+							JOptionPane.showMessageDialog(null, "Student uspešno izmenjen.");
+							dispose();
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Broj indeksa već postoji u bazi!");
+						}
 					}
 				}
 
@@ -242,6 +251,7 @@ public class IzmenaStudentaDialog extends JDialog{
         JButton ponistiOcenu = new JButton("Poništi ocenu");
         formatButton(ponistiOcenu, 0);
         ponistiOcenu.setPreferredSize(new Dimension(120,30));
+        
         GridBagConstraints gbc = new GridBagConstraints();     
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -253,7 +263,7 @@ public class IzmenaStudentaDialog extends JDialog{
         btn.add(ponistiOcenu, gbc);
         
         AbstractTableModelPolozeniIspiti atm = new AbstractTableModelPolozeniIspiti(stariIndeks);
-        TablePredmeti polozeniPredmeti = new TablePredmeti(atm);
+        polozeniPredmeti = new TablePredmeti(atm);
         JScrollPane polozeniScroll = new JScrollPane(polozeniPredmeti);
         
         
@@ -284,11 +294,18 @@ public class IzmenaStudentaDialog extends JDialog{
         
         polozeni.add(Box.createVerticalStrut(10)); 
         polozeni.add(btn, BorderLayout.NORTH);
-        //polozeni.add(Box.createHorizontalStrut(50)); 
-        //polozeni.add(Box.createVerticalStrut(0));
         polozeni.add(polozeniScroll,BorderLayout.CENTER);
         polozeni.add(ocenaESPB, BorderLayout.SOUTH);
         
+        ponistiOcenu.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+					
+			}
+		});
 	    	    
 	    validate();
 	}
@@ -325,6 +342,24 @@ public class IzmenaStudentaDialog extends JDialog{
 		btnPotvrdi.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 2));
 		btnPotvrdi.setBackground(new Color(230,230,230));
 		btnPotvrdi.setForeground(Color.BLACK);
+	}
+	
+	public String kljucOcene() {
+		int row = this.getPolozeniPredmeti().getSelectedRow();
+		
+		if(row != -1)
+			return (String) this.getPolozeniPredmeti().getValueAt(row, 0);
+		else
+			return "";
+		
+	}
+
+	public TablePredmeti getPolozeniPredmeti() {
+		return polozeniPredmeti;
+	}
+
+	public void setPolozeniPredmeti(TablePredmeti polozeniPredmeti) {
+		this.polozeniPredmeti = polozeniPredmeti;
 	}
 
 	public StudentController getController() {
@@ -429,7 +464,5 @@ public class IzmenaStudentaDialog extends JDialog{
 
 	public void setBtnOdbaci(JButton btnOdbaci) {
 		this.btnOdbaci = btnOdbaci;
-	}
-	
-	
+	}	
 }

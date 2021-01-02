@@ -60,7 +60,7 @@ public class PredmetController {
 			return true;
 	}
 	
-	public boolean izmeniPredmet() {
+	public boolean izmeniPredmet(int i) {
 		String sifra = izmena.getpSifra().getTextField().getText();
 		String naziv = izmena.getpNaziv().getTextField().getText();
 		Semestar semestar = Semestar.LETNJI;
@@ -77,9 +77,12 @@ public class PredmetController {
 		int brESPB = Integer.valueOf(izmena.getpBrojESPB().getTextField().getText());
 		
 		String staraSifra = BazaPredmeta.getInstance().staraSifra();
+		if((BazaPredmeta.getInstance().pronadjiPredmet1(sifra) != -1) && (BazaPredmeta.getInstance().pronadjiPredmet1(sifra) != i)) { 
+			return false;
+		}
 			BazaPredmeta.getInstance().izmeniPredmet(staraSifra,sifra, naziv, semestar, godinaStudija, profesor, brESPB);
 			MainFrame.getInstance().updatePredmetiTable();
-			JOptionPane.showMessageDialog(null, "Predmet uspešno izmenjen.");
+
 			return true;
 	}
 	

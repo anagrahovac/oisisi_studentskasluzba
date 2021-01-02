@@ -7,6 +7,7 @@ import java.time.format.DateTimeParseException;
 
 import javax.swing.JOptionPane;
 
+import model.BazaProfesora;
 import model.BazaStudenata;
 import model.Student.Status;
 import view.IzmenaStudentaDialog;
@@ -85,7 +86,7 @@ public class StudentController {
 			return true;
 	}
 	
-	public boolean izmeniStudenta() {
+	public boolean izmeniStudenta(int i) {
 		String ime = izmena.getpIme().getTextField().getText();
 		String prezime = izmena.getpPrezime().getTextField().getText();
 		String datum = izmena.getpDatumRodjenja().getTextField().getText();
@@ -128,9 +129,12 @@ public class StudentController {
 			break;
 		}
 		String stariIndeks = BazaStudenata.getInstance().stariIndeks();
+		if((BazaStudenata.getInstance().pronadjiStudenta1(brIndexa) != -1) && (BazaStudenata.getInstance().pronadjiStudenta1(brIndexa) != i)) { 
+			return false;
+		}
 			BazaStudenata.getInstance().izmeniStudenta(stariIndeks,prezime, ime, datumRodj, adresaStan, brTelefona, eMailAdresa, brIndexa, godU,trGodStu, status, 0.00);
 			MainFrame.getInstance().updateStudentiTable();
-			JOptionPane.showMessageDialog(null, "Student uspešno izmenjen.");
+
 			return true;
 	}
 }

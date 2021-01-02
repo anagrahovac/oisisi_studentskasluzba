@@ -64,6 +64,10 @@ public class Profesor {
 	public void setIme(String ime) {
 		this.ime = ime;
 	}
+	
+	public String getImePrezimeProfesora() {
+		return ime + " " + prezime;
+	}
 
 	public LocalDate getDatumRodjenja() {
 		return datumRodjenja;

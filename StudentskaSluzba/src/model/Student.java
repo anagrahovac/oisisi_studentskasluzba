@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import model.Student.Status;
@@ -155,6 +156,8 @@ public class Student {
 		Ocena o = this.getSpisakPolozenihIspita().get(row);
 		String retVal = null;
 		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+		
 		switch(column) {
 		case 0:
 			retVal = o.getPredmet().getSifraPredmeta();
@@ -169,7 +172,7 @@ public class Student {
 			retVal = Integer.toString(o.getOcena());
 			break;
 		case 4:
-			retVal = o.getDatumPolaganjaispita();
+			retVal = dtf.format(o.getDatumPolaganjaispita());
 			break;
 		default:
 			throw new IllegalArgumentException("Invalid column index");

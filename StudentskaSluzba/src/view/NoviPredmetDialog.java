@@ -40,7 +40,7 @@ public class NoviPredmetDialog extends JDialog{
 		super(MainFrame.getInstance(), "Dodavanje predmeta", true);
 		setSize(500, 600);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setLocationRelativeTo(null); 
+		setLocationRelativeTo(MainFrame.getInstance()); 
 		setResizable(false);
 
 		Color c = new Color(245,245,245);
