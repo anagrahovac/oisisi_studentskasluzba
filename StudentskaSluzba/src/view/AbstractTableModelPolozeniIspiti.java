@@ -7,6 +7,11 @@ import model.BazaStudenata;
 public class AbstractTableModelPolozeniIspiti extends AbstractTableModel{
 	
 	private String indx;
+	
+	public AbstractTableModelPolozeniIspiti(String i) {
+		// TODO Auto-generated constructor stub
+		this.indx = i;
+	}
 
 	@Override
 	public int getColumnCount() {
@@ -18,7 +23,10 @@ public class AbstractTableModelPolozeniIspiti extends AbstractTableModel{
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
-		return BazaStudenata.getInstance().studentDatogIndeksa(indx).getSpisakPolozenihIspita().size();
+		if(!(BazaStudenata.getInstance().studentDatogIndeksa(indx).getSpisakPolozenihIspita() == null))
+			return BazaStudenata.getInstance().studentDatogIndeksa(indx).getSpisakPolozenihIspita().size();
+		else
+			return -1;
 	}
 
 	@Override

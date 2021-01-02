@@ -252,16 +252,17 @@ public class IzmenaStudentaDialog extends JDialog{
         
         btn.add(ponistiOcenu, gbc);
         
-        AbstractTableModelPolozeniIspiti atm = new AbstractTableModelPolozeniIspiti();
+        AbstractTableModelPolozeniIspiti atm = new AbstractTableModelPolozeniIspiti(stariIndeks);
         TablePredmeti polozeniPredmeti = new TablePredmeti(atm);
         JScrollPane polozeniScroll = new JScrollPane(polozeniPredmeti);
+        
         
         polozeniPredmeti.setAutoCreateRowSorter(true);
         
         ocenaESPB.setPreferredSize(new Dimension(polozeni.getWidth(), 130));
         ocenaESPB.setBackground(c);
         
-        JLabel ocena = new JLabel("Prosečna ocena: ");
+        JLabel ocena = new JLabel("Prosečna ocena: " + String.format( "%.2f", BazaStudenata.getInstance().studentDatogIndeksa(stariIndeks).prosecnaOcena()));
         GridBagConstraints gbc1 = new GridBagConstraints();     
         gbc1.gridx = 0;
         gbc1.gridy = 0;
@@ -269,7 +270,7 @@ public class IzmenaStudentaDialog extends JDialog{
         gbc1.anchor = GridBagConstraints.EAST;
         gbc1.fill = GridBagConstraints.NONE;
         gbc1.insets = new java.awt.Insets(20, 0, 7, 30);
-        JLabel espb = new JLabel("Ukupno ESPB: ");
+        JLabel espb = new JLabel("Ukupno ESPB: " + BazaStudenata.getInstance().studentDatogIndeksa(stariIndeks).ukupnoESPB());
         GridBagConstraints gbc2 = new GridBagConstraints();     
         gbc2.gridx = 0;
         gbc2.gridy = 1;

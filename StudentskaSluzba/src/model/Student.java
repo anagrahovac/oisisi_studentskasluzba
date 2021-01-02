@@ -170,6 +170,7 @@ public class Student {
 			break;
 		case 4:
 			retVal = o.getDatumPolaganjaispita();
+			break;
 		default:
 			throw new IllegalArgumentException("Invalid column index");
 		}
@@ -177,8 +178,8 @@ public class Student {
 		return retVal;
 	}
 	
-	public int prosecnaOcena() {
-		int prosek = 0;
+	public double prosecnaOcena() {
+		double prosek = 0;
 		if(spisakPolozenihIspita.size() != 0) {
 		for(int i = 0; i < spisakPolozenihIspita.size(); i ++) {
 			prosek += spisakPolozenihIspita.get(i).getOcena(); 

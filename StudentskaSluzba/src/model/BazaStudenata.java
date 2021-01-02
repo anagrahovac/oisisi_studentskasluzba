@@ -211,6 +211,7 @@ public class BazaStudenata {
 		Student s = new Student();
 		for(int i = 0; i < studenti.size(); i++) {
 			if (studenti.get(i).getBrojIndexa().equals(indx)) {
+				/*
 				String ime = studenti.get(i).getImeStudenta();
 				String prezime = studenti.get(i).getPrezimeStudenta();
 				LocalDate datum = studenti.get(i).getDatumRodjenja();
@@ -224,10 +225,11 @@ public class BazaStudenata {
 				double prosek = studenti.get(i).getProsecnaocena();
 						
 				s = new Student(prezime,ime, datum, adresa, kontakt, email, indeks, godina, trenutno, status,prosek);
-				return s;
+				*/
+				return studenti.get(i);
 			}
 		}
-		return s;
+		return null;
 	}
 	
 	public void izmeniStudenta(String stariBrojIndexa, String prezime, String ime, LocalDate datumRodjenja, String adresaStanovanja, String kontaktTelefon,
