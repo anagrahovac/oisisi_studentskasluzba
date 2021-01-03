@@ -99,8 +99,8 @@ public class NoviPredmetDialog extends JDialog{
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-					DodajProfesoraDialog dialog = new DodajProfesoraDialog(parent,sifra);
-					dialog.setVisible(true);
+					//DodajProfesoraDialog dialog = new DodajProfesoraDialog(parent, sifra);
+					//dialog.setVisible(true);
 			}
 
 			@Override
@@ -169,6 +169,18 @@ public class NoviPredmetDialog extends JDialog{
 				
 			}
 		});
+	    
+	    if(txtProfesor.getText().isEmpty() || txtProfesor.getText() == null || txtProfesor.getText().equals("")) {
+			btnPlus.setEnabled(true);
+		} else {
+			btnPlus.setEnabled(false);
+		}
+		
+		if(txtProfesor.getText().isEmpty() || txtProfesor.getText() == null || txtProfesor.getText().equals("")) {
+			btnMinus.setEnabled(false);
+		} else {
+			btnMinus.setEnabled(true);
+		}
 	    	
 	    pProfesor.add(Box.createHorizontalStrut(20));
 	    pProfesor.add(lblProfesor);
@@ -176,6 +188,7 @@ public class NoviPredmetDialog extends JDialog{
 	    pProfesor.add(btnPlus);
 	    pProfesor.add(btnMinus);
 		pProfesor.setBackground(gray);
+		//IzmenaPredmetaDialog.azurirajPredmet();
 		
 		pBrojESPB = new RowPanel("Broj ESPB bodova*");
 		pBrojESPB.getTextField().setName("txtBrojESPB");

@@ -66,6 +66,9 @@ public class Profesor {
 	}
 	
 	public String getImePrezimeProfesora() {
+		if(ime == null && prezime == null) {
+			return "";
+		}
 		return ime + " " + prezime;
 	}
 

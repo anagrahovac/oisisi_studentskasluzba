@@ -384,11 +384,6 @@ public class IzmenaPredmetaDialog extends JDialog{
 		}
 	}
 	
-	public static void dodajProfesoraStudentu() {
-		//txtProfesor.setText(t);
-	}
-	
-	
 	public JTextField getTxtProfesor() {
 		return txtProfesor;
 	}
