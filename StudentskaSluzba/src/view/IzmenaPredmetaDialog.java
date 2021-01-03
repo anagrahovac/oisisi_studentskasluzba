@@ -34,10 +34,14 @@ public class IzmenaPredmetaDialog extends JDialog{
 	private RowPanel pGodinaStudija;
 	private RowPanel pBrojESPB;
 	private RowPanel pSemestar;
+	private static JTextField txtProfesor;
+	private static Predmet p = new Predmet();
 	private JButton btnPotvrdi = new JButton("Potvrdi");
 	private JButton btnOdbaci = new JButton("Odustani");
+	private static JButton btnPlus;
+	private static JButton btnMinus;
 	
-	public IzmenaPredmetaDialog(String staraSifra,final JFrame parent) {
+	public IzmenaPredmetaDialog(String staraSifra) {
 		
 		super(MainFrame.getInstance(), "Izmena predmeta", true);
 		
@@ -70,7 +74,6 @@ public class IzmenaPredmetaDialog extends JDialog{
 		informacije.setBackground(c);
 		informacije.setLayout(new BoxLayout(informacije, BoxLayout.Y_AXIS));
 		
-		Predmet p = new Predmet();
 		p = BazaPredmeta.getInstance().predmetDateSifre(staraSifra);
 		
 		pSifra = new RowPanel("Šifra predmeta*");
@@ -96,9 +99,9 @@ public class IzmenaPredmetaDialog extends JDialog{
 			Font dialog = new Font("Dialog", Font.ITALIC, 14);
 			lblProfesor.setPreferredSize(lblDim);
 			lblProfesor.setFont(dialog);
-		JTextField txtProfesor = new JTextField();
+		txtProfesor = new JTextField();
 		txtProfesor.setName("txtProfesor");
-		txtProfesor.setText("ZDRAVOOO!!");
+		//txtProfesor.setText("ZDRAVOOO!!");
 		txtProfesor.setEditable(false);
 		txtProfesor.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
 		txtProfesor.setBackground(Color.white);
@@ -106,7 +109,7 @@ public class IzmenaPredmetaDialog extends JDialog{
 	        Font dialog1 = new Font("Dialog", Font.PLAIN, 14);
 	        txtProfesor.setPreferredSize(txtDim);
 	        txtProfesor.setFont(dialog1);
-	    JButton btnPlus = new JButton("+");
+	    btnPlus = new JButton("+");
 	    	Dimension btnDim = new Dimension(30,30);
 	    	Font dialog2 = new Font("Dialog", Font.BOLD, 14);
 	    	btnPlus.setPreferredSize(btnDim);
@@ -114,13 +117,14 @@ public class IzmenaPredmetaDialog extends JDialog{
 	    	btnPlus.setBackground(Color.white);
 	    	btnPlus.setToolTipText("Dodaj profesora");
 	    	btnPlus.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
+	    	
 	    
 	    btnPlus.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-					DodajProfDialog dialog = new DodajProfDialog(parent);
+					DodajProfesoraDialog dialog = new DodajProfesoraDialog(MainFrame.getInstance(), staraSifra);
 					dialog.setVisible(true);
 			}
 
@@ -149,7 +153,7 @@ public class IzmenaPredmetaDialog extends JDialog{
 			}
         });
 	    
-	    JButton btnMinus = new JButton("-");
+	    btnMinus = new JButton("-");
 	    	btnMinus.setPreferredSize(btnDim);
 	    	btnMinus.setFont(dialog2);
 	    	btnMinus.setBackground(Color.white);
@@ -167,9 +171,7 @@ public class IzmenaPredmetaDialog extends JDialog{
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				if(txtProfesor.getText() != "") {
-					txtProfesor.setText("");
-				}
+				
 			}
 			
 			@Override
@@ -187,9 +189,23 @@ public class IzmenaPredmetaDialog extends JDialog{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+				if(txtProfesor.getText() != "") {
+					txtProfesor.setText("");
+				}
 			}
 		});
+	    
+	    if(txtProfesor.getText().isEmpty() || txtProfesor.getText() == null || txtProfesor.getText().equals("")) {
+			btnPlus.setEnabled(true);
+		} else {
+			btnPlus.setEnabled(false);
+		}
+		
+		if(txtProfesor.getText().isEmpty() || txtProfesor.getText() == null || txtProfesor.getText().equals("")) {
+			btnMinus.setEnabled(false);
+		} else {
+			btnMinus.setEnabled(true);
+		}
 	    	
 	    pProfesor.add(Box.createHorizontalStrut(20));
 	    pProfesor.add(lblProfesor);
@@ -197,13 +213,7 @@ public class IzmenaPredmetaDialog extends JDialog{
 	    pProfesor.add(btnPlus);
 	    pProfesor.add(btnMinus);
 		pProfesor.setBackground(gray);
-		//txtProfesor.setText(p.getPredmetniProfesor().getImePrezimeProfesora());
-		
-		//if(txtProfesor.getText().isEmpty() || txtProfesor.getText() == null ) {
-		//	btnPlus.setEnabled(true);		
-		//} else {
-		//	btnPlus.setEnabled(false);
-		//}
+		azurirajPredmet();
 		
 		pBrojESPB = new RowPanel("Broj ESPB bodova*");
 			pBrojESPB.getTextField().setText(Integer.toString(p.getBrojBodova()));
@@ -220,9 +230,9 @@ public class IzmenaPredmetaDialog extends JDialog{
 		informacije.add(pSifra);
 		informacije.add(pNaziv); 
 		informacije.add(pGodinaStudija);
-		informacije.add(pProfesor);
 		informacije.add(pBrojESPB);
-		informacije.add(pSemestar); 
+		informacije.add(pSemestar);
+		informacije.add(pProfesor);
 		informacije.add(Box.createVerticalStrut(150));
 		
 	    
@@ -358,6 +368,35 @@ public class IzmenaPredmetaDialog extends JDialog{
 		btnPotvrdi.setForeground(Color.BLACK);
 	}
 	
+	public static void azurirajPredmet() {
+		txtProfesor.setText(p.getImePrezimeProfesora());
+		
+		if(txtProfesor.getText().isEmpty() || txtProfesor.getText() == null || txtProfesor.getText().equals("")) {
+			btnPlus.setEnabled(true);
+		} else {
+			btnPlus.setEnabled(false);
+		}
+		
+		if(txtProfesor.getText().isEmpty() || txtProfesor.getText() == null || txtProfesor.getText().equals("")) {
+			btnMinus.setEnabled(false);
+		} else {
+			btnMinus.setEnabled(true);
+		}
+	}
+	
+	public static void dodajProfesoraStudentu() {
+		//txtProfesor.setText(t);
+	}
+	
+	
+	public JTextField getTxtProfesor() {
+		return txtProfesor;
+	}
+
+	public void setTxtProfesor(JTextField txtProfesor) {
+		this.txtProfesor = txtProfesor;
+	}
+
 	public PredmetController getController() {
 		return controller;
 	}

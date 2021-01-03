@@ -23,7 +23,7 @@ public class MainFrame extends JFrame {
 	private MyToolbar toolbar = new MyToolbar();
 	private MyStatusBar statusBar = new MyStatusBar();
 	private TableStudenti studentiTable = new TableStudenti();
-	private TableProfesori profesoriTable = new TableProfesori();
+	private TableProfesori profesoriTable;
 	private TablePredmeti predmetiTable;
 	
 
@@ -65,6 +65,8 @@ public class MainFrame extends JFrame {
 		studentiTab.getViewport().setBackground(Color.WHITE);
 		this.updateStudentiTable();
 		
+		AbstractTableModelProfesori atmp = new AbstractTableModelProfesori();
+		profesoriTable = new TableProfesori(atmp);
 		JScrollPane profesoriTab = new JScrollPane(profesoriTable);
 		profesoriTab.getViewport().setBackground(Color.WHITE);
 		this.updateProfesoriTable();

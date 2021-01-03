@@ -73,6 +73,12 @@ public class Predmet {
 	public Profesor getPredmetniProfesor() {
 		return predmetniProfesor;
 	}
+	
+	public String getImePrezimeProfesora() {
+		if(predmetniProfesor == null) 
+			return "";
+		return predmetniProfesor.getImePrezimeProfesora();
+	}
 
 	public void setPredmetniProfesor(Profesor predmetniProfesor) {
 		this.predmetniProfesor = predmetniProfesor;

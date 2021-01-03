@@ -19,41 +19,44 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.JTableHeader;
 
+import model.BazaPredmeta;
 import model.BazaProfesora;
 import model.BazaStudenata;
 
-public class DodajProfDialog extends JDialog{
+public class DodajProfesoraDialog extends JDialog{
 
 	private static final long serialVersionUID = 1L;
 	
 	private TableProfesori tabela;
 	
-	public DodajProfDialog() {
+	public DodajProfesoraDialog() {
 		super();
-		this.tabela = new TableProfesori();
 	}
 
-	public DodajProfDialog(JFrame parent) {
-		super(parent, "Dodaj profesora",true);
+	public DodajProfesoraDialog(JFrame parent, String sifra) {
+		super(parent, "Odaberi profesora",true);
 		setLayout(new BorderLayout());
 		
-		setSize(450,280);
-		setLocationRelativeTo(MainFrame.getInstance());
+		setSize(370,250);
+		setLocationRelativeTo(parent);
 		
 		JPanel background = new JPanel();
-		JScrollPane scroll = new JScrollPane(tabela);
 		
-		//tabela = new TableProfesori();
-		tabela = MainFrame.getInstance().getProfesoriTable();
+		AbstractTableModelListaProfesora atm = new AbstractTableModelListaProfesora();
+		tabela = new TableProfesori(atm);
 		tabela.setBackground(Color.white);
+		JScrollPane scroll = new JScrollPane(tabela);
 		background.add(tabela.getTableHeader(), BorderLayout.NORTH);
-		background.add(tabela, BorderLayout.CENTER);
+		tabela.setTableHeader(null);
+		//tabela.removeColumn(tabela.getColumn(1));
+		tabela.setPreferredScrollableViewportSize(new Dimension(300, 150));
+		
+		background.add(scroll, BorderLayout.CENTER);
 		background.setBackground(Color.white);
 		
 		Font f = new Font("Dialog", Font.PLAIN, 14);
 		
-		
-		JButton btnDodaj = new JButton("Dodaj");
+		JButton btnDodaj = new JButton("Potvrdi");
 		btnDodaj.setFont(f);
 		btnDodaj.setPreferredSize(new Dimension(100,30));
 		btnDodaj.setBackground(new Color(230,230,230));
@@ -61,7 +64,16 @@ public class DodajProfDialog extends JDialog{
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub			
+				// TODO Auto-generated method stub		
+				if(getBrojLicneKarteListaProfesora().equals("")) {
+					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste selektovali profesora!");
+					return;
+				}
+				
+				dodajProfesoraPredmetu(sifra, getBrojLicneKarteListaProfesora());
+				IzmenaPredmetaDialog.azurirajPredmet();
+				MainFrame.getInstance().updatePredmetiTable();
+
 				dispose();
 			}
 
@@ -69,7 +81,7 @@ public class DodajProfDialog extends JDialog{
 			public void mouseEntered(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				btnDodaj.setBackground(new Color(228, 244, 255));
-				btnDodaj.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235)));
+				btnDodaj.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 1));
 			}
 
 			@Override
@@ -108,14 +120,14 @@ public class DodajProfDialog extends JDialog{
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
 				btnOdustani.setBackground(new Color(228, 244, 255));
-				btnOdustani.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235)));
+				btnOdustani.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 1));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				btnOdustani.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 2));
 				btnOdustani.setBackground(new Color(230,230,230));
+				btnOdustani.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
 			}
 
 			@Override
@@ -138,6 +150,33 @@ public class DodajProfDialog extends JDialog{
 		background.add(buttons, BorderLayout.SOUTH);
 		
 		this.add(background);
+	}
+	
+	public String getBrojLicneKarteListaProfesora() {
+		int i = tabela.getSelectedRow();
+		if(i != -1) {
+			return (String) tabela.getValueAt(i, 1);
+		} else {
+			return "";
+		}
+	} 
+	
+	
+	public void dodajProfesoraPredmetu(String sifra, String brojLicne) {
+		for(int i = 0; i < BazaPredmeta.getInstance().getPredmeti().size(); i++) {
+			if(BazaPredmeta.getInstance().getPredmeti().get(i).getSifraPredmeta().equals(sifra)) {
+				BazaPredmeta.getInstance().getPredmeti().get(i).setPredmetniProfesor(BazaProfesora.getInstance().pronadjiProfesora1(brojLicne));
+				BazaProfesora.getInstance().pronadjiProfesora1(brojLicne).getSpisakPredmeta().add(BazaPredmeta.getInstance().getPredmeti().get(i));
+			}
+		}
+		
+		updateListaProfesoraTable();
+	}
+	
+	public void updateListaProfesoraTable() {
+		AbstractTableModelListaProfesora model = (AbstractTableModelListaProfesora) tabela.getModel();
+		model.fireTableDataChanged();
+		tabela.validate();
 	}
 
 	public TableProfesori getTabela() {

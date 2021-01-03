@@ -160,6 +160,14 @@ public class Profesor {
 		}
 		return null;
 	}
+
+	public ArrayList<Predmet> getSpisakPredmeta() {
+		return spisakPredmeta;
+	}
+
+	public void setSpisakPredmeta(ArrayList<Predmet> spisakPredmeta) {
+		this.spisakPredmeta = spisakPredmeta;
+	}
 	
 	
 }

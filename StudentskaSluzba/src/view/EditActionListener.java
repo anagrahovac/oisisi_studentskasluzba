@@ -40,7 +40,7 @@ public class EditActionListener implements ActionListener{
 				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste selektovali predmet za izmenu!");
 				return;
 			}
-			IzmenaPredmetaDialog ipd = new IzmenaPredmetaDialog(staraSifra,MainFrame.getInstance());
+			IzmenaPredmetaDialog ipd = new IzmenaPredmetaDialog(staraSifra);
 			ipd.setVisible(true);
 		}
 	}

@@ -3,6 +3,8 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import model.BazaPredmeta;
+
 public class NewActionListener implements ActionListener{
 
 	@Override
@@ -18,7 +20,8 @@ public class NewActionListener implements ActionListener{
 			npd.setVisible(true);
 		}
 		if (tab == 2) {
-			NoviPredmetDialog npd = new NoviPredmetDialog(MainFrame.getInstance());
+			String staraSifra = BazaPredmeta.getInstance().staraSifra();
+			NoviPredmetDialog npd = new NoviPredmetDialog(MainFrame.getInstance(),staraSifra);
 			npd.setVisible(true);
 		}
 	} 

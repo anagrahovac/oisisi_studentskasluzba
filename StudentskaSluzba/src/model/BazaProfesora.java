@@ -10,6 +10,7 @@ public class BazaProfesora {
 	private static BazaProfesora instance = null;
 	private ArrayList<Profesor> profesori;
 	private ArrayList<String> kolone;
+	private ArrayList<String> koloneP;
 	
 	private BazaProfesora() {
 		this.profesori = new ArrayList<Profesor>();
@@ -19,6 +20,10 @@ public class BazaProfesora {
 		this.kolone.add("Broj lične karte");
 		this.kolone.add("Titula");
 		this.kolone.add("Zvanje");
+		
+		this.koloneP = new ArrayList<String>();
+		this.koloneP.add("Profesor");
+		this.koloneP.add("Broj lične karte");
 		
 		//obrisati posle
 		this.dodajProfesore();
@@ -65,8 +70,24 @@ public class BazaProfesora {
 		return this.kolone.size();
 	}
 
+	public int getColumnCountListaProfesora() {
+		return 2;
+	}
+	
 	public String getColumnName(int index) {
 		return this.kolone.get(index);
+	}
+	
+	public String getColumnNameListaProfesora(int index) {
+		return this.koloneP.get(index);
+	}
+
+	public String getKoloneP(int index) {
+		return this.koloneP.get(index);
+	}
+
+	public void setKoloneP(ArrayList<String> koloneP) {
+		this.koloneP = koloneP;
 	}
 
 	public Profesor getRow(int rowIndex) {
@@ -103,20 +124,32 @@ public class BazaProfesora {
 		}
 	}
 	
+	public String getValueAtListaProfesora(int row, int column) {
+		Profesor profesor = this.profesori.get(row);
+		switch (column) {
+		case 0:
+			return profesor.getImePrezimeProfesora();
+		case 1:
+			return profesor.getBrojLicneKarte();
+		default:
+			return null;
+		}
+	}
+	
 	public void dodajProfesoraUBazu(String prezime, String ime, LocalDate datumRodjenja, String adresaStanovanja, String kontaktTelefon,
 			String emailAdresa, String adresaKancelarije, String brojLicneKarte, Titula titula, Zvanje zvanje) {
 		Profesor p = new Profesor(prezime, ime, datumRodjenja, adresaStanovanja, kontaktTelefon, emailAdresa, adresaKancelarije, brojLicneKarte, titula, zvanje);
 		this.profesori.add(p);
 	}
 	
-	/*public Profesor pronadjiProfesora(String id) {
+	public Profesor pronadjiProfesora1(String id) {
 		for(int i = 0; i < profesori.size(); i++) {
 			if (profesori.get(i).getBrojLicneKarte().equals(id)) {
 				return profesori.get(i);
 			}
 		}
 		return null;
-	}*/
+	}
 	
 	public int pronadjiProfesora(String id) {
 		for(int i = 0; i < profesori.size(); i++) {

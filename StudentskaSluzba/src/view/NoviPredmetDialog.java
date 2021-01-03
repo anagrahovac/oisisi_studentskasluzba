@@ -35,7 +35,7 @@ public class NoviPredmetDialog extends JDialog{
 	private JButton btnOdbaci = new JButton("Odustani");
 	
 
-	public NoviPredmetDialog(final JFrame parent) {
+	public NoviPredmetDialog(final JFrame parent, String sifra) {
 		
 		super(MainFrame.getInstance(), "Dodavanje predmeta", true);
 		setSize(500, 600);
@@ -99,7 +99,7 @@ public class NoviPredmetDialog extends JDialog{
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-					DodajProfDialog dialog = new DodajProfDialog(parent);
+					DodajProfesoraDialog dialog = new DodajProfesoraDialog(parent,sifra);
 					dialog.setVisible(true);
 			}
 
