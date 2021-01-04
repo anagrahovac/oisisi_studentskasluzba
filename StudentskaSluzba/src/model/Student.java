@@ -217,4 +217,18 @@ public class Student {
 	public void setSpisakNepolozenihIspita(ArrayList<Predmet> spisakNepolozenihIspita) {
 		this.spisakNepolozenihIspita = spisakNepolozenihIspita;
 	}
+	
+	public boolean izbaciIzSpiskaNepolozenih(Predmet p) {
+		for(int i = 0; i < this.spisakNepolozenihIspita.size(); i++) {
+			if (this.spisakNepolozenihIspita.get(i).getSifraPredmeta().equals(p.getSifraPredmeta())) {
+				this.spisakNepolozenihIspita.remove(i);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void dodajUSpisakPolozenih(Ocena o) {
+		this.spisakPolozenihIspita.add(o);
+	}
 }

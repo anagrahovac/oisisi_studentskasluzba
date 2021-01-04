@@ -30,13 +30,16 @@ import javax.swing.border.MatteBorder;
 
 import controller.StudentController;
 import javafx.geometry.Insets;
+import model.BazaPredmeta;
 import model.BazaProfesora;
 import model.BazaStudenata;
+import model.Predmet;
 import model.Student;
 
 public class IzmenaStudentaDialog extends JDialog{
 
 	private StudentController controller;
+	private Student s;
 	private RowPanel pIme;
 	private RowPanel pPrezime;
 	private RowPanel pDatumRodjenja;
@@ -51,6 +54,10 @@ public class IzmenaStudentaDialog extends JDialog{
 	private JButton btnOdbaci = new JButton("Odustani");
 	private TablePredmeti polozeniPredmeti;
 	private TableNepolozeniPredmeti nepolozeniPredmeti;
+	
+	private JButton btnDodajPredmet = new JButton("Dodaj");
+	private JButton btnObrisiPredmet = new JButton("Obrisi");
+	private JButton btnPoloziPredmet = new JButton("Polaganje");
 	
 	public IzmenaStudentaDialog(String stariIndeks) {
 		
@@ -85,7 +92,7 @@ public class IzmenaStudentaDialog extends JDialog{
 		informacije.setBackground(c);
 		informacije.setLayout(new BoxLayout(informacije, BoxLayout.Y_AXIS));
 
-		Student s = new Student();
+		//Student s = new Student();
 		s = BazaStudenata.getInstance().studentDatogIndeksa(stariIndeks);
 		
 		pIme = new RowPanel("Ime*");
@@ -315,17 +322,15 @@ public class IzmenaStudentaDialog extends JDialog{
       	nepolozeni.setBackground(Color.WHITE);
       	JPanel pTop = new JPanel();
       	pTop.setLayout(new BorderLayout());
-      	JButton btnDodajPredmet = new JButton("Dodaj");
-      	JButton btnObrisiPredmet = new JButton("Obriši");
-      	JButton btnPoloziPredmet = new JButton("Polaganje");
       	formatButton(btnDodajPredmet, 4);
       	formatButton(btnObrisiPredmet, 3);
       	formatButton(btnPoloziPredmet, 2);
-
+      	
+      	dodajListenerPolaganje(this);
+      	
       	pTop.setLayout(new FlowLayout(FlowLayout.CENTER));
       	pTop.setPreferredSize(new Dimension(550, 50));
       	pTop.setBackground(Color.WHITE);
-      	//pTop.add(Box.createHorizontalStrut(40));
       	pTop.add(btnDodajPredmet);
    		pTop.add(Box.createHorizontalStrut(10));
    		pTop.add(btnObrisiPredmet);
@@ -347,6 +352,46 @@ public class IzmenaStudentaDialog extends JDialog{
               
 	    	    
 	    validate();
+	}
+	
+	private void dodajListenerPolaganje(IzmenaStudentaDialog isd) {
+		btnPoloziPredmet.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				String sifra = getNepolozeniSifra();
+				if( sifra.equals("")) {
+					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste selektovali predmet za polaganje!");
+					return;
+				}
+				else {
+					Predmet p = BazaPredmeta.getInstance().predmetDateSifre(sifra);
+					PolaganjeDialog pd = new PolaganjeDialog(isd, s, p);
+					pd.setVisible(true);
+				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				btnPoloziPredmet.setBackground(new Color(228, 244, 255));
+				btnPoloziPredmet.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 1));
+			}
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				btnPoloziPredmet.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 2));
+				btnPoloziPredmet.setBackground(new Color(230,230,230));
+			}
+			@Override
+			public void mousePressed(MouseEvent arg0) {}
+			@Override
+			public void mouseReleased(MouseEvent arg0) {}
+		});
+	}
+	
+	public String getNepolozeniSifra() {
+		int row = nepolozeniPredmeti.getSelectedRow();
+		if(row != -1)
+			return (String) nepolozeniPredmeti.getValueAt(row, 0);
+		else
+			return "";
 	}
 	
 	private void formatButton(JButton btn, int i) {
@@ -383,6 +428,11 @@ public class IzmenaStudentaDialog extends JDialog{
 	
 	public void updateNepolozeniTable() {
 		AbstractTableModelNepolozeniPredmeti model = (AbstractTableModelNepolozeniPredmeti) nepolozeniPredmeti.getModel();
+		model.fireTableDataChanged();
+		validate();
+	}
+	public void updatePolozeniTable() {
+		AbstractTableModelPolozeniIspiti model = (AbstractTableModelPolozeniIspiti) polozeniPredmeti.getModel();
 		model.fireTableDataChanged();
 		validate();
 	}

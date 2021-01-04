@@ -7,8 +7,7 @@ import java.time.format.DateTimeParseException;
 
 import javax.swing.JOptionPane;
 
-import model.BazaProfesora;
-import model.BazaStudenata;
+import model.*;
 import model.Student.Status;
 import view.IzmenaStudentaDialog;
 import view.MainFrame;
@@ -136,5 +135,26 @@ public class StudentController {
 			MainFrame.getInstance().updateStudentiTable();
 
 			return true;
+	}
+	
+	
+	public boolean poloziPredmet(Student s, Predmet p, int ocena, String d) {
+		LocalDate datum = null;
+		try {
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+			datum = LocalDate.parse(d, dtf);
+		}
+		catch(DateTimeParseException e) {
+			JOptionPane.showMessageDialog(null, "Datum je nepostojeći!");
+			return false;
+		}
+		Ocena o = new Ocena(s, p , ocena, datum);
+		int i = BazaStudenata.getInstance().pronadjiStudenta1(s.getBrojIndexa());
+		if(BazaStudenata.getInstance().getStudenti().get(i).izbaciIzSpiskaNepolozenih(p)) {
+			izmena.updateNepolozeniTable();
+			BazaStudenata.getInstance().getStudenti().get(i).dodajUSpisakPolozenih(o);
+			izmena.updatePolozeniTable();
+		}
+		return true;
 	}
 }

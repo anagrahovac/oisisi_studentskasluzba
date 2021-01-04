@@ -104,6 +104,12 @@ public class BazaStudenata {
 		s.setSpisakPolozenihIspita(initPredmeteMitar());
 		s1.setSpisakPolozenihIspita(initPredmeteDusan());
 		s2.setSpisakPolozenihIspita(initPredmeteAndjela());
+		s.getSpisakNepolozenihIspita().add(BazaPredmeta.getInstance().getPredmeti().get(0));
+		s.getSpisakNepolozenihIspita().add(BazaPredmeta.getInstance().getPredmeti().get(3));
+		s1.getSpisakNepolozenihIspita().add(BazaPredmeta.getInstance().getPredmeti().get(1));
+		s2.getSpisakNepolozenihIspita().add(BazaPredmeta.getInstance().getPredmeti().get(3));
+		s2.getSpisakNepolozenihIspita().add(BazaPredmeta.getInstance().getPredmeti().get(2));
+		s2.getSpisakNepolozenihIspita().add(BazaPredmeta.getInstance().getPredmeti().get(4));
 		this.studenti.add(s);
 		this.studenti.add(s1);
 		this.studenti.add(s2);
