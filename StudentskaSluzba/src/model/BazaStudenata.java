@@ -258,4 +258,48 @@ public class BazaStudenata {
 	public void izbrisiStudenta(int i) {
 		this.studenti.remove(i);
 	}
+	
+	//za tabelu nepolozeni predmeti
+	public int getNepolozeniColumnCount() {
+		return BazaPredmeta.getInstance().getKolone().size();
+	}
+	
+	public int getNepolozeniRowCount(String id) {
+		int i = this.pronadjiStudenta1(id);
+		return this.studenti.get(i).getSpisakNepolozenihIspita().size();
+	}
+	
+	public String getNepolozeniColumnName(int index) {
+		return BazaPredmeta.getInstance().getKolone().get(index);
+	}
+	
+	public Predmet getNepolozeniRow(int rowIndex, String id) {
+		int i = this.pronadjiStudenta1(id);
+		return this.studenti.get(i).getSpisakNepolozenihIspita().get(rowIndex);
+	}
+	
+	public String getNepolozeniValueAt(int row, int column, String id) {
+		int i = this.pronadjiStudenta1(id);
+		Predmet predmet = this.studenti.get(i).getSpisakNepolozenihIspita().get(row);
+		switch (column) {
+		case 0:
+			return predmet.getSifraPredmeta();
+		case 1:
+			return predmet.getNazivPredmeta();
+		case 2:
+			return Integer.toString(predmet.getBrojBodova());
+		case 3:
+			return Integer.toString(predmet.getGodinaStudija());
+		case 4:
+			{
+				if (predmet.getSemestar() == Semestar.LETNJI)
+					return "Letnji";
+				if (predmet.getSemestar() == Semestar.ZIMSKI)
+					return "Zimski";
+				return "";
+			}
+		default:
+			return null;
+		}
+	}
 }

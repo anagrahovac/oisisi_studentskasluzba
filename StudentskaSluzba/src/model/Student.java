@@ -20,7 +20,7 @@ public class Student {
 	private Status status;
 	private double prosecnaocena;
 	private ArrayList<Ocena> spisakPolozenihIspita;
-	private ArrayList<Ocena> spisakNepolozenihIspita;
+	private ArrayList<Predmet> spisakNepolozenihIspita;
 	
 	public Student() {
 		super();
@@ -36,7 +36,7 @@ public class Student {
 		this.status = null;
 		this.prosecnaocena = 0;
 		this.spisakPolozenihIspita = new ArrayList<Ocena>();
-		this.spisakNepolozenihIspita = new ArrayList<Ocena>();
+		this.spisakNepolozenihIspita = new ArrayList<Predmet>();
 	}
 
 	public Student(String prezimeStudenta, String imeStudenta, LocalDate datumRodjenja, String adresaStanovanja,
@@ -55,7 +55,7 @@ public class Student {
 		this.status = status;
 		this.prosecnaocena = prosecnaocena;
 		this.spisakPolozenihIspita = new ArrayList<Ocena>();
-		this.spisakNepolozenihIspita = new ArrayList<Ocena>();
+		this.spisakNepolozenihIspita = new ArrayList<Predmet>();
 	}
 
 	public String getPrezimeStudenta() {
@@ -210,11 +210,11 @@ public class Student {
 		this.spisakPolozenihIspita = spisakPolozenihIspita;
 	}
 
-	public ArrayList<Ocena> getSpisakNepolozenihIspita() {
+	public ArrayList<Predmet> getSpisakNepolozenihIspita() {
 		return spisakNepolozenihIspita;
 	}
 
-	public void setSpisakNepolozenihIspita(ArrayList<Ocena> spisakNepolozenihIspita) {
+	public void setSpisakNepolozenihIspita(ArrayList<Predmet> spisakNepolozenihIspita) {
 		this.spisakNepolozenihIspita = spisakNepolozenihIspita;
 	}
 }

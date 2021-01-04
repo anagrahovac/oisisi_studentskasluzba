@@ -50,6 +50,7 @@ public class IzmenaStudentaDialog extends JDialog{
 	private JButton btnPotvrdi = new JButton("Potvrdi");
 	private JButton btnOdbaci = new JButton("Odustani");
 	private TablePredmeti polozeniPredmeti;
+	private TableNepolozeniPredmeti nepolozeniPredmeti;
 	
 	public IzmenaStudentaDialog(String stariIndeks) {
 		
@@ -236,7 +237,7 @@ public class IzmenaStudentaDialog extends JDialog{
         informacije.add(buttons, BorderLayout.SOUTH);      
         
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-        
+        this.getContentPane().setBackground(Color.WHITE);
         polozeni.setBackground(c);
         polozeni.setLayout(new BoxLayout(polozeni, BoxLayout.Y_AXIS));
         
@@ -306,6 +307,44 @@ public class IzmenaStudentaDialog extends JDialog{
 					
 			}
 		});
+        
+        
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        
+        //nepolozeni
+      	nepolozeni.setBackground(Color.WHITE);
+      	JPanel pTop = new JPanel();
+      	pTop.setLayout(new BorderLayout());
+      	JButton btnDodajPredmet = new JButton("Dodaj");
+      	JButton btnObrisiPredmet = new JButton("Obrisi");
+      	JButton btnPoloziPredmet = new JButton("Polaganje");
+      	formatButton(btnDodajPredmet, 4);
+      	formatButton(btnObrisiPredmet, 3);
+      	formatButton(btnPoloziPredmet, 2);
+
+      	pTop.setLayout(new FlowLayout(FlowLayout.CENTER));
+      	pTop.setPreferredSize(new Dimension(550, 50));
+      	pTop.setBackground(Color.WHITE);
+      	//pTop.add(Box.createHorizontalStrut(40));
+      	pTop.add(btnDodajPredmet);
+   		pTop.add(Box.createHorizontalStrut(10));
+   		pTop.add(btnObrisiPredmet);
+   		pTop.add(Box.createHorizontalStrut(10));
+      	pTop.add(btnPoloziPredmet);
+      	pTop.add(Box.createHorizontalStrut(10));
+
+
+   		nepolozeniPredmeti = new TableNepolozeniPredmeti(stariIndeks);
+   		updateNepolozeniTable();
+        nepolozeni.add(pTop, BorderLayout.NORTH);
+        JScrollPane scroll = new JScrollPane(nepolozeniPredmeti);
+        scroll.setPreferredSize(new Dimension(550, 450));
+
+      	scroll.getViewport().setBackground(Color.WHITE);
+
+        nepolozeni.add(scroll, BorderLayout.CENTER);
+              
+              
 	    	    
 	    validate();
 	}
@@ -319,6 +358,18 @@ public class IzmenaStudentaDialog extends JDialog{
 		btn.setPreferredSize(btnDim);
 		btn.setBackground(g);
 		btn.setFont(f);
+		if (i == 4) {
+			btn.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+			btn.setToolTipText("Dodaj odslusani predmet");
+		}
+		if (i == 3) {
+			btn.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+			btn.setToolTipText("Ukloni odslusani predmet");
+		}
+		if (i == 2) {
+			btn.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+			btn.setToolTipText("Polaganje ispita");
+		}
 		if (i == 1) {
 			btn.setBorder(BorderFactory.createLineBorder(b, 2));
 			btn.setToolTipText("Sačuvaj unete podatke");
@@ -328,6 +379,12 @@ public class IzmenaStudentaDialog extends JDialog{
 			btn.setToolTipText("Odbaci unete podatke");
 		}
 		
+	}
+	
+	public void updateNepolozeniTable() {
+		AbstractTableModelNepolozeniPredmeti model = (AbstractTableModelNepolozeniPredmeti) nepolozeniPredmeti.getModel();
+		model.fireTableDataChanged();
+		validate();
 	}
 	
 	public void disablePotvrdi() {

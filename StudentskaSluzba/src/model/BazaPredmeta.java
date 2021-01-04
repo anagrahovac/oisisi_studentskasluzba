@@ -69,6 +69,10 @@ public class BazaPredmeta {
 	public void setPredmeti(ArrayList<Predmet> predmeti) {
 		this.predmeti = predmeti;
 	}
+	
+	public ArrayList<String> getKolone() {
+		return kolone;
+	}
 
 	public int getColumnCount() {
 		return this.kolone.size();
