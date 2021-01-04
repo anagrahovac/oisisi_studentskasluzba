@@ -316,7 +316,7 @@ public class IzmenaStudentaDialog extends JDialog{
       	JPanel pTop = new JPanel();
       	pTop.setLayout(new BorderLayout());
       	JButton btnDodajPredmet = new JButton("Dodaj");
-      	JButton btnObrisiPredmet = new JButton("Obrisi");
+      	JButton btnObrisiPredmet = new JButton("Obriši");
       	JButton btnPoloziPredmet = new JButton("Polaganje");
       	formatButton(btnDodajPredmet, 4);
       	formatButton(btnObrisiPredmet, 3);
@@ -360,11 +360,11 @@ public class IzmenaStudentaDialog extends JDialog{
 		btn.setFont(f);
 		if (i == 4) {
 			btn.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
-			btn.setToolTipText("Dodaj odslusani predmet");
+			btn.setToolTipText("Dodaj odslušani predmet");
 		}
 		if (i == 3) {
 			btn.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
-			btn.setToolTipText("Ukloni odslusani predmet");
+			btn.setToolTipText("Ukloni odšlusani predmet");
 		}
 		if (i == 2) {
 			btn.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));

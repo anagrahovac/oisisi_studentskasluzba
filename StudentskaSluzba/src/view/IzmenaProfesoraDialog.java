@@ -17,6 +17,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import controller.ProfesorController;
@@ -43,10 +44,12 @@ public class IzmenaProfesoraDialog extends JDialog {
 	private JButton btnPotvrdi = new JButton("Potvrdi");
 	private JButton btnOdbaci = new JButton("Odustani");
 	
+	private TablePredmetiProfesora predmetiProfesora;
+	
 	public IzmenaProfesoraDialog(String id) {
 		 
 		super(MainFrame.getInstance(), "Izmena profesora", true);
-		this.setSize(500, 600);
+		this.setSize(900, 600);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setLocationRelativeTo(MainFrame.getInstance());
 		this.setResizable(false);
@@ -63,7 +66,6 @@ public class IzmenaProfesoraDialog extends JDialog {
 		
 		JPanel infoTab = new JPanel();
 		JPanel predmetiTab = new JPanel();
-		
 		
 		Color gray = new Color(245,245,245);
 		
@@ -140,21 +142,51 @@ public class IzmenaProfesoraDialog extends JDialog {
         JPanel pBottom = new JPanel();
         pBottom.setPreferredSize(new Dimension(70, 70));
         pBottom.setBackground(gray);
-        pBottom.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        pBottom.setLayout(new FlowLayout(FlowLayout.LEFT));
         pBottom.setPreferredSize(new Dimension(50, 50));
         infoTab.add(pBottom, BorderLayout.SOUTH);
 		
         this.formatButton(btnPotvrdi, 1);
         this.enablePotvrdi();
+        
+        pBottom.add(Box.createHorizontalStrut(190));
 		pBottom.add(btnPotvrdi);
 		pBottom.add(Box.createHorizontalStrut(10));
 		this.dodajListenerPotvrdi();
 		
 		this.formatButton(btnOdbaci, 0);
 		pBottom.add(btnOdbaci);
-		pBottom.add(Box.createHorizontalStrut(100));
         this.dodajListenerOdbaci();
-		
+        
+        //tab predmeti 
+      	predmetiTab.setBackground(Color.WHITE);
+      	//predmetiTab.setBackground(gray);
+      	JPanel pTop = new JPanel();
+      	pTop.setLayout(new BorderLayout());
+      	JButton btnDodajPredmet = new JButton("Dodaj");
+      	JButton btnUkloniPredmet = new JButton("Ukloni");
+      	formatButton(btnDodajPredmet, 3);
+      	formatButton(btnUkloniPredmet, 2);
+
+      	pTop.setLayout(new FlowLayout(FlowLayout.CENTER));
+      	pTop.setPreferredSize(new Dimension(850, 50));
+      	pTop.setBackground(Color.WHITE);
+      	//pTop.setBackground(gray);
+      	pTop.add(btnDodajPredmet);
+      	pTop.add(Box.createHorizontalStrut(10));
+      	pTop.add(btnUkloniPredmet);
+      	pTop.add(Box.createHorizontalStrut(10));
+
+
+      	predmetiProfesora = new TablePredmetiProfesora(id);
+      	updatePredmetiProfesoraTable();
+        predmetiTab.add(pTop, BorderLayout.NORTH);
+        JScrollPane scroll = new JScrollPane(predmetiProfesora);
+        scroll.setPreferredSize(new Dimension(850, 450));
+
+      	scroll.getViewport().setBackground(Color.WHITE);
+
+        predmetiTab.add(scroll, BorderLayout.CENTER);
 		
 		tabbedPane.addTab("Info", null, infoTab, "Informacije o profesoru");
 		tabbedPane.addTab("Predmeti", null, predmetiTab, "Predmeti na kojima je angažovan");
@@ -222,6 +254,13 @@ public class IzmenaProfesoraDialog extends JDialog {
 		});
 	}
 
+
+	public void updatePredmetiProfesoraTable() {
+		AbstractTableModelPredmetiProfesora model = (AbstractTableModelPredmetiProfesora) predmetiProfesora.getModel();
+		model.fireTableDataChanged();
+		validate();
+	}
+	
 	private void formatButton(JButton btn, int i) {
         Dimension btnDim = new Dimension(100, 30);
 		Font f = new Font("Dialog", Font.PLAIN, 14);
@@ -231,6 +270,14 @@ public class IzmenaProfesoraDialog extends JDialog {
 		btn.setPreferredSize(btnDim);
 		btn.setBackground(g);
 		btn.setFont(f);
+		if (i == 3) {
+			btn.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+			btn.setToolTipText("Dodaj predmet profesoru");
+		}
+		if (i == 2) {
+			btn.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+			btn.setToolTipText("Ukloni predmet sa profesora");
+		}
 		if (i == 1) {
 			btn.setBorder(BorderFactory.createLineBorder(b, 2));
 			btn.setToolTipText("Sačuvaj unete podatke");

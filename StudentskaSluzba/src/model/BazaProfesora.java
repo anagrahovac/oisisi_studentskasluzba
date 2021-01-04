@@ -2,6 +2,8 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import model.Predmet.Semestar;
 import model.Profesor.Titula;
 import model.Profesor.Zvanje;
 
@@ -44,6 +46,17 @@ public class BazaProfesora {
 				"Somborski Bulevar 13, Novi Sad", "007712971", Titula.DOKTOR, Zvanje.VANREDNI_PROFESOR);
 		p5 = new Profesor("Vukašinović", "Aleksa", LocalDate.of(1976, 3, 1), "Futoški put 96, Novi Sad", "0635589979", "vuksa@gmail.com",
 				"Zlatne grede 3, Novi Sad", "008651856", Titula.DOKTOR, Zvanje.DOCENT);
+
+		p1.getSpisakPredmeta().add(BazaPredmeta.getInstance().getPredmeti().get(1));
+		p1.getSpisakPredmeta().add(BazaPredmeta.getInstance().getPredmeti().get(3));
+		p2.getSpisakPredmeta().add(BazaPredmeta.getInstance().getPredmeti().get(2));
+		p2.getSpisakPredmeta().add(BazaPredmeta.getInstance().getPredmeti().get(4));
+		p3.getSpisakPredmeta().add(BazaPredmeta.getInstance().getPredmeti().get(1));
+		p1.getSpisakPredmeta().add(BazaPredmeta.getInstance().getPredmeti().get(4));
+		p4.getSpisakPredmeta().add(BazaPredmeta.getInstance().getPredmeti().get(2));
+		p4.getSpisakPredmeta().add(BazaPredmeta.getInstance().getPredmeti().get(4));
+		p5.getSpisakPredmeta().add(BazaPredmeta.getInstance().getPredmeti().get(3));
+		
 		this.profesori.add(p1);
 		this.profesori.add(p2);
 		this.profesori.add(p3);
@@ -177,6 +190,46 @@ public class BazaProfesora {
 	
 	public void izbrisiProfesora(int i) {
 		this.profesori.remove(i);
+	}
+	
+	//za tabelu predmeta
+	public int getPredmetiColumnCount() {
+		return BazaPredmeta.getInstance().getKolone().size();
+	}
+	public int getPredmetiRowCount(String id) {
+		int i = this.pronadjiProfesora(id);
+		return this.profesori.get(i).getSpisakPredmeta().size();
+	}
+	public String getPredmetiColumnName(int index) {
+		return BazaPredmeta.getInstance().getKolone().get(index);
+	}
+	public Predmet getPredmetiRow(int rowIndex, String id) {
+		int i = this.pronadjiProfesora(id);
+		return this.profesori.get(i).getSpisakPredmeta().get(rowIndex);
+	}
+	public String getPredmetiValueAt(int row, int column, String id) {
+		int i = this.pronadjiProfesora(id);
+		Predmet predmet = this.profesori.get(i).getSpisakPredmeta().get(row);
+		switch (column) {
+		case 0:
+			return predmet.getSifraPredmeta();
+		case 1:
+			return predmet.getNazivPredmeta();
+		case 2:
+			return Integer.toString(predmet.getBrojBodova());
+		case 3:
+			return Integer.toString(predmet.getGodinaStudija());
+		case 4:
+			{
+				if (predmet.getSemestar() == Semestar.LETNJI)
+					return "Letnji";
+				if (predmet.getSemestar() == Semestar.ZIMSKI)
+					return "Zimski";
+				return "";
+			}
+		default:
+			return null;
+		}
 	}
 	
 }
