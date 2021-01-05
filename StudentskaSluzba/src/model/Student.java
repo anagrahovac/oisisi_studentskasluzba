@@ -21,6 +21,7 @@ public class Student {
 	private double prosecnaocena;
 	private ArrayList<Ocena> spisakPolozenihIspita;
 	private ArrayList<Predmet> spisakNepolozenihIspita;
+	private ArrayList<Predmet> predmetiZaDodavanje;
 	
 	public Student() {
 		super();
@@ -231,4 +232,54 @@ public class Student {
 	public void dodajUSpisakPolozenih(Ocena o) {
 		this.spisakPolozenihIspita.add(o);
 	}
+	
+	public void setPredmetiZaDodavanje() {
+		ArrayList<Predmet> moguciNoviPredmetiZaStudenta = new ArrayList<Predmet>();
+		
+		for(int i = 0; i < BazaPredmeta.getInstance().getPredmeti().size(); i++) {
+			boolean uPolozenim = false;
+			boolean uNepolozenim = false;
+			Predmet p = BazaPredmeta.getInstance().getPredmeti().get(i);
+			
+			if(p.getGodinaStudija() >=  BazaPredmeta.getInstance().getPredmeti().get(i).getGodinaStudija()) {
+			for(int j = 0; j < spisakPolozenihIspita.size(); j++) {
+				if( spisakPolozenihIspita.get(j).getPredmet().getSifraPredmeta().equals(p.getSifraPredmeta())) {
+					uPolozenim = true;
+					break;
+				}
+			
+			}
+			if(!uPolozenim) {
+				for(int k = 0; k < spisakNepolozenihIspita.size(); k++) {
+					if( spisakNepolozenihIspita.get(k).getSifraPredmeta().equals(p.getSifraPredmeta())) {
+						uNepolozenim = true;
+						break;
+					} 
+				}
+				if(!uNepolozenim){
+					moguciNoviPredmetiZaStudenta.add(p);
+				}
+			}
+		}
+		}
+		
+		this.predmetiZaDodavanje = moguciNoviPredmetiZaStudenta;
+	}
+	
+	public ArrayList<Predmet> getPredmetiZaDodavanje() {
+		return predmetiZaDodavanje;
+	}
+
+	public String getValueAtListaPredmeta(int row, int column) {
+		Predmet predmet = this.predmetiZaDodavanje.get(row);
+		switch (column) {
+		case 1:
+			return predmet.getSifraPredmeta();
+		case 0:
+			return predmet.getNazivPredmeta();
+		default:
+			return null;
+		}
+	}
+
 }

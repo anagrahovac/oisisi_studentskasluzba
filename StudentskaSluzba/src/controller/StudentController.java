@@ -13,6 +13,7 @@ import view.IzmenaStudentaDialog;
 import view.MainFrame;
 import view.NoviStudentDialog;
 
+
 public class StudentController {
 	
 	private NoviStudentDialog view;
@@ -156,5 +157,20 @@ public class StudentController {
 			izmena.updatePolozeniTable();
 		}
 		return true;
+	}
+	
+public boolean dodajPredmetStudentu(Predmet p, Student s, String index, String sifra) {
+		boolean dodato = false;
+		for(int i = 0; i < s.getPredmetiZaDodavanje().size(); i++) {
+			if(s.getPredmetiZaDodavanje().get(i).getSifraPredmeta().equals(sifra)) {
+				s.getSpisakNepolozenihIspita().add(p);
+				p.dodajNisuPoloziliPredmet(s);
+				izmena.updateNepolozeniTable();
+				dodato = true;
+				break;
+			}
+			dodato = false;
+		} 
+		return dodato;	
 	}
 }

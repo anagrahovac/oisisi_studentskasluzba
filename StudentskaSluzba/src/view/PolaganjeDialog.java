@@ -112,6 +112,7 @@ public class PolaganjeDialog extends JDialog {
 					int ocena = pOcena.getComboBox().getSelectedIndex() + 6;
 					String datum = pDatum.getTextField().getText();
 					boolean ok = parent.getController().poloziPredmet(student, predmet, ocena, datum);
+					parent.azurirajProsekESPB(parent.getProsek(), parent.getEspb(), student.getBrojIndexa());
 					if (ok) {
 						JOptionPane.showMessageDialog(null, "Predmet dodat u polozene.");
 						dispose();

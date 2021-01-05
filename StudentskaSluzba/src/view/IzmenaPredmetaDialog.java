@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -41,6 +43,7 @@ public class IzmenaPredmetaDialog extends JDialog{
 	private static JButton btnPlus;
 	private static JButton btnMinus;
 	
+	@SuppressWarnings("deprecation")
 	public IzmenaPredmetaDialog(String staraSifra) {
 		
 		super(MainFrame.getInstance(), "Izmena predmeta", true);
@@ -56,20 +59,8 @@ public class IzmenaPredmetaDialog extends JDialog{
 		PredmetIzmenaKeyListener keyListener = new PredmetIzmenaKeyListener(this);
 		controller = new PredmetController(this);
 		controller.getVal().setAllTrue();
-		
-		JTabbedPane tabbedPane = new JTabbedPane();
-		Font f = new Font("Dialog", Font.PLAIN, 14);
-		tabbedPane.setBackground(Color.WHITE);
-		tabbedPane.setFont(f);
-		
+
 		JPanel informacije = new JPanel();
-		JPanel studentiPolozili = new JPanel();
-		JPanel studentiNisuPolozili = new JPanel();
-		
-		tabbedPane.addTab("Informacije", null, informacije, "Panel s informacijama");
-		tabbedPane.addTab("Položeni", null, studentiPolozili, "Panel s studentima koji su položili predmet");
-		tabbedPane.addTab("Nepoloženi", null, studentiNisuPolozili, "Panel s studentima koji nisu položili predmet");
-		this.add(tabbedPane, BorderLayout.CENTER);
 		
 		informacije.setBackground(c);
 		informacije.setLayout(new BoxLayout(informacije, BoxLayout.Y_AXIS));
@@ -109,6 +100,7 @@ public class IzmenaPredmetaDialog extends JDialog{
 	        Font dialog1 = new Font("Dialog", Font.PLAIN, 14);
 	        txtProfesor.setPreferredSize(txtDim);
 	        txtProfesor.setFont(dialog1);
+	        
 	    btnPlus = new JButton("+");
 	    	Dimension btnDim = new Dimension(30,30);
 	    	Font dialog2 = new Font("Dialog", Font.BOLD, 14);
@@ -118,94 +110,44 @@ public class IzmenaPredmetaDialog extends JDialog{
 	    	btnPlus.setToolTipText("Dodaj profesora");
 	    	btnPlus.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
 	    	
-	    
-	    btnPlus.addMouseListener(new MouseListener() {
+	    	if(txtProfesor.getText().isEmpty() || txtProfesor.getText() == null || txtProfesor.getText().equals("")) {
+	 			btnPlus.setEnabled(true);
+	 		} else {
+	 			btnPlus.setEnabled(false);
+	 		}
 
+	    btnPlus.addActionListener(new ActionListener() {
+			
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-					DodajProfesoraDialog dialog = new DodajProfesoraDialog(MainFrame.getInstance(), staraSifra);
-					dialog.setVisible(true);
+				DodajProfesoraDialog dialog = new DodajProfesoraDialog(MainFrame.getInstance(), staraSifra);
+				dialog.setVisible(true);
 			}
-
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-        });
-	    
+		});	
+	    	
 	    btnMinus = new JButton("-");
 	    	btnMinus.setPreferredSize(btnDim);
 	    	btnMinus.setFont(dialog2);
 	    	btnMinus.setBackground(Color.white);
 	    	btnMinus.setToolTipText("Obriši profesora");
-	    	btnMinus.setBorder(BorderFactory.createLineBorder(Color.gray,1));
+	    	btnMinus.setBorder(BorderFactory.createLineBorder(Color.gray,1));	    
+			
+			if(txtProfesor.getText().isEmpty() || txtProfesor.getText() == null || txtProfesor.getText().equals("")) {
+				btnMinus.setEnabled(false);
+			} else {
+				btnMinus.setEnabled(true);
+			}
 	    	
-	    btnMinus.addMouseListener(new MouseListener() {
+	    btnMinus.addActionListener(new ActionListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				if(txtProfesor.getText() != "") {
-					txtProfesor.setText("");
-				}
+
 			}
 		});
-	    
-	    if(txtProfesor.getText().isEmpty() || txtProfesor.getText() == null || txtProfesor.getText().equals("")) {
-			btnPlus.setEnabled(true);
-		} else {
-			btnPlus.setEnabled(false);
-		}
-		
-		if(txtProfesor.getText().isEmpty() || txtProfesor.getText() == null || txtProfesor.getText().equals("")) {
-			btnMinus.setEnabled(false);
-		} else {
-			btnMinus.setEnabled(true);
-		}
+
 	    	
 	    pProfesor.add(Box.createHorizontalStrut(20));
 	    pProfesor.add(lblProfesor);
@@ -213,7 +155,6 @@ public class IzmenaPredmetaDialog extends JDialog{
 	    pProfesor.add(btnPlus);
 	    pProfesor.add(btnMinus);
 		pProfesor.setBackground(gray);
-		azurirajPredmet();
 		
 		pBrojESPB = new RowPanel("Broj ESPB bodova*");
 			pBrojESPB.getTextField().setText(Integer.toString(p.getBrojBodova()));
@@ -329,7 +270,9 @@ public class IzmenaPredmetaDialog extends JDialog{
         buttons.add(btnOdbaci);
         buttons.add(Box.createHorizontalStrut(10));
         
-        informacije.add(buttons, BorderLayout.SOUTH);      
+        informacije.add(buttons, BorderLayout.SOUTH);   
+        
+        this.add(informacije,BorderLayout.CENTER);
 	    	    
 	    validate();
 	}

@@ -13,6 +13,7 @@ public class BazaPredmeta {
 	private static BazaPredmeta instance = null;
 	private ArrayList<Predmet> predmeti;
 	private ArrayList<String> kolone;
+	private ArrayList<String> kolonePS;
 	
 	private BazaPredmeta() {
 		this.predmeti = new ArrayList<Predmet>();
@@ -22,6 +23,10 @@ public class BazaPredmeta {
 		this.kolone.add("ESPB bodovi");
 		this.kolone.add("Godina studija");
 		this.kolone.add("Semestar");
+		
+		this.kolonePS = new ArrayList<String>();
+		this.kolonePS.add("Šifra");
+		this.kolonePS.add("Naziv");
 		
 		//obrisati posle
 		this.dodajPredmete();
@@ -77,9 +82,17 @@ public class BazaPredmeta {
 	public int getColumnCount() {
 		return this.kolone.size();
 	}
+	
+	public int getColumnCountListaPredmeta() {
+		return this.kolonePS.size();
+	}
 
 	public String getColumnName(int index) {
 		return this.kolone.get(index);
+	}
+	
+	public String getColumnNameListaPredmeta(int index) {
+		return this.kolonePS.get(index);
 	}
 
 	public Predmet getRow(int rowIndex) {

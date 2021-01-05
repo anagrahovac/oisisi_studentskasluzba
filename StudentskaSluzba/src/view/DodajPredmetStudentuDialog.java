@@ -16,34 +16,30 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
-import javax.swing.table.JTableHeader;
 
 import model.BazaPredmeta;
 import model.BazaProfesora;
 import model.BazaStudenata;
 
-public class DodajProfesoraDialog extends JDialog{
+public class DodajPredmetStudentuDialog extends JDialog{
 
-	private static final long serialVersionUID = 1L;
+	private TablePredmeti tabela;
+	private IzmenaStudentaDialog izmena;
 	
-	private TableProfesori tabela;
-	
-	public DodajProfesoraDialog() {
-		super();
-	}
-
-	public DodajProfesoraDialog(JFrame parent, String sifra) {
-		super(parent, "Odaberi profesora",true);
+	public DodajPredmetStudentuDialog(JFrame parent, String index, IzmenaStudentaDialog i) {
+		super(parent, "Dodavanje predmeta",true);
 		setLayout(new BorderLayout());
+		
+		izmena = i;
 		
 		setSize(370,250);
 		setLocationRelativeTo(parent);
 		
 		JPanel background = new JPanel();
 		
-		AbstractTableModelListaProfesora atm = new AbstractTableModelListaProfesora();
-		tabela = new TableProfesori(atm);
+		BazaStudenata.getInstance().studentDatogIndeksa(index).setPredmetiZaDodavanje();
+		AbstractTableModelListaPredmeta atm = new AbstractTableModelListaPredmeta(index);
+		tabela = new TablePredmeti(atm);
 		tabela.setBackground(Color.white);
 		JScrollPane scroll = new JScrollPane(tabela);
 		background.add(tabela.getTableHeader(), BorderLayout.NORTH);
@@ -64,16 +60,17 @@ public class DodajProfesoraDialog extends JDialog{
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub		
-				if(getBrojLicneKarteListaProfesora().equals("")) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste selektovali profesora!");
+				if(getSifraListaPredmeta().equals("")) {
+					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste selektovali predmet!");
 					return;
 				}
-				
-				dodajProfesoraPredmetu(sifra, getBrojLicneKarteListaProfesora());
-				IzmenaPredmetaDialog.azurirajPredmet();
+				boolean ok = izmena.getController().dodajPredmetStudentu(BazaPredmeta.getInstance().predmetDateSifre(getSifraListaPredmeta()), BazaStudenata.getInstance().studentDatogIndeksa(index), index, getSifraListaPredmeta());
 				MainFrame.getInstance().updatePredmetiTable();
-
 				dispose();
+				if (ok) {
+					JOptionPane.showMessageDialog(null, "Predmet dodat u nepoložene.");
+					dispose();
+				} 
 			}
 
 			@Override
@@ -150,8 +147,22 @@ public class DodajProfesoraDialog extends JDialog{
 		
 		this.add(background);
 	}
+
+	public TablePredmeti getTabela() {
+		return tabela;
+	}
+
+	public void setTabela(TablePredmeti tabela) {
+		this.tabela = tabela;
+	}
 	
-	public String getBrojLicneKarteListaProfesora() {
+	public void updateListaPredmetaTable() {
+		AbstractTableModelListaPredmeta model = (AbstractTableModelListaPredmeta) tabela.getModel();
+		model.fireTableDataChanged();
+		tabela.validate();
+	}
+	
+	public String getSifraListaPredmeta() {
 		int i = tabela.getSelectedRow();
 		if(i != -1) {
 			return (String) tabela.getValueAt(i, 1);
@@ -159,30 +170,4 @@ public class DodajProfesoraDialog extends JDialog{
 			return "";
 		}
 	} 
-	
-	
-	public void dodajProfesoraPredmetu(String sifra, String brojLicne) {
-		for(int i = 0; i < BazaPredmeta.getInstance().getPredmeti().size(); i++) {
-			if(BazaPredmeta.getInstance().getPredmeti().get(i).getSifraPredmeta().equals(sifra)) {
-				BazaPredmeta.getInstance().getPredmeti().get(i).setPredmetniProfesor(BazaProfesora.getInstance().pronadjiProfesora1(brojLicne));
-				BazaProfesora.getInstance().pronadjiProfesora1(brojLicne).getSpisakPredmeta().add(BazaPredmeta.getInstance().getPredmeti().get(i));
-			}
-		}
-		
-		updateListaProfesoraTable();
-	}
-	
-	public void updateListaProfesoraTable() {
-		AbstractTableModelListaProfesora model = (AbstractTableModelListaProfesora) tabela.getModel();
-		model.fireTableDataChanged();
-		tabela.validate();
-	}
-
-	public TableProfesori getTabela() {
-		return tabela;
-	}
-
-	public void setTabela(TableProfesori tabela) {
-		this.tabela = tabela;
-	}
 }
