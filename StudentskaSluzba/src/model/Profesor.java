@@ -135,34 +135,6 @@ public class Profesor {
 	public void setZvanje(Zvanje zvanje) {
 		this.zvanje = zvanje;
 	}
-	
-	
-	public boolean dodajPoloziliPredmet(Predmet p) {
-		for(int i = 0; i < spisakPredmeta.size(); i++) {
-			if ((spisakPredmeta.get(i)).getSifraPredmeta() == p.getSifraPredmeta()) {
-				return false;
-			}
-		}
-		return spisakPredmeta.add(p);
-	}
-	//**************ODLUCI SE ZA JEDAN**************
-	public boolean izbaciPoloziliPredmet(Predmet p) {
-		for(int i = 0; i < spisakPredmeta.size(); i++) {
-			if ((spisakPredmeta.get(i).getSifraPredmeta()) == p.getSifraPredmeta()) {
-				return spisakPredmeta.remove(p);
-			}
-		}
-		return false;
-	}
-	public Predmet izbaciIndeksPoloziliPredmet(String sifra) {
-		for(int i = 0; i < spisakPredmeta.size(); i++) {
-			if ((spisakPredmeta.get(i)).getSifraPredmeta() == sifra) {
-				spisakPredmeta.remove(spisakPredmeta.get(i));
-				return spisakPredmeta.get(i);
-			}
-		}
-		return null;
-	}
 
 	public ArrayList<Predmet> getSpisakPredmeta() {
 		return spisakPredmeta;
@@ -172,5 +144,14 @@ public class Profesor {
 		this.spisakPredmeta = spisakPredmeta;
 	}
 	
+	public boolean izbaciPredmet(String sifra) {
+		for(int i = 0; i < spisakPredmeta.size(); i++) {
+			if ((spisakPredmeta.get(i)).getSifraPredmeta().equals(sifra)) {
+				spisakPredmeta.remove(i);
+				return true;
+			}
+		}
+		return false;
+	}
 	
 }

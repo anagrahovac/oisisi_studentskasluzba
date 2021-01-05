@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import controller.PredmetController;
 import model.BazaProfesora;
 import model.BazaStudenata;
 
@@ -52,7 +53,22 @@ public class DeleteActionListener implements ActionListener{
 		}
 		
 		if(tab == 2) {
-			
+			String s = MainFrame.getInstance().getPredmetSifra();
+			if(s.equals("")) {
+				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste selektovali predmet kojeg želite da obrišete.");
+				return;
+			} else {
+				Object[] opcije = {"Da", "Ne"};
+				int opcija = JOptionPane.showOptionDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da obrišete predmet?",
+						"Brisanje profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcije, opcije[1]);
+				if (opcija != JOptionPane.YES_OPTION) {
+					
+				} else {
+					PredmetController controller = new PredmetController();
+					controller.obrisiPredmet(s);
+					JOptionPane.showMessageDialog(null, "Predmet obrisan iz baze.");
+				}
+			}
 		}
 	}
 

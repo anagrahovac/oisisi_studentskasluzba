@@ -3,11 +3,14 @@ package controller;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
 import model.BazaPredmeta;
+import model.BazaProfesora;
 import model.BazaStudenata;
+import model.Predmet;
 import model.Predmet.Semestar;
 import model.Profesor;
 import model.Student.Status;
@@ -20,6 +23,11 @@ public class PredmetController {
 	private NoviPredmetDialog npd;
 	private IzmenaPredmetaDialog izmena;
 	private Validacija val;
+	
+	public PredmetController() {
+		this.npd = null;
+		this.val = null;
+	}
 	
 	public PredmetController(NoviPredmetDialog n) {
 		this.npd = n;
@@ -84,6 +92,31 @@ public class PredmetController {
 			MainFrame.getInstance().updatePredmetiTable();
 
 			return true;
+	}
+	
+	public void obrisiPredmet(String sifra) {
+		int in = BazaPredmeta.getInstance().pronadjiPredmet1(sifra);
+		//izbaci iz liste predmeta profesora
+		//BazaPredmeta.getInstance().getPredmeti().get(in).getPredmetniProfesor().izbaciPredmet(sifra);
+		for (int i = 0; i < BazaProfesora.getInstance().getProfesori().size(); i++) {
+			boolean t = BazaProfesora.getInstance().getProfesori().get(i).izbaciPredmet(sifra);
+			if(t) {
+				System.out.println("uk prof\n");}
+		}
+
+		
+		//izbaci iz liste nepolozenih predmeta kod studenata
+		for (int i = 0; i < BazaStudenata.getInstance().getStudenti().size(); i++) {
+			ArrayList<Predmet> nepolozeni = BazaStudenata.getInstance().getStudenti().get(i).getSpisakNepolozenihIspita();
+			for(int j = 0; j < nepolozeni.size(); j++) {
+				if(nepolozeni.get(j).getSifraPredmeta().equals(sifra)) {
+					BazaStudenata.getInstance().getStudenti().get(i).getSpisakNepolozenihIspita().remove(j);
+				}
+			}
+		}
+		//izbaci iz baze predmeta
+		BazaPredmeta.getInstance().getPredmeti().remove(in);
+		MainFrame.getInstance().updatePredmetiTable();
 	}
 	
 	

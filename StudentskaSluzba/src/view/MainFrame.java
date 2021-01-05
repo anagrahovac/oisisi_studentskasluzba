@@ -119,6 +119,14 @@ public class MainFrame extends JFrame {
 		else
 			return "";
 	}
+	
+	public String getPredmetSifra() {
+		int row = predmetiTable.getSelectedRow();
+		if(row != -1)
+			return (String) predmetiTable.getValueAt(row, 0);
+		else
+			return "";
+	}
 
 	public TableStudenti getStudentiTable() {
 		return studentiTable;

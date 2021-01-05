@@ -56,7 +56,7 @@ public class IzmenaStudentaDialog extends JDialog{
 	private TableNepolozeniPredmeti nepolozeniPredmeti;
 	
 	private JButton btnDodajPredmet = new JButton("Dodaj");
-	private JButton btnObrisiPredmet = new JButton("Obrisi");
+	private JButton btnObrisiPredmet = new JButton("Obriši");
 	private JButton btnPoloziPredmet = new JButton("Polaganje");
 	
 	private JLabel prosek;
@@ -266,12 +266,12 @@ public class IzmenaStudentaDialog extends JDialog{
         AbstractTableModelPolozeniIspiti atm = new AbstractTableModelPolozeniIspiti(stariIndeks);
         polozeniPredmeti = new TablePredmeti(atm);
         JScrollPane polozeniScroll = new JScrollPane(polozeniPredmeti);
-        
+        //polozeniScroll.getViewport().setBackground(Color.WHITE);
         
         polozeniPredmeti.setAutoCreateRowSorter(true);
         
         ocenaESPB.setPreferredSize(new Dimension(polozeni.getWidth(), 130));
-        ocenaESPB.setBackground(c);
+        ocenaESPB.setBackground(c);//Color.WHITE);
         
         prosek = new JLabel("Prosečna ocena: " + String.format( "%.2f", BazaStudenata.getInstance().studentDatogIndeksa(stariIndeks).prosecnaOcena()));
         GridBagConstraints gbc1 = new GridBagConstraints();     
@@ -367,7 +367,7 @@ public class IzmenaStudentaDialog extends JDialog{
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				btnDodajPredmet.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 2));
+				btnDodajPredmet.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
 				btnDodajPredmet.setBackground(new Color(230,230,230));
 			}
 			
@@ -409,7 +409,7 @@ public class IzmenaStudentaDialog extends JDialog{
 			}
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				btnPoloziPredmet.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 2));
+				btnPoloziPredmet.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
 				btnPoloziPredmet.setBackground(new Color(230,230,230));
 			}
 			@Override
