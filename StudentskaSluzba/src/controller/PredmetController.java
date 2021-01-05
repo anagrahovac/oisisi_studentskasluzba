@@ -119,5 +119,13 @@ public class PredmetController {
 		MainFrame.getInstance().updatePredmetiTable();
 	}
 	
+	public void ukloniProfesoraSaPredmeta(String sifra, String id) {
+		int ip = BazaPredmeta.getInstance().pronadjiPredmet1(sifra);
+
+		if(BazaPredmeta.getInstance().getPredmeti().get(ip).getPredmetniProfesor() != null) {
+			BazaPredmeta.getInstance().getPredmeti().get(ip).getPredmetniProfesor().izbaciPredmet(sifra);
+		}
+		BazaPredmeta.getInstance().getPredmeti().get(ip).setPredmetniProfesor(null);
+	}
 	
 }

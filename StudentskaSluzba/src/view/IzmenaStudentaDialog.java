@@ -154,7 +154,7 @@ public class IzmenaStudentaDialog extends JDialog{
 		JPanel buttons = new JPanel();
         buttons.setPreferredSize(new Dimension(70,70));
         buttons.setBackground(c);
-        buttons.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        buttons.setLayout(new FlowLayout(FlowLayout.CENTER));
         buttons.setPreferredSize(new Dimension(50, 50));
 		
         formatButton(btnPotvrdi, 1);
@@ -241,6 +241,7 @@ public class IzmenaStudentaDialog extends JDialog{
 			});
 		
         buttons.add(btnPotvrdi);
+        buttons.add(Box.createHorizontalStrut(10));
         buttons.add(btnOdbaci);
         buttons.add(Box.createHorizontalStrut(10));
         
@@ -248,13 +249,13 @@ public class IzmenaStudentaDialog extends JDialog{
         
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         this.getContentPane().setBackground(Color.WHITE);
-        polozeni.setBackground(Color.white);
+        polozeni.setBackground(c);//Color.WHITE);
         polozeni.setLayout(new BoxLayout(polozeni, BoxLayout.Y_AXIS));
         
         JPanel btn = new JPanel();
         JPanel ocenaESPB = new JPanel();
         
-        btn.setBackground(Color.white);
+        btn.setBackground(c);//Color.WHITE);
         btn.setPreferredSize(new Dimension(200,60));
         ocenaESPB.setLayout(new GridBagLayout());
         
@@ -266,7 +267,7 @@ public class IzmenaStudentaDialog extends JDialog{
         AbstractTableModelPolozeniIspiti atm = new AbstractTableModelPolozeniIspiti(stariIndeks);
         polozeniPredmeti = new TablePredmeti(atm);
         JScrollPane polozeniScroll = new JScrollPane(polozeniPredmeti);
-        //polozeniScroll.getViewport().setBackground(Color.WHITE);
+        polozeniScroll.getViewport().setBackground(c);//Color.WHITE);
         
         polozeniPredmeti.setAutoCreateRowSorter(true);
         
@@ -312,7 +313,7 @@ public class IzmenaStudentaDialog extends JDialog{
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         
         //nepolozeni
-      	nepolozeni.setBackground(Color.WHITE);
+      	nepolozeni.setBackground(c);//Color.WHITE);
       	JPanel pTop = new JPanel();
       	pTop.setLayout(new BorderLayout());
       	formatButton(btnDodajPredmet, 4);
@@ -325,7 +326,7 @@ public class IzmenaStudentaDialog extends JDialog{
       	
       	pTop.setLayout(new FlowLayout(FlowLayout.CENTER));
       	pTop.setPreferredSize(new Dimension(550, 50));
-      	pTop.setBackground(Color.WHITE);
+      	pTop.setBackground(c);//Color.WHITE);
       	pTop.add(btnDodajPredmet);
    		pTop.add(Box.createHorizontalStrut(10));
    		pTop.add(btnObrisiPredmet);
@@ -340,7 +341,7 @@ public class IzmenaStudentaDialog extends JDialog{
         JScrollPane scroll = new JScrollPane(nepolozeniPredmeti);
         scroll.setPreferredSize(new Dimension(550, 450));
 
-      	scroll.getViewport().setBackground(Color.WHITE);
+      	scroll.getViewport().setBackground(c);//Color.WHITE);
 
         nepolozeni.add(scroll, BorderLayout.CENTER);
               
