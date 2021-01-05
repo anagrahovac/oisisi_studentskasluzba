@@ -28,14 +28,17 @@ public class DodajProfesoraDialog extends JDialog{
 	private static final long serialVersionUID = 1L;
 	
 	private TableProfesori tabela;
+	private IzmenaPredmetaDialog izmena;
 	
 	public DodajProfesoraDialog() {
 		super();
 	}
 
-	public DodajProfesoraDialog(JFrame parent, String sifra) {
+	public DodajProfesoraDialog(JFrame parent, String sifra, IzmenaPredmetaDialog i) {
 		super(parent, "Odaberi profesora",true);
 		setLayout(new BorderLayout());
+		
+		izmena = i;
 		
 		setSize(370,250);
 		setLocationRelativeTo(parent);
@@ -70,7 +73,7 @@ public class DodajProfesoraDialog extends JDialog{
 				}
 				
 				dodajProfesoraPredmetu(sifra, getBrojLicneKarteListaProfesora());
-				IzmenaPredmetaDialog.azurirajPredmet();
+				izmena.azurirajPredmet(izmena.getTxtProfesor(), izmena.getP(), izmena);
 				MainFrame.getInstance().updatePredmetiTable();
 
 				dispose();

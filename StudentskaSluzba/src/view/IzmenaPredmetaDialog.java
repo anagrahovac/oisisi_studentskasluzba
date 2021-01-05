@@ -36,12 +36,12 @@ public class IzmenaPredmetaDialog extends JDialog{
 	private RowPanel pGodinaStudija;
 	private RowPanel pBrojESPB;
 	private RowPanel pSemestar;
-	private static JTextField txtProfesor;
-	private static Predmet p = new Predmet();
+	private JTextField txtProfesor;
+	private Predmet p;
 	private JButton btnPotvrdi = new JButton("Potvrdi");
 	private JButton btnOdbaci = new JButton("Odustani");
-	private static JButton btnPlus;
-	private static JButton btnMinus;
+	private JButton btnPlus;
+	private JButton btnMinus;
 	
 	@SuppressWarnings("deprecation")
 	public IzmenaPredmetaDialog(String staraSifra) {
@@ -92,7 +92,7 @@ public class IzmenaPredmetaDialog extends JDialog{
 			lblProfesor.setFont(dialog);
 		txtProfesor = new JTextField();
 		txtProfesor.setName("txtProfesor");
-		//txtProfesor.setText("ZDRAVOOO!!");
+		txtProfesor.setText(p.getImePrezimeProfesora());
 		txtProfesor.setEditable(false);
 		txtProfesor.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
 		txtProfesor.setBackground(Color.white);
@@ -116,15 +116,7 @@ public class IzmenaPredmetaDialog extends JDialog{
 	 			btnPlus.setEnabled(false);
 	 		}
 
-	    btnPlus.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				DodajProfesoraDialog dialog = new DodajProfesoraDialog(MainFrame.getInstance(), staraSifra);
-				dialog.setVisible(true);
-			}
-		});	
+	   dodajListener(this, staraSifra);
 	    	
 	    btnMinus = new JButton("-");
 	    	btnMinus.setPreferredSize(btnDim);
@@ -277,6 +269,18 @@ public class IzmenaPredmetaDialog extends JDialog{
 	    validate();
 	}
 	
+	public void dodajListener(IzmenaPredmetaDialog i, String staraSifra) {
+	 btnPlus.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				DodajProfesoraDialog dialog = new DodajProfesoraDialog(MainFrame.getInstance(), staraSifra, i);
+				dialog.setVisible(true);
+			}
+		});	
+	}
+	
 	private void formatButton(JButton btn, int i) {
         Dimension btnDim = new Dimension(100, 30);
 		Font f = new Font("Dialog", Font.PLAIN, 14);
@@ -311,22 +315,32 @@ public class IzmenaPredmetaDialog extends JDialog{
 		btnPotvrdi.setForeground(Color.BLACK);
 	}
 	
-	public static void azurirajPredmet() {
-		txtProfesor.setText(p.getImePrezimeProfesora());
+	public void azurirajPredmet(JTextField txt, Predmet p,IzmenaPredmetaDialog i) {
+		txt.setText(p.getImePrezimeProfesora());
 		
-		if(txtProfesor.getText().isEmpty() || txtProfesor.getText() == null || txtProfesor.getText().equals("")) {
-			btnPlus.setEnabled(true);
+		if(txt.getText().isEmpty() || txt.getText() == null || txt.getText().equals("")) {
+			i.getBtnPlus().setEnabled(true);
 		} else {
-			btnPlus.setEnabled(false);
+			i.getBtnPlus().setEnabled(false);
 		}
 		
-		if(txtProfesor.getText().isEmpty() || txtProfesor.getText() == null || txtProfesor.getText().equals("")) {
-			btnMinus.setEnabled(false);
+		if(txt.getText().isEmpty() || txt.getText() == null || txt.getText().equals("")) {
+			i.getBtnMinus().setEnabled(false);
 		} else {
-			btnMinus.setEnabled(true);
+			i.getBtnMinus().setEnabled(true);
 		}
 	}
 	
+	
+	
+	public Predmet getP() {
+		return p;
+	}
+
+	public void setP(Predmet p) {
+		this.p = p;
+	}
+
 	public JTextField getTxtProfesor() {
 		return txtProfesor;
 	}
@@ -383,4 +397,22 @@ public class IzmenaPredmetaDialog extends JDialog{
 	public void setBtnOdbaci(JButton btnOdbaci) {
 		this.btnOdbaci = btnOdbaci;
 	}
+
+	public JButton getBtnPlus() {
+		return btnPlus;
+	}
+
+	public void setBtnPlus(JButton btnPlus) {
+		this.btnPlus = btnPlus;
+	}
+
+	public JButton getBtnMinus() {
+		return btnMinus;
+	}
+
+	public void setBtnMinus(JButton btnMinus) {
+		this.btnMinus = btnMinus;
+	}
+	
+	
 }
