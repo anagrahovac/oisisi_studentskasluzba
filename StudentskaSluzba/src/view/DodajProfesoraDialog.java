@@ -47,6 +47,7 @@ public class DodajProfesoraDialog extends JDialog{
 		
 		AbstractTableModelListaProfesora atm = new AbstractTableModelListaProfesora();
 		tabela = new TableProfesori(atm);
+		Color c = new Color(245,245,245);
 		tabela.setBackground(Color.white);
 		JScrollPane scroll = new JScrollPane(tabela);
 		background.add(tabela.getTableHeader(), BorderLayout.NORTH);
@@ -54,7 +55,7 @@ public class DodajProfesoraDialog extends JDialog{
 		tabela.setPreferredScrollableViewportSize(new Dimension(300, 150));
 		
 		background.add(scroll, BorderLayout.CENTER);
-		background.setBackground(Color.white);
+		background.setBackground(c);
 		
 		Font f = new Font("Dialog", Font.PLAIN, 14);
 		
@@ -145,7 +146,7 @@ public class DodajProfesoraDialog extends JDialog{
 			}
 		});
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
-		buttons.setBackground(Color.white);
+		buttons.setBackground(c);
 		buttons.add(btnDodaj);
 		buttons.add(btnOdustani);
 		background.add(Box.createVerticalStrut(150));  

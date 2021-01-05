@@ -21,7 +21,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import controller.ProfesorController;
+import model.BazaPredmeta;
 import model.BazaProfesora;
+import model.BazaStudenata;
 import model.Profesor;
 
 public class IzmenaProfesoraDialog extends JDialog {
@@ -169,6 +171,7 @@ public class IzmenaProfesoraDialog extends JDialog {
       	formatButton(btnDodajPredmet, 3);
       	dodajListenerDodajPredmet(this);
       	formatButton(btnUkloniPredmet, 2);
+      	dodajListenerUkloniPredmet(this,id);
 
       	pTop.setLayout(new FlowLayout(FlowLayout.CENTER));
       	pTop.setPreferredSize(new Dimension(850, 50));
@@ -280,6 +283,59 @@ public class IzmenaProfesoraDialog extends JDialog {
 			public void mouseReleased(MouseEvent arg0) {}
 		});
 	}
+	
+	public void dodajListenerUkloniPredmet(IzmenaProfesoraDialog i, String id) {
+		btnUkloniPredmet.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				int i = predmetiProfesora.getSelectedRow();
+				if(i == -1) {
+					JOptionPane.showMessageDialog(null, "Niste selektovali predmet koji želite da uklonite.");
+					return;
+				} else {
+					Object[] daNe = {"Da", "Ne"};
+					int code = JOptionPane.showOptionDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da uklonite predmet profesoru?",
+							"Ukloni predmet", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, daNe, daNe[0]);
+					if (code != JOptionPane.YES_OPTION) {
+						
+					} else {
+						BazaPredmeta.getInstance().predmetDateSifre(getSifraListaPredmeta()).ukloniPredmetnogProfesora();
+						BazaProfesora.getInstance().profesorDateLicneKarte(id).ukloniPredmet(getSifraListaPredmeta());
+
+						
+						updatePredmetiProfesoraTable();
+						JOptionPane.showMessageDialog(null, "Predmet uklonjen profesoru.");
+					}
+				}
+			}
+		});
+	}
 
 
 	public void updatePredmetiProfesoraTable() {
@@ -328,6 +384,15 @@ public class IzmenaProfesoraDialog extends JDialog {
 		btnPotvrdi.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 2));
 		btnPotvrdi.setBackground(new Color(230,230,230));
 		btnPotvrdi.setForeground(Color.BLACK);
+	}
+	
+	public String getSifraListaPredmeta() {
+		int i = predmetiProfesora.getSelectedRow();
+		if(i != -1) {
+			return (String) predmetiProfesora.getValueAt(i, 0);
+		} else {
+			return "";
+		}
 	}
 	
 	public RowPanel getpIme() {

@@ -173,6 +173,16 @@ public class BazaProfesora {
 		return -1;
 	}
 	
+	public Profesor profesorDateLicneKarte(String id) {
+		Profesor p = new Profesor();
+		for(int i = 0; i < profesori.size(); i++) {
+			if (profesori.get(i).getBrojLicneKarte().equals(id)) {
+				return profesori.get(i);
+			}
+		}
+		return null;
+	}
+	
 	//prosledjuju se 
 	public void izmeniProfesora(int i, String prezime, String ime, LocalDate datumRodjenja, String adresaStanovanja, String kontaktTelefon,
 			String emailAdresa, String adresaKancelarije, String brojLicneKarte, Titula titula, Zvanje zvanje) {

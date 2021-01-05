@@ -148,6 +148,8 @@ public class Predmet {
 		return null;
 	}
 	
-	
+	public void ukloniPredmetnogProfesora() {
+		this.predmetniProfesor = null;
+	}
 	
 }
