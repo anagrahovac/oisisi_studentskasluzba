@@ -43,6 +43,9 @@ public class IzmenaProfesoraDialog extends JDialog {
 	private RowPanel pZvanje;
 	private JButton btnPotvrdi = new JButton("Potvrdi");
 	private JButton btnOdbaci = new JButton("Odustani");
+
+  	JButton btnDodajPredmet = new JButton("Dodaj");
+  	JButton btnUkloniPredmet = new JButton("Ukloni");
 	
 	private TablePredmetiProfesora predmetiProfesora;
 	
@@ -163,9 +166,8 @@ public class IzmenaProfesoraDialog extends JDialog {
       	//predmetiTab.setBackground(gray);
       	JPanel pTop = new JPanel();
       	pTop.setLayout(new BorderLayout());
-      	JButton btnDodajPredmet = new JButton("Dodaj");
-      	JButton btnUkloniPredmet = new JButton("Ukloni");
       	formatButton(btnDodajPredmet, 3);
+      	dodajListenerDodajPredmet(this);
       	formatButton(btnUkloniPredmet, 2);
 
       	pTop.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -246,6 +248,31 @@ public class IzmenaProfesoraDialog extends JDialog {
 			public void mouseExited(MouseEvent arg0) {
 				btnOdbaci.setBackground(new Color(230,230,230));
 				btnOdbaci.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+			}
+			@Override
+			public void mousePressed(MouseEvent arg0) {}
+			@Override
+			public void mouseReleased(MouseEvent arg0) {}
+		});
+	}
+	
+	private void dodajListenerDodajPredmet(IzmenaProfesoraDialog ipd) {
+		btnDodajPredmet.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				DodajPredmetProfesoruDialog dp = new DodajPredmetProfesoruDialog(ipd, profesor.getBrojLicneKarte());
+				dp.setVisible(true);
+				
+			}
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				btnDodajPredmet.setBackground(new Color(228, 244, 255));
+				btnDodajPredmet.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 1));
+			}
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				btnDodajPredmet.setBackground(new Color(230,230,230));
+				btnDodajPredmet.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
 			}
 			@Override
 			public void mousePressed(MouseEvent arg0) {}

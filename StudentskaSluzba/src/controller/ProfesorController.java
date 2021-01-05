@@ -3,6 +3,7 @@ package controller;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -108,6 +109,26 @@ public class ProfesorController {
 		BazaProfesora.getInstance().izmeniProfesora(i, prezime, ime, datum, as, telefon, email, ak, id, titula, zvanje);
 		MainFrame.getInstance().updateProfesoriTable();
 		return true;
+	}
+	
+	public ArrayList<Predmet> nadjiPredmeteBezProfesora() {
+		ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
+		for(int i = 0; i < BazaPredmeta.getInstance().getPredmeti().size(); i++) {
+			if(BazaPredmeta.getInstance().getPredmeti().get(i).getPredmetniProfesor() == null) {
+				predmeti.add(BazaPredmeta.getInstance().getPredmeti().get(i));
+				//System.out.println(i);
+			}
+		}
+		return predmeti;
+	}	
+	
+	public void dodajPredmetProfesoru(String id, String sifra) {
+		int ip = BazaProfesora.getInstance().pronadjiProfesora(id);
+		int is = BazaPredmeta.getInstance().pronadjiPredmet1(sifra);
+		BazaProfesora.getInstance().getProfesori().get(ip).getSpisakPredmeta().add(BazaPredmeta.getInstance().getPredmeti().get(is));
+		izmena.updatePredmetiProfesoraTable();
+		BazaPredmeta.getInstance().getPredmeti().get(is).setPredmetniProfesor(BazaProfesora.getInstance().getProfesori().get(ip));
+		MainFrame.getInstance().updatePredmetiTable();
 	}
 	
 	

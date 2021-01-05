@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import controller.ProfesorController;
 import model.BazaPredmeta;
 import model.Predmet;
 
@@ -27,14 +28,20 @@ public class DodajPredmetProfesoruDialog extends JDialog {
 	
 	private static final long serialVersionUID = 4251870696910692468L;
 	
+	private IzmenaProfesoraDialog parent;
+	private ProfesorController controller;
+	private String id;
 	private JList list;
 	private DefaultListModel model;
 	ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
 	private JButton btnPotvrdi = new JButton("Potvrdi");
 	private JButton btnOdbaci = new JButton("Odustani");
 	
-	public DodajPredmetProfesoruDialog() {
-		super(MainFrame.getInstance(), "Dodaj predmet", true);
+	public DodajPredmetProfesoruDialog(IzmenaProfesoraDialog ipd, String id) {
+		super(ipd, "Dodaj predmet", true);
+		parent = ipd;
+		this.id = id;
+		controller = ipd.getController();
 		setLayout(new BorderLayout());
 		setSize(500,350);
 		this.setLocationRelativeTo(MainFrame.getInstance());
@@ -56,22 +63,18 @@ public class DodajPredmetProfesoruDialog extends JDialog {
 		pTop.add(Box.createHorizontalStrut(20));
 		pTop.add(lbl);
 		this.add(pTop, BorderLayout.NORTH);
-        
-		//kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
-		
+      
+		//panel za listu
+        this.add(pCenter, BorderLayout.CENTER);
+        pCenter.setBackground(gray);
 		model = new DefaultListModel();
 		list = new JList(model); 
-		predmeti = BazaPredmeta.getInstance().getPredmeti();
+		
+		predmeti = controller.nadjiPredmeteBezProfesora();
 		for(int i = 0; i < predmeti.size(); i++) {
 			model.addElement(predmeti.get(i).getSifraPredmeta() + " - " + predmeti.get(i).getNazivPredmeta());
 		}
-		/*System.out.println(
-				list.getSelectedIndex());*/
-		//kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
 		
-        //panel za listu
-        this.add(pCenter, BorderLayout.CENTER);
-        pCenter.setBackground(gray);
         JScrollPane scroll = new JScrollPane(list);
         scroll.setPreferredSize(new Dimension(450, 200));
 		scroll.getViewport().setBackground(Color.WHITE);
@@ -104,6 +107,7 @@ public class DodajPredmetProfesoruDialog extends JDialog {
 			public void mouseClicked(MouseEvent arg0) {	
 				if(list.getSelectedIndex() != -1) {
 					String sifra = predmeti.get(list.getSelectedIndex()).getSifraPredmeta();
+					controller.dodajPredmetProfesoru(id, sifra);
 					JOptionPane.showMessageDialog(null, "Predmet uspešno dodat profesoru.");
 					dispose();
 				}
