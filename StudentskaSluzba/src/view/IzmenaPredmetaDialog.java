@@ -19,17 +19,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import controller.PredmetController;
-import controller.StudentController;
 import model.BazaPredmeta;
-import model.BazaStudenata;
 import model.Predmet;
 
 public class IzmenaPredmetaDialog extends JDialog{
 
+	private static final long serialVersionUID = 111473971714136217L;
+	
 	private PredmetController controller;
 	private RowPanel pSifra;
 	private RowPanel pNaziv;
@@ -48,7 +47,7 @@ public class IzmenaPredmetaDialog extends JDialog{
 		
 		super(MainFrame.getInstance(), "Izmena predmeta", true);
 		
-		setSize(600, 600);
+		setSize(500, 600);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(MainFrame.getInstance()); 
 		setResizable(false);
@@ -130,16 +129,8 @@ public class IzmenaPredmetaDialog extends JDialog{
 			} else {
 				btnMinus.setEnabled(true);
 			}
-	    	
-	    btnMinus.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
-
+	    
+		ukloniProfesoraListener();
 	    	
 	    pProfesor.add(Box.createHorizontalStrut(20));
 	    pProfesor.add(lblProfesor);
@@ -171,9 +162,9 @@ public class IzmenaPredmetaDialog extends JDialog{
 	    
 		
 	    JPanel buttons = new JPanel();
-        buttons.setPreferredSize(new Dimension(70,70));
+        //buttons.setPreferredSize(new Dimension(70,70));
         buttons.setBackground(c);
-        buttons.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        buttons.setLayout(new FlowLayout(FlowLayout.CENTER));
         buttons.setPreferredSize(new Dimension(50, 50));
 		
         formatButton(btnPotvrdi, 1);
@@ -259,8 +250,9 @@ public class IzmenaPredmetaDialog extends JDialog{
 			});
 		
         buttons.add(btnPotvrdi);
-        buttons.add(btnOdbaci);
         buttons.add(Box.createHorizontalStrut(10));
+        buttons.add(btnOdbaci);
+        //buttons.add(Box.createHorizontalStrut(10));
         
         informacije.add(buttons, BorderLayout.SOUTH);   
         
@@ -279,6 +271,28 @@ public class IzmenaPredmetaDialog extends JDialog{
 				dialog.setVisible(true);
 			}
 		});	
+	}
+	
+	private void ukloniProfesoraListener() {
+		btnMinus.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Object[] opcije = {"Da", "Ne"};
+				int opcija = JOptionPane.showOptionDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da uklonite profesora?",
+						"Uklanjanje profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcije, opcije[1]);
+				if (opcija != JOptionPane.YES_OPTION) {
+					
+				} else {
+					txtProfesor.setText("");
+					btnPlus.setEnabled(true);
+					btnMinus.setEnabled(false);
+					controller.ukloniProfesoraSaPredmeta(p.getSifraPredmeta(), p.getPredmetniProfesor().getBrojLicneKarte());
+				}
+
+			}
+		});
 	}
 	
 	private void formatButton(JButton btn, int i) {

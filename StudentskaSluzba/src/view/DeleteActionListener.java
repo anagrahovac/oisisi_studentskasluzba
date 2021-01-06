@@ -60,7 +60,7 @@ public class DeleteActionListener implements ActionListener{
 			} else {
 				Object[] opcije = {"Da", "Ne"};
 				int opcija = JOptionPane.showOptionDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da obrišete predmet?",
-						"Brisanje profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcije, opcije[1]);
+						"Brisanje predmeta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcije, opcije[1]);
 				if (opcija != JOptionPane.YES_OPTION) {
 					
 				} else {
