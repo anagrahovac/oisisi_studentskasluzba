@@ -322,6 +322,7 @@ public class IzmenaStudentaDialog extends JDialog{
       	
       
 		dodajListenerDodaj(this, stariIndeks);
+		dodajListenereObrisi(stariIndeks);
       	dodajListenerPolaganje(this);
       	
       	pTop.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -349,10 +350,50 @@ public class IzmenaStudentaDialog extends JDialog{
 	    	    
 	    validate();
 	}
-	
+
+
 	private void dodajListenerDodaj(IzmenaStudentaDialog i,String index) {
 		
-	btnDodajPredmet.addMouseListener(new MouseListener() {
+		btnDodajPredmet.addMouseListener(new MouseListener() {
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					btnDodajPredmet.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+					btnDodajPredmet.setBackground(new Color(230,230,230));
+				}
+				
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					btnDodajPredmet.setBackground(new Color(228, 244, 255));
+					btnDodajPredmet.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 1));
+				}
+				
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+					DodajPredmetStudentuDialog dpsd = new DodajPredmetStudentuDialog(MainFrame.getInstance(), index, i);
+					dpsd.setVisible(true);
+				}});
+	}
+	
+	
+	private void dodajListenereObrisi(String index) {
+		// TODO Auto-generated method stub
+		btnObrisiPredmet.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
@@ -383,8 +424,24 @@ public class IzmenaStudentaDialog extends JDialog{
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				
-				DodajPredmetStudentuDialog dpsd = new DodajPredmetStudentuDialog(MainFrame.getInstance(), index, i);
-				dpsd.setVisible(true);
+				int i = nepolozeniPredmeti.getSelectedRow();
+				if(i == -1) {
+					JOptionPane.showMessageDialog(null, "Niste selektovali predmet koji želite da uklonite.");
+					return;
+				} else {
+					Object[] daNe = {"Da", "Ne"};
+					int code = JOptionPane.showOptionDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da uklonite predmet studentu?",
+							"Ukloni predmet", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, daNe, daNe[0]);
+					if (code != JOptionPane.YES_OPTION) {
+						
+					} else {
+						BazaPredmeta.getInstance().predmetDateSifre(getNepolozeniSifra()).ukloniStudentaIzNepolozenih(index);;
+						BazaStudenata.getInstance().studentDatogIndeksa(index).ukloniPredmetIzNepolozenih(getNepolozeniSifra());
+						
+						updateNepolozeniTable();
+						JOptionPane.showMessageDialog(null, "Predmet uklonjen studentu.");
+					}
+				}
 			}});
 	}
 	

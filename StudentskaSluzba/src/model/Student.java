@@ -281,5 +281,13 @@ public class Student {
 			return null;
 		}
 	}
+	
+	public void ukloniPredmetIzNepolozenih(String sifra) {
+		for(int i = 0; i < spisakNepolozenihIspita.size(); i++) {
+			if(spisakNepolozenihIspita.get(i).getSifraPredmeta().equals(sifra)) {
+				spisakNepolozenihIspita.remove(i);
+			}
+		}
+	}
 
 }

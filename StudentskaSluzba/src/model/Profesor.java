@@ -155,7 +155,6 @@ public class Profesor {
 	}
 	
 	public void ukloniPredmet(String sifra) {
-		//uklanja predmet profesoru iz njegove liste predmeta
 		for(int i = 0; i < spisakPredmeta.size(); i++) {
 			if(spisakPredmeta.get(i).getSifraPredmeta().equals(sifra)) {
 				spisakPredmeta.remove(i);

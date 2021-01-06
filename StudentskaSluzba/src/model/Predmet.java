@@ -38,6 +38,14 @@ public class Predmet {
 		this.nisuPoloziliPredmet = new ArrayList<Student>();
 	}
 
+	public ArrayList<Student> getNisuPoloziliPredmet() {
+		return nisuPoloziliPredmet;
+	}
+
+	public void setNisuPoloziliPredmet(ArrayList<Student> nisuPoloziliPredmet) {
+		this.nisuPoloziliPredmet = nisuPoloziliPredmet;
+	}
+
 	public String getSifraPredmeta() {
 		return sifraPredmeta;
 	}
@@ -152,4 +160,11 @@ public class Predmet {
 		this.predmetniProfesor = null;
 	}
 	
+	public void ukloniStudentaIzNepolozenih(String index) {
+		for(int i = 0; i < nisuPoloziliPredmet.size(); i++) {
+			if(nisuPoloziliPredmet.get(i).getBrojIndexa().equals(index)) {
+				nisuPoloziliPredmet.remove(i);
+			}
+		}
+	}
 }
