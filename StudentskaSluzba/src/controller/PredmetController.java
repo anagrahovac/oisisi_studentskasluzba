@@ -81,14 +81,13 @@ public class PredmetController {
 			break;
 		}
 		int godinaStudija = Integer.valueOf(izmena.getpGodinaStudija().getTextField().getText());
-		Profesor profesor = new Profesor();
 		int brESPB = Integer.valueOf(izmena.getpBrojESPB().getTextField().getText());
 		
 		String staraSifra = BazaPredmeta.getInstance().staraSifra();
 		if((BazaPredmeta.getInstance().pronadjiPredmet1(sifra) != -1) && (BazaPredmeta.getInstance().pronadjiPredmet1(sifra) != i)) { 
 			return false;
 		}
-			BazaPredmeta.getInstance().izmeniPredmet(staraSifra,sifra, naziv, semestar, godinaStudija, profesor, brESPB);
+			BazaPredmeta.getInstance().izmeniPredmet(staraSifra,sifra, naziv, semestar, godinaStudija, brESPB);
 			MainFrame.getInstance().updatePredmetiTable();
 
 			return true;

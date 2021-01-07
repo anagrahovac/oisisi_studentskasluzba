@@ -166,15 +166,13 @@ public class BazaPredmeta {
 		return p;
 	}
 	
-	public void izmeniPredmet(String staraSifra,String sifraPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudija,
-			Profesor predmetniProfesor, int brojBodova) {
+	public void izmeniPredmet(String staraSifra,String sifraPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudija, int brojBodova) {
 		for(int i = 0; i < predmeti.size(); i++) {
 			if(predmeti.get(i).getSifraPredmeta().equals(staraSifra)) {
 				this.predmeti.get(i).setSifraPredmeta(sifraPredmeta);
 				this.predmeti.get(i).setNazivPredmeta(nazivPredmeta);
 				this.predmeti.get(i).setSemestar(semestar);
 				this.predmeti.get(i).setGodinaStudija(godinaStudija);
-				this.predmeti.get(i).setPredmetniProfesor(predmetniProfesor);
 				this.predmeti.get(i).setBrojBodova(brojBodova);
 			}
 		}
