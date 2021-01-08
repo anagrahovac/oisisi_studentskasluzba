@@ -175,4 +175,17 @@ public class Predmet {
 			}
 		}
 	}
+	
+	public void dodajPredmetUNepolozene(String index) {
+			Student s = BazaStudenata.getInstance().studentDatogIndeksa(index);		
+			nisuPoloziliPredmet.add(s);
+	}
+	
+	public void ukloniPredmetIzPolozenih(String index) {
+		for(int i = 0; i < poloziliPredmet.size(); i++) {
+			 if(poloziliPredmet.get(i).getBrojIndexa().equals(index)) {
+				 poloziliPredmet.remove(i);
+			 }
+		 }
+	}
 }

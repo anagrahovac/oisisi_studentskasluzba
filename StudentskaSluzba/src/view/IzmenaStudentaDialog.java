@@ -52,6 +52,7 @@ public class IzmenaStudentaDialog extends JDialog{
 	private RowPanel pNacinFinansiranja;
 	private JButton btnPotvrdi = new JButton("Potvrdi");
 	private JButton btnOdbaci = new JButton("Odustani");
+	private JButton ponistiOcenu;
 	private TablePredmeti polozeniPredmeti;
 	private TableNepolozeniPredmeti nepolozeniPredmeti;
 	
@@ -259,8 +260,10 @@ public class IzmenaStudentaDialog extends JDialog{
         btn.setPreferredSize(new Dimension(200,60));
         ocenaESPB.setLayout(new GridBagLayout());
         
-        JButton ponistiOcenu = new JButton("Poništi ocenu");
+        ponistiOcenu = new JButton("Poništi ocenu");
         formatButton(ponistiOcenu, 0);
+        
+        dodajListenerPonisti(stariIndeks);
 
         btn.add(ponistiOcenu);
         
@@ -349,6 +352,65 @@ public class IzmenaStudentaDialog extends JDialog{
               
 	    	    
 	    validate();
+	}
+
+
+	private void dodajListenerPonisti(String indx) {
+		// TODO Auto-generated method stub
+		ponistiOcenu.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				btnDodajPredmet.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+				btnDodajPredmet.setBackground(new Color(230,230,230));
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				btnDodajPredmet.setBackground(new Color(228, 244, 255));
+				btnDodajPredmet.setBorder(BorderFactory.createLineBorder(new Color(103, 140, 235), 1));
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+				int i = polozeniPredmeti.getSelectedRow();
+				if(i == -1) {
+					JOptionPane.showMessageDialog(null, "Niste selektovali ocenu koji želite da poništite.");
+					return;
+				} else {
+					Object[] daNe = {"Da", "Ne"};
+					int code = JOptionPane.showOptionDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da poništite ocenu?",
+							"Poništi ocenu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, daNe, daNe[0]);
+					if (code != JOptionPane.YES_OPTION) {
+						
+					} else {						
+						BazaStudenata.getInstance().studentDatogIndeksa(indx).dodajStudentaUNepolozene(getPolozeniSifra());			
+						BazaPredmeta.getInstance().predmetDateSifre(getPolozeniSifra()).dodajPredmetUNepolozene(indx);
+						BazaPredmeta.getInstance().predmetDateSifre(getPolozeniSifra()).ukloniPredmetIzPolozenih(indx);
+						BazaStudenata.getInstance().studentDatogIndeksa(indx).ukloniStudentaIzPolozenih(getPolozeniSifra());
+						
+						
+						updatePolozeniTable();
+						updateNepolozeniTable();
+						JOptionPane.showMessageDialog(null, "Ocena je poništena.");
+					}
+				}
+			}});
 	}
 
 
@@ -487,6 +549,14 @@ public class IzmenaStudentaDialog extends JDialog{
 		int row = nepolozeniPredmeti.getSelectedRow();
 		if(row != -1)
 			return (String) nepolozeniPredmeti.getValueAt(row, 0);
+		else
+			return "";
+	}
+	
+	public String getPolozeniSifra() {
+		int row = polozeniPredmeti.getSelectedRow();
+		if(row != -1)
+			return (String) polozeniPredmeti.getValueAt(row, 0);
 		else
 			return "";
 	}

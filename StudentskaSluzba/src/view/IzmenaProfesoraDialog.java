@@ -327,7 +327,6 @@ public class IzmenaProfesoraDialog extends JDialog {
 					} else {
 						BazaPredmeta.getInstance().predmetDateSifre(getSifraListaPredmeta()).ukloniPredmetnogProfesora();
 						BazaProfesora.getInstance().profesorDateLicneKarte(id).ukloniPredmet(getSifraListaPredmeta());
-
 						
 						updatePredmetiProfesoraTable();
 						JOptionPane.showMessageDialog(null, "Predmet uklonjen profesoru.");

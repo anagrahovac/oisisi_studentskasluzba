@@ -289,5 +289,20 @@ public class Student {
 			}
 		}
 	}
-		
+	
+	public void dodajStudentaUNepolozene(String sifra) {		
+		for(Ocena o : spisakPolozenihIspita) {
+			if(o.getPredmet().getSifraPredmeta().equals(sifra)) {
+				spisakNepolozenihIspita.add(o.getPredmet());
+			}
+		}		
+	}
+	
+	public void ukloniStudentaIzPolozenih(String sifra) {
+		for(int i = 0; i < spisakPolozenihIspita.size(); i++) {
+			if(spisakPolozenihIspita.get(i).getPredmet().getSifraPredmeta().equals(sifra)) {
+				spisakPolozenihIspita.remove(i);
+			}
+		}
+	}
 }
