@@ -4,6 +4,7 @@ package controller;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -19,6 +20,12 @@ public class StudentController {
 	private NoviStudentDialog view;
 	private IzmenaStudentaDialog izmena;
 	private Validacija validacija;
+	
+	public StudentController() {
+		this.izmena = null;
+		this.validacija = null;
+		this.view = null;
+	}
 	
 	public StudentController(NoviStudentDialog view) {
 		this.view = view;
@@ -138,6 +145,28 @@ public class StudentController {
 			return true;
 	}
 	
+	public void obrisiStudenta(String index) {
+		int indx = BazaStudenata.getInstance().pronadjiStudenta1(index);
+		
+		//for(int i = 0; i < BazaPredmeta.getInstance().getPredmeti().size(); i++) {
+		//	ArrayList<Student> polozili = BazaPredmeta.getInstance().getPredmeti().get(i).getPoloziliPredmet();
+		//	for(int j = 0; j < polozili.size(); j++) {
+		//		if(polozili.get(j).getBrojIndexa().equals(index)) {
+		//			BazaPredmeta.getInstance().getPredmeti().get(i).getPoloziliPredmet().remove(j);
+		//		}
+		//	}
+		//}
+		for(int i = 0; i < BazaPredmeta.getInstance().getPredmeti().size(); i++) {
+			ArrayList<Student> nisuPolozili = BazaPredmeta.getInstance().getPredmeti().get(i).getNisuPoloziliPredmet();
+			for(int j = 0; j < nisuPolozili.size(); j++) {
+				if(nisuPolozili.get(j).getBrojIndexa().equals(index)) {
+					BazaPredmeta.getInstance().getPredmeti().get(i).getNisuPoloziliPredmet().remove(j);
+				}
+			}
+		}
+		BazaStudenata.getInstance().izbrisiStudenta(indx);;
+		MainFrame.getInstance().updateStudentiTable();
+	}
 	
 	public boolean poloziPredmet(Student s, Predmet p, int ocena, String d) {
 		LocalDate datum = null;

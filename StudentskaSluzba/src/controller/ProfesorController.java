@@ -17,6 +17,12 @@ public class ProfesorController {
 	private IzmenaProfesoraDialog izmena;
 	private Validacija validacija;
 	
+	public ProfesorController() {
+		this.izmena = null;
+		this.novi = null;
+		this.validacija = null;
+	}
+	
 	public ProfesorController(NoviProfesorDialog v){
 		this.novi = v;
 		this.validacija = new Validacija();
@@ -109,6 +115,31 @@ public class ProfesorController {
 		BazaProfesora.getInstance().izmeniProfesora(i, prezime, ime, datum, as, telefon, email, ak, id, titula, zvanje);
 		MainFrame.getInstance().updateProfesoriTable();
 		return true;
+	}
+	
+	public void obrisiProfesora(String id) {
+		int idd = BazaProfesora.getInstance().pronadjiProfesora(id);
+			
+		//for(int i = 0; i < BazaProfesora.getInstance().getProfesori().size(); i++) {
+		//	if(BazaProfesora.getInstance().getProfesori().get(i).getBrojLicneKarte().equals(id)) {
+		//		ArrayList<Predmet> predaje = BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta();
+		//		for(int j = 0; i < predaje.size(); j++) {
+		//			predaje.get(j).setPredmetniProfesor(null);
+		//		}
+		//	}
+		//}
+		
+		for(int i = 0; i < BazaProfesora.getInstance().getProfesori().size(); i++) {
+			if(i == idd) {
+				for(int j = 0; j < BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta().size(); j++) {
+					BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta().get(j).setPredmetniProfesor(null);
+				}
+			}
+		}
+	
+		BazaProfesora.getInstance().izbrisiProfesora(idd);
+		MainFrame.getInstance().updateProfesoriTable();
+		
 	}
 	
 	public ArrayList<Predmet> nadjiPredmeteBezProfesora() {

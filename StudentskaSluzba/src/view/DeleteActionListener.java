@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import controller.PredmetController;
+import controller.ProfesorController;
+import controller.StudentController;
 import model.BazaProfesora;
 import model.BazaStudenata;
 
@@ -17,6 +19,7 @@ public class DeleteActionListener implements ActionListener{
 		int tab = MainFrame.getInstance().getActiveTab();
 		if (tab == 0) {
 			int i = MainFrame.getInstance().getStudentiTable().getSelectedRow();
+			String index = MainFrame.getInstance().getStudentIndeks();
 			if(i == -1) {
 				JOptionPane.showMessageDialog(null, "Niste selektovali studenta koga želite da obrišete.");
 				return;
@@ -27,14 +30,15 @@ public class DeleteActionListener implements ActionListener{
 				if (code != JOptionPane.YES_OPTION) {
 					
 				} else {
-					BazaStudenata.getInstance().izbrisiStudenta(i);
-					MainFrame.getInstance().updateStudentiTable();
+					StudentController controller = new StudentController();
+					controller.obrisiStudenta(index);
 					JOptionPane.showMessageDialog(null, "Student obrisan iz baze.");
 				}
 			}
 		}
 		if (tab == 1) {	
 			int i = MainFrame.getInstance().getProfesoriTable().getSelectedRow();
+			String id = MainFrame.getInstance().getProfesorID();
 			if(i == -1) {
 				JOptionPane.showMessageDialog(null, "Niste selektovali profesora koga želite da obrišete.");
 				return;
@@ -45,8 +49,8 @@ public class DeleteActionListener implements ActionListener{
 				if (code != JOptionPane.YES_OPTION) {
 					
 				} else {
-					BazaProfesora.getInstance().izbrisiProfesora(i);
-					MainFrame.getInstance().updateProfesoriTable();
+					ProfesorController controller = new ProfesorController();
+					controller.obrisiProfesora(id);
 					JOptionPane.showMessageDialog(null, "Profesor obrisan iz baze.");
 				}
 			}

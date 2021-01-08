@@ -46,6 +46,14 @@ public class Predmet {
 		this.nisuPoloziliPredmet = nisuPoloziliPredmet;
 	}
 
+	public ArrayList<Student> getPoloziliPredmet() {
+		return poloziliPredmet;
+	}
+
+	public void setPoloziliPredmet(ArrayList<Student> poloziliPredmet) {
+		this.poloziliPredmet = poloziliPredmet;
+	}
+
 	public String getSifraPredmeta() {
 		return sifraPredmeta;
 	}
