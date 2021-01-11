@@ -99,7 +99,7 @@ public class BazaPredmeta {
 		return this.predmeti.get(rowIndex);
 	}
 	
-	public String getValueAt(int row, int column) {
+	public Object getValueAt(int row, int column) {
 		Predmet predmet = this.predmeti.get(row);
 		switch (column) {
 			case 0:
@@ -107,9 +107,9 @@ public class BazaPredmeta {
 			case 1:
 				return predmet.getNazivPredmeta();
 			case 2:
-				return Integer.toString(predmet.getBrojBodova());
+				return predmet.getBrojBodova();
 			case 3:
-				return Integer.toString(predmet.getGodinaStudija());
+				return predmet.getGodinaStudija();
 			case 4:
 				{
 					if (predmet.getSemestar() == Semestar.LETNJI)

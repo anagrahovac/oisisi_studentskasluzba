@@ -29,4 +29,9 @@ public class AbstractTableModelPredmeti extends AbstractTableModel {
 		return BazaPredmeta.getInstance().getColumnName(column);
 	}
 
+	public Class<?> getColumnClass(int column) {
+		if(BazaPredmeta.getInstance().getPredmeti().size() == 0)
+			return Object.class;
+		return BazaPredmeta.getInstance().getValueAt(0, column).getClass();
+	}
 }
