@@ -18,11 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import model.BazaPredmeta;
-import model.BazaProfesora;
 import model.BazaStudenata;
 
 public class DodajPredmetStudentuDialog extends JDialog{
 
+	private static final long serialVersionUID = 1L;
 	private TablePredmeti tabela;
 	private IzmenaStudentaDialog izmena;
 	

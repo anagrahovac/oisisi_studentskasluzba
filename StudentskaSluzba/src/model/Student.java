@@ -244,7 +244,7 @@ public class Student implements Serializable {
 			boolean uNepolozenim = false;
 			Predmet p = BazaPredmeta.getInstance().getPredmeti().get(i);
 			
-			if(p.getGodinaStudija() >=  BazaPredmeta.getInstance().getPredmeti().get(i).getGodinaStudija()) {
+			if(getTrenutnaGodinaStudija() >=  BazaPredmeta.getInstance().getPredmeti().get(i).getGodinaStudija()) {
 			for(int j = 0; j < spisakPolozenihIspita.size(); j++) {
 				if( spisakPolozenihIspita.get(j).getPredmet().getSifraPredmeta().equals(p.getSifraPredmeta())) {
 					uPolozenim = true;

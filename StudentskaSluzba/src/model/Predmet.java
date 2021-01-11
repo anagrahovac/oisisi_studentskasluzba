@@ -181,7 +181,7 @@ public class Predmet implements Serializable {
 	}
 	
 	public void dodajPredmetUNepolozene(String index) {
-			Student s = BazaStudenata.getInstance().studentDatogIndeksa(index);		
+			Student s = BazaStudenata.getInstance().studentDatogIndeksa(index);	
 			nisuPoloziliPredmet.add(s);
 	}
 	
