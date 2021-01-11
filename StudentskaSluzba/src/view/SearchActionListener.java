@@ -12,6 +12,7 @@ public class SearchActionListener implements ActionListener {
 	private MyToolbar t;
 	private String trazenoPrezime;
 	private String trazenoIme;
+	private String trazeniIndeks;
 	
 	public SearchActionListener(MyToolbar t) {
 		super();
@@ -27,7 +28,33 @@ public class SearchActionListener implements ActionListener {
 		int tab = MainFrame.getInstance().getActiveTab();
 		
 		if(tab == 0) {
-			
+			String [] parts = s.split(" ");
+			if (parts.length > 3) {
+				JOptionPane.showMessageDialog(null, "Dozvoljen je unos najviše tri reči pri pretrazi studenta!\n prva - prezime, druga - ime, treća - indeks");
+			} else {
+				trazenoPrezime = parts[0];
+				if (parts.length == 2)
+					trazenoIme = parts[1];
+				if(parts.length == 3)
+					trazeniIndeks = parts[2];
+				
+				RowFilter<Object, Object> studentFilter = new RowFilter<Object, Object>(){
+					public boolean include(RowFilter.Entry<?, ?> entry) {
+						String indeks = ((String) entry.getValue(0)).toLowerCase();
+						String ime = ((String) entry.getValue(1)).toLowerCase();
+						String prezime = ((String) entry.getValue(2)).toLowerCase();
+						if((prezime.length() == 0 || (sadrziIme(parts.length, ime) || (sadrziIndeks(parts.length, indeks))) && sadrziPrezime(prezime))) 
+							return true;
+						else
+							return false;
+					}
+				};
+				
+				TableRowSorter<AbstractTableModelStudenti> studentRowSorter = new TableRowSorter<AbstractTableModelStudenti>();
+				studentRowSorter.setModel((AbstractTableModelStudenti) MainFrame.getInstance().getStudentiTable().getModel());
+				studentRowSorter.setRowFilter(studentFilter);
+				MainFrame.getInstance().getStudentiTable().setRowSorter(studentRowSorter);
+			}
 		}
 		
 		if(tab == 1) {
@@ -113,6 +140,13 @@ public class SearchActionListener implements ActionListener {
 	
 	private boolean sadrziPrezime(String p) {
 		return p.contains(trazenoPrezime);
+	}
+	
+	private boolean sadrziIndeks(int d, String i) {
+		if(d == 2)
+			return true;
+		else
+			return i.contains(trazeniIndeks);
 	}
 
 }
