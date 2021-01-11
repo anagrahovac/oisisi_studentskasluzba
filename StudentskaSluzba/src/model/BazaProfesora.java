@@ -37,15 +37,15 @@ public class BazaProfesora {
 				//String emailAdresa, String adresaKancelarije, String brojLicneKarte, Titula titula, Zvanje zvanje
 		Profesor p1, p2, p3, p4, p5;
 		p1 = new Profesor("Petrović", "Pera", LocalDate.of(1975, 8, 10), "Leptirova 52, Novi Sad", "0635248789", "pera.petrovic@gmail.com",
-				"Maksima Gorkog 56, Novi Sad", "008456251", Titula.DOKTOR, Zvanje.DOCENT);
+				"Maksima Gorkog 56, Novi Sad", "008456251", Titula.DR, Zvanje.DOCENT);
 		p2 = new Profesor("Marković", "Filip", LocalDate.of(1954, 2, 17), "Cara Lazara 78, Novi Sad", "0635248789", "filip_markovic@uns.acs.rs",
-				"Stražilovska 44, Novi Sad", "007543541", Titula.DOKTOR, Zvanje.REDOVNI_PROFESOR);
+				"Stražilovska 44, Novi Sad", "007543541", Titula.DR, Zvanje.REDOVNI_PROFESOR);
 		p3 = new Profesor("Vasiljević", "Jovan", LocalDate.of(1969, 3, 25), "Kralja Petra I, Novi Sad", "0635248789", "jvasiljevic@uns.acs.rs",
-				"Stražilovska 46, Novi Sad", "008053452", Titula.DOKTOR, Zvanje.VANREDNI_PROFESOR);
+				"Stražilovska 46, Novi Sad", "008053452", Titula.DR, Zvanje.VANREDNI_PROFESOR);
 		p4 = new Profesor("Blagojević", "Dušan", LocalDate.of(1980, 8, 16), "Pariska ulica 78, Beograd", "0665874454", "blagojevicd@hotmail.com",
-				"Somborski Bulevar 13, Novi Sad", "007712971", Titula.DOKTOR, Zvanje.VANREDNI_PROFESOR);
+				"Somborski Bulevar 13, Novi Sad", "007712971", Titula.DR, Zvanje.VANREDNI_PROFESOR);
 		p5 = new Profesor("Vukašinović", "Aleksa", LocalDate.of(1976, 3, 1), "Futoški put 96, Novi Sad", "0635589979", "vuksa@gmail.com",
-				"Zlatne grede 3, Novi Sad", "008651856", Titula.DOKTOR, Zvanje.DOCENT);
+				"Zlatne grede 3, Novi Sad", "008651856", Titula.DR, Zvanje.DOCENT);
 
 		p1.getSpisakPredmeta().add(BazaPredmeta.getInstance().getPredmeti().get(1));
 		p1.getSpisakPredmeta().add(BazaPredmeta.getInstance().getPredmeti().get(3));
@@ -118,8 +118,10 @@ public class BazaProfesora {
 			return profesor.getBrojLicneKarte();
 		case 3:
 			{
-				if (profesor.getTitula() == Titula.DOKTOR)
+				if (profesor.getTitula() == Titula.DR)
 					return "Doktor";
+				if (profesor.getTitula() == Titula.PROF_DR)
+					return "Profesor doktor";
 				return "";
 			}
 		case 4:

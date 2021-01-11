@@ -93,7 +93,7 @@ public NoviProfesorDialog() {
 		pID.getTextField().setName("txtID");
 		pID.getTextField().addKeyListener(pl);
 		
-		String[] titule = { "Doktor", };
+		String[] titule = { "Doktor", "Profesor doktor", };
 		pTitula = new RowPanel("Titula*", titule);
 
         String[] zvanja = {"Docent", "Vanredni profesor", "Redovni profesor", };

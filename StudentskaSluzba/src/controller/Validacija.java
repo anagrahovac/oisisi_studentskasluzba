@@ -84,7 +84,7 @@ public class Validacija {
 			this.datum = false;
 			return false;
 		}
-		this.datum = Pattern.matches("((0[1-9]|[12][0-9])|(3[01]))\\.((0[1-9])|(1[0-2]))\\.((19[0-9][0-9])|(20[01][0-9])|(2020))\\.", str);
+		this.datum = Pattern.matches("((0[1-9]|[12][0-9])|(3[01]))\\.((0[1-9])|(1[0-2]))\\.((19[0-9][0-9])|(20[01][0-9])|(2020)|(2021))\\.", str);
 		try {
 			final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
 			final LocalDate datum = LocalDate.parse(str, dtf);
@@ -100,7 +100,7 @@ public class Validacija {
 		if((str.equals("") || str == null))
 			this.adresaStan = false;
 		else
-			this.adresaStan = Pattern.matches("([0-9]+|[A-ZŠĐŽČĆa-zšđžčć][a-zšđžčć]+| ?|,?)+", str);
+			this.adresaStan = Pattern.matches("([0-9]+|[A-ZŠĐŽČĆa-zšđžčć]+| ?|,?)+", str);
 		return this.adresaStan;
 	}
 
@@ -108,7 +108,7 @@ public class Validacija {
 		if(str.equals("") || str == null)
 			this.telefon = false;
 		else
-			this.telefon = Pattern.matches("\\+?[0-9]{5,14}", str);//?
+			this.telefon = Pattern.matches("\\+?[0-9/-]{5,18}", str);//?
 		return this.telefon;
 	}
 
@@ -156,7 +156,7 @@ public class Validacija {
 		if(str.equals("") || str == null)
 			this.sifra = false;
 		else
-			this.sifra = Pattern.matches("[A-Z][0-9]{3}", str);
+			this.sifra = Pattern.matches("[a-zA-Z0-9]{1,6}", str);
 		return this.sifra;
 	}
 	

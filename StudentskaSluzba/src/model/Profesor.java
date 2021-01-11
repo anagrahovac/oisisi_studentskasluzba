@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Profesor {
-	public enum Titula {DOKTOR;}
+	public enum Titula {DR, PROF_DR;}
 	public enum Zvanje {DOCENT, VANREDNI_PROFESOR, REDOVNI_PROFESOR;}
 	private String prezime;
 	private String ime;

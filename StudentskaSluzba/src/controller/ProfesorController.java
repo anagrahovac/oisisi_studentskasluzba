@@ -55,10 +55,12 @@ public class ProfesorController {
 		String email = novi.getpEmail().getTextField().getText();
 		String ak = novi.getpAdresaKancelarija().getTextField().getText();
 		String id = novi.getpID().getTextField().getText();
-		Titula titula = Titula.DOKTOR;
+		Titula titula = Titula.DR;
 		switch(novi.getpTitula().getComboBox().getSelectedIndex()) {
 		case 0:
-			titula = Titula.DOKTOR; break;
+			titula = Titula.DR; break;
+		case 1:
+			titula = Titula.PROF_DR; break;	
 		}
 		Zvanje zvanje = Zvanje.DOCENT;
 		switch(novi.getpZvanje().getComboBox().getSelectedIndex()) {
@@ -95,11 +97,14 @@ public class ProfesorController {
 		String email = izmena.getpEmail().getTextField().getText();
 		String ak = izmena.getpAdresaKancelarija().getTextField().getText();
 		String id = izmena.getpID().getTextField().getText();
-		Titula titula = Titula.DOKTOR;
+		Titula titula = Titula.DR;
 		switch(izmena.getpTitula().getComboBox().getSelectedIndex()) {
 		case 0:
-			titula = Titula.DOKTOR; break;
+			titula = Titula.DR; break;
+		case 1:
+			titula = Titula.PROF_DR; break;
 		}
+		
 		Zvanje zvanje = Zvanje.DOCENT;
 		switch(izmena.getpZvanje().getComboBox().getSelectedIndex()) {
 		case 0:

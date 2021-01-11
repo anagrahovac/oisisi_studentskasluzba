@@ -122,7 +122,7 @@ public class IzmenaProfesoraDialog extends JDialog {
 		pID.getTextField().setText(profesor.getBrojLicneKarte());
 		pID.getTextField().addKeyListener(pl);
 		
-		String[] titule = { "Doktor", };
+		String[] titule = { "Doktor", "Profesor doktor", };
 		pTitula = new RowPanel("Titula*", titule);
 		pTitula.getComboBox().setSelectedIndex(profesor.getTitula().ordinal());
 
