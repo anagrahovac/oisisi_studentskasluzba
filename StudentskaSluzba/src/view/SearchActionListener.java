@@ -58,7 +58,26 @@ public class SearchActionListener implements ActionListener {
 		}
 		
 		if(tab == 2) {
-			String [] parts = s.split(" ");
+			String trazeniNaziv = s;
+			
+			RowFilter<Object, Object> predmetFilter = new RowFilter<Object, Object>(){
+				public boolean include(RowFilter.Entry<?, ?> entry) {
+					String naziv = ((String) entry.getValue(1)).toLowerCase();
+					if(trazeniNaziv.length() == 0 || naziv.contains(trazeniNaziv)) 
+						return true;
+					else
+						return false;
+				}
+			};
+			
+			TableRowSorter<AbstractTableModelPredmeti> predmetRowSorter = new TableRowSorter<AbstractTableModelPredmeti>();
+			predmetRowSorter.setModel((AbstractTableModelPredmeti) MainFrame.getInstance().getPredmetiTable().getModel());
+			predmetRowSorter.setRowFilter(predmetFilter);
+			MainFrame.getInstance().getPredmetiTable().setRowSorter(predmetRowSorter);
+			
+			//u zakomentarisanom kodu omogucena pretraga samo jedne reci - sta ako zelimo pretragu po nazivu koji se sastoji iz vise reci?
+			
+			/*String [] parts = s.split(" ");
 			if (parts.length > 1) {
 				JOptionPane.showMessageDialog(null, "Dozvoljen je unos najviše jedne reči pri pretrazi predmeta!");
 			} else {
@@ -78,9 +97,9 @@ public class SearchActionListener implements ActionListener {
 				predmetRowSorter.setModel((AbstractTableModelPredmeti) MainFrame.getInstance().getPredmetiTable().getModel());
 				predmetRowSorter.setRowFilter(predmetFilter);
 				MainFrame.getInstance().getPredmetiTable().setRowSorter(predmetRowSorter);
-			}
+			}*/
+			
 		}
-		
 		
 		
 	}
