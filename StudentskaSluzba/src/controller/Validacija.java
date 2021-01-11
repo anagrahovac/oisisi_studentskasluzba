@@ -180,7 +180,7 @@ public class Validacija {
 		if(str.equals("") || str == null)
 			this.brESPB = false;
 		else
-			this.brESPB = Pattern.matches("[1-9]", str);
+			this.brESPB = Pattern.matches("[1-9][0-9]?", str);
 		return this.brESPB;
 	}
 	

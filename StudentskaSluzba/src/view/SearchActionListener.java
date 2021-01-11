@@ -10,6 +10,9 @@ import javax.swing.table.TableRowSorter;
 public class SearchActionListener implements ActionListener {
 
 	private MyToolbar t;
+	private String trazenoPrezime;
+	private String trazenoIme;
+	
 	public SearchActionListener(MyToolbar t) {
 		super();
 		this.t = t;
@@ -28,7 +31,30 @@ public class SearchActionListener implements ActionListener {
 		}
 		
 		if(tab == 1) {
-			
+			String [] parts = s.split(" ");
+			if (parts.length > 2) {
+				JOptionPane.showMessageDialog(null, "Dozvoljen je unos najviše dve reči pri pretrazi profesora!\n prva - prezime, druga - ime");
+			} else {
+				trazenoPrezime = parts[0];
+				if (parts.length == 2)
+					trazenoIme = parts[1];
+				
+				RowFilter<Object, Object> profesorFilter = new RowFilter<Object, Object>(){
+					public boolean include(RowFilter.Entry<?, ?> entry) {
+						String ime = ((String) entry.getValue(0)).toLowerCase();
+						String prezime = ((String) entry.getValue(1)).toLowerCase();
+						if(prezime.length() == 0 || (sadrziIme(parts.length, ime) && sadrziPrezime(prezime))) 
+							return true;
+						else
+							return false;
+					}
+				};
+				
+				TableRowSorter<AbstractTableModelProfesori> profesorRowSorter = new TableRowSorter<AbstractTableModelProfesori>();
+				profesorRowSorter.setModel((AbstractTableModelProfesori) MainFrame.getInstance().getProfesoriTable().getModel());
+				profesorRowSorter.setRowFilter(profesorFilter);
+				MainFrame.getInstance().getProfesoriTable().setRowSorter(profesorRowSorter);
+			}
 		}
 		
 		if(tab == 2) {
@@ -57,6 +83,17 @@ public class SearchActionListener implements ActionListener {
 		
 		
 		
+	}
+	
+	private boolean sadrziIme(int d, String i) {
+		if (d == 1)
+			return true;
+		else 
+			return i.contains(trazenoIme);
+	}
+	
+	private boolean sadrziPrezime(String p) {
+		return p.contains(trazenoPrezime);
 	}
 
 }
