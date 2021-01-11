@@ -68,128 +68,6 @@ public class NoviPredmetDialog extends JDialog{
 		pGodinaStudija.getTextField().setName("txtGodinaStudija");
 		pGodinaStudija.getTextField().addKeyListener(keyListener);
 		
-		Color gray = new Color(245,245,245);
-		JPanel pProfesor = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel lblProfesor = new JLabel("Profesor*");
-			Dimension lblDim = new Dimension(150, 30);
-			Font dialog = new Font("Dialog", Font.ITALIC, 14);
-			lblProfesor.setPreferredSize(lblDim);
-			lblProfesor.setFont(dialog);
-		txtProfesor = new JTextField();
-		txtProfesor.setName("txtProfesor");
-		//txtProfesor.setText("ZDRAVOOO!!");
-		txtProfesor.setEditable(false);
-		txtProfesor.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
-		txtProfesor.setBackground(Color.white);
-			Dimension txtDim = new Dimension(180, 30);
-	        Font dialog1 = new Font("Dialog", Font.PLAIN, 14);
-	        txtProfesor.setPreferredSize(txtDim);
-	        txtProfesor.setFont(dialog1);
-	    JButton btnPlus = new JButton("+");
-	    	Dimension btnDim = new Dimension(30,30);
-	    	Font dialog2 = new Font("Dialog", Font.BOLD, 14);
-	    	btnPlus.setPreferredSize(btnDim);
-	    	btnPlus.setFont(dialog2);
-	    	btnPlus.setBackground(Color.white);
-	    	btnPlus.setToolTipText("Dodaj profesora");
-	    	btnPlus.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
-	    
-	    btnPlus.addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-					//DodajProfesoraDialog dialog = new DodajProfesoraDialog(parent, sifra);
-					//dialog.setVisible(true);
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-        });
-	    
-	    JButton btnMinus = new JButton("-");
-	    	btnMinus.setPreferredSize(btnDim);
-	    	btnMinus.setFont(dialog2);
-	    	btnMinus.setBackground(Color.white);
-	    	btnMinus.setToolTipText("Obriši profesora");
-	    	btnMinus.setBorder(BorderFactory.createLineBorder(Color.gray,1));
-	    	
-	    btnMinus.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				if(txtProfesor.getText() != "") {
-					txtProfesor.setText("");
-				}
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-	    
-	    if(txtProfesor.getText().isEmpty() || txtProfesor.getText() == null || txtProfesor.getText().equals("")) {
-			btnPlus.setEnabled(true);
-		} else {
-			btnPlus.setEnabled(false);
-		}
-		
-		if(txtProfesor.getText().isEmpty() || txtProfesor.getText() == null || txtProfesor.getText().equals("")) {
-			btnMinus.setEnabled(false);
-		} else {
-			btnMinus.setEnabled(true);
-		}
-	    	
-	    pProfesor.add(Box.createHorizontalStrut(20));
-	    pProfesor.add(lblProfesor);
-	    pProfesor.add(txtProfesor);
-	    pProfesor.add(btnPlus);
-	    pProfesor.add(btnMinus);
-		pProfesor.setBackground(gray);
-		//IzmenaPredmetaDialog.azurirajPredmet();
-		
 		pBrojESPB = new RowPanel("Broj ESPB bodova*");
 		pBrojESPB.getTextField().setName("txtBrojESPB");
 		pBrojESPB.getTextField().addKeyListener(keyListener);
@@ -203,7 +81,6 @@ public class NoviPredmetDialog extends JDialog{
 	    background.add(pSifra);
 	    background.add(pNaziv); 
 	    background.add(pGodinaStudija);
-	    background.add(pProfesor);
 	    background.add(pBrojESPB);
 	    background.add(pSemestar); 
 	    background.add(Box.createVerticalStrut(150));
