@@ -19,8 +19,8 @@ public class PretragaStudenta {
 	}
 	
 	public void filter() {
-		String tekst = MyToolbar.getSearchBox().getText();
-		pretraga(tekst);
+		/*String tekst = MyToolbar.getSearchBox().getText();
+		pretraga(tekst);*/
 		
 	}
 

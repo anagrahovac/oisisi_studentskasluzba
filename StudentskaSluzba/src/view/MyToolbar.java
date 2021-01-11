@@ -17,7 +17,7 @@ public class MyToolbar extends JToolBar {
 
 	private static final long serialVersionUID = -3666207502033139205L;
 	
-	private static JTextField searchBox;
+	private JTextField searchBox = new JTextField();
 
 	public MyToolbar() {
 		super(SwingConstants.HORIZONTAL);
@@ -69,7 +69,7 @@ public class MyToolbar extends JToolBar {
 		JPanel panSearch = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		panSearch.setBackground(c);
 		
-		searchBox = new JTextField();
+		//searchBox = new JTextField();
 		searchBox.setPreferredSize(new Dimension(400, 30));
 		panSearch.add(searchBox);
 		
@@ -81,19 +81,18 @@ public class MyToolbar extends JToolBar {
 		btnSearch.setBorderPainted(isDisplayable());
 		panSearch.add(btnSearch);
 		
-		btnSearch.addActionListener(new SearchActionListener());
+		SearchActionListener sal = new SearchActionListener(this);
+		
+		searchBox.addActionListener(sal);
+		btnSearch.addActionListener(sal);
 		
 		add(panSearch);
 		
 		validate();
 	}
 
-	public static JTextField getSearchBox() {
-		return searchBox;
-	}
-
-	public void setSearchBox(JTextField searchBox) {
-		this.searchBox = searchBox;
+	public String getEntry() {
+		return searchBox.getText();
 	}
 
 	
