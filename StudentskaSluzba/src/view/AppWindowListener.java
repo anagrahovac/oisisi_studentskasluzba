@@ -5,12 +5,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
+
+import model.Files;
 
 public class AppWindowListener implements WindowListener {
 
@@ -55,6 +59,20 @@ public class AppWindowListener implements WindowListener {
 		if (code != JOptionPane.YES_OPTION) {
 			frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		} else {
+			
+			try {
+				Files.writeInFile();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	
 			frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		}
 

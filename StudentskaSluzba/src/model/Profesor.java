@@ -1,9 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Profesor {
+public class Profesor implements Serializable {
+
+	private static final long serialVersionUID = 1366037891392934187L;
+
 	public enum Titula {DR, PROF_DR;}
 	public enum Zvanje {DOCENT, VANREDNI_PROFESOR, REDOVNI_PROFESOR;}
 	private String prezime;

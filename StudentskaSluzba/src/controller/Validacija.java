@@ -87,6 +87,7 @@ public class Validacija {
 		this.datum = Pattern.matches("((0[1-9]|[12][0-9])|(3[01]))\\.((0[1-9])|(1[0-2]))\\.((19[0-9][0-9])|(20[01][0-9])|(2020)|(2021))\\.", str);
 		try {
 			final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+			@SuppressWarnings("unused")
 			final LocalDate datum = LocalDate.parse(str, dtf);
 		}
 		catch(DateTimeParseException e) {

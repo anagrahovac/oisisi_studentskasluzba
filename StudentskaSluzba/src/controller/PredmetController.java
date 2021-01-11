@@ -1,8 +1,5 @@
 package controller;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -12,8 +9,6 @@ import model.BazaProfesora;
 import model.BazaStudenata;
 import model.Predmet;
 import model.Predmet.Semestar;
-import model.Profesor;
-import model.Student.Status;
 import view.IzmenaPredmetaDialog;
 import view.MainFrame;
 import view.NoviPredmetDialog;
