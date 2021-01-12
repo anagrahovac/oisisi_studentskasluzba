@@ -29,7 +29,7 @@ public class BazaPredmeta {
 		this.kolonePS.add("Naziv");
 		
 		//obrisati posle
-		this.dodajPredmete();
+		//this.dodajPredmete();
 	}
 	
 	//obrisati posle

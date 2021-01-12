@@ -28,7 +28,7 @@ public class BazaProfesora {
 		this.koloneP.add("Broj lične karte");
 		
 		//obrisati posle
-		this.dodajProfesore();
+		//this.dodajProfesore();
 	}
 	
 	//obrisati posle

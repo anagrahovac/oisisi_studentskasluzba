@@ -32,7 +32,7 @@ public class BazaStudenata {
 		columnNamesPolozeni.add("Datum");
 		
 		//obrisati
-		this.dodajStudenta();
+		//this.dodajStudenta();
 	}
 	
 	private ArrayList<Ocena> initPredmeteMitar() {
@@ -308,4 +308,6 @@ public class BazaStudenata {
 			return null;
 		}
 	}
+	
+	
 }
