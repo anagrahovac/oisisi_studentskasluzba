@@ -403,7 +403,10 @@ public class IzmenaStudentaDialog extends JDialog{
 						
 						
 						updatePolozeniTable();
+						azurirajProsekESPB(getProsek(), getEspb(), indx);
 						updateNepolozeniTable();
+						BazaStudenata.getInstance().studentDatogIndeksa(indx).setProsecnaocena(BazaStudenata.getInstance().studentDatogIndeksa(indx).prosecnaOcena());
+						MainFrame.getInstance().updateStudentiTable();
 						JOptionPane.showMessageDialog(null, "Ocena je poništena.");
 					}
 				}

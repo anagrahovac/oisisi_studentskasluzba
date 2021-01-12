@@ -242,7 +242,7 @@ public class BazaStudenata {
 	}
 	
 	public void izmeniStudenta(String stariBrojIndexa, String prezime, String ime, LocalDate datumRodjenja, String adresaStanovanja, String kontaktTelefon,
-			String emailAdresa, String brojIndexa, int godinaUpisa, int trenutnaGodinaStudija, Status status, double prosecnaocena) {
+			String emailAdresa, String brojIndexa, int godinaUpisa, int trenutnaGodinaStudija, Status status) {
 		for(int i = 0; i < studenti.size(); i++) {
 			 if(studenti.get(i).getBrojIndexa().equals(stariBrojIndexa)) {
 				 studenti.get(i).setPrezimeStudenta(prezime);
@@ -255,7 +255,6 @@ public class BazaStudenata {
 				 studenti.get(i).setGodinaUpisa(godinaUpisa);
 				 studenti.get(i).setTrenutnaGodinaStudija(trenutnaGodinaStudija);
 				 studenti.get(i).setStatus(status);
-				 studenti.get(i).setProsecnaocena(prosecnaocena);
 			 }
 		}
 	}

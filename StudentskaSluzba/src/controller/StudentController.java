@@ -136,10 +136,11 @@ public class StudentController {
 			break;
 		}
 		String stariIndeks = BazaStudenata.getInstance().stariIndeks();
+		
 		if((BazaStudenata.getInstance().pronadjiStudenta1(brIndexa) != -1) && (BazaStudenata.getInstance().pronadjiStudenta1(brIndexa) != i)) { 
 			return false;
 		}
-			BazaStudenata.getInstance().izmeniStudenta(stariIndeks,prezime, ime, datumRodj, adresaStan, brTelefona, eMailAdresa, brIndexa, godU,trGodStu, status, 0.00);
+			BazaStudenata.getInstance().izmeniStudenta(stariIndeks,prezime, ime, datumRodj, adresaStan, brTelefona, eMailAdresa, brIndexa, godU,trGodStu, status);
 			MainFrame.getInstance().updateStudentiTable();
 
 			return true;
@@ -185,6 +186,7 @@ public class StudentController {
 			BazaStudenata.getInstance().getStudenti().get(i).dodajUSpisakPolozenih(o);
 			izmena.updatePolozeniTable();
 		}
+		MainFrame.getInstance().updateStudentiTable();
 		return true;
 	}
 	
