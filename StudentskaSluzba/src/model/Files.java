@@ -13,6 +13,17 @@ import java.io.FileInputStream;
 
 public class Files {
 	public static void writeInFile() throws FileNotFoundException, IOException, ClassNotFoundException {
+		File file = new File("podaci.txt");
+		Data d = new Data();
+		ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
+		try{
+			oos.writeObject(d);
+		} finally {
+			oos.close();
+		}
+	}
+	/*
+	public static void writeInFile() throws FileNotFoundException, IOException, ClassNotFoundException {
 		File dir = new File("podaci");
 		File studentiFile = new File(dir, "studenti.txt");
 		File profesoriFile = new File(dir, "profesori.txt");
@@ -38,7 +49,7 @@ public class Files {
 		} finally {
 			oos3.close();
 		}
-	}
+	}*/
 	
 	public static void readFromFile() throws FileNotFoundException, IOException, ClassNotFoundException {
 		File dir = new File("podaci");
