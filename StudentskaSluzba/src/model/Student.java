@@ -5,9 +5,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import view.MainFrame;
-
-
 public class Student implements Serializable {
 	
 	private static final long serialVersionUID = 8528359025942016747L;

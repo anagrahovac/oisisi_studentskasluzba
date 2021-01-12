@@ -186,6 +186,7 @@ public class StudentController {
 			BazaStudenata.getInstance().getStudenti().get(i).dodajUSpisakPolozenih(o);
 			izmena.updatePolozeniTable();
 		}
+		s.setProsecnaocena(s.prosecnaOcena());
 		MainFrame.getInstance().updateStudentiTable();
 		return true;
 	}
