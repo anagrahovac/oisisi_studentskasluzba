@@ -43,7 +43,7 @@ public class SearchActionListener implements ActionListener {
 						String indeks = ((String) entry.getValue(0)).toLowerCase();
 						String ime = ((String) entry.getValue(1)).toLowerCase();
 						String prezime = ((String) entry.getValue(2)).toLowerCase();
-						if((prezime.length() == 0 || (sadrziIme(parts.length, ime) || (sadrziIndeks(parts.length, indeks))) && sadrziPrezime(prezime))) 
+						if(prezime.length() == 0 || ((sadrziIme(parts.length, ime) && (sadrziIndeks(parts.length, indeks)) && sadrziPrezime(prezime)))) 
 							return true;
 						else
 							return false;
