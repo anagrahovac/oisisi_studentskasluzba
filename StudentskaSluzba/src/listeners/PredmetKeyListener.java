@@ -1,4 +1,4 @@
-package view;
+package listeners;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -6,6 +6,8 @@ import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
+
+import view.NoviPredmetDialog;
 
 public class PredmetKeyListener implements KeyListener{
 	

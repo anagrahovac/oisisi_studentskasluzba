@@ -1,4 +1,4 @@
- package view;
+ package listeners;
  
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
-import model.Files;
+import controller.Files;
 
 public class AppWindowListener implements WindowListener {
 

@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import controller.ProfesorController;
+import listeners.ProfesorKeyListener;
 
 public class NoviProfesorDialog extends JDialog{
 

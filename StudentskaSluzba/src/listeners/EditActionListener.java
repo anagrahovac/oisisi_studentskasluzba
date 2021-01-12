@@ -1,4 +1,4 @@
-package view;
+package listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +7,10 @@ import javax.swing.JOptionPane;
 
 import model.BazaPredmeta;
 import model.BazaStudenata;
+import view.IzmenaPredmetaDialog;
+import view.IzmenaProfesoraDialog;
+import view.IzmenaStudentaDialog;
+import view.MainFrame;
 
 public class EditActionListener implements ActionListener{
 

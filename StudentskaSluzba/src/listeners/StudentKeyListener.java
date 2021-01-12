@@ -1,4 +1,4 @@
-package view;
+package listeners;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -7,17 +7,18 @@ import java.awt.event.KeyListener;
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 
-import controller.Validacija;
+import view.NoviStudentDialog;
 
-public class StudentIzmenaKeyListener implements KeyListener{
+public class StudentKeyListener implements KeyListener{
+
+	private NoviStudentDialog nsd;
 	
-	private IzmenaStudentaDialog isd;
-	
-	public StudentIzmenaKeyListener (IzmenaStudentaDialog n) {
+	public StudentKeyListener (NoviStudentDialog n) {
 		super();
-		this.isd = n;
+		this.nsd = n;
 	}
-
+	
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -29,52 +30,52 @@ public class StudentIzmenaKeyListener implements KeyListener{
 		// TODO Auto-generated method stub
 		JTextField txt = (JTextField) e.getComponent();
 		String val = txt.getText().trim();
-		Validacija v = isd.getController().getValidacija();
 		boolean validno = false;		
 		
 		switch(txt.getName()) {
 		case "txtIme": 
-			validno = isd.getController().getValidacija().validirajIme(val);
+			validno = nsd.getController().getValidacija().validirajIme(val);
 			break;
 		case "txtPrezime":
-			validno = isd.getController().getValidacija().validirajPrezime(val);
+			validno = nsd.getController().getValidacija().validirajPrezime(val);
 			break;
 		case "txtDatumRodjenja": 
-			validno = isd.getController().getValidacija().validirajDatum(val);
+			validno = nsd.getController().getValidacija().validirajDatum(val);
 			break;
 		case "txtAdresaStanovanja":
-			validno = isd.getController().getValidacija().validirajAdresuStanovanja(val);
+			validno = nsd.getController().getValidacija().validirajAdresuStanovanja(val);
 			break;
 		case "txtBrojTelefona": 
-			validno = isd.getController().getValidacija().validirajTelefon(val);
+			validno = nsd.getController().getValidacija().validirajTelefon(val);
 			break;
 		case "txtEMailAdresa":
-			validno = isd.getController().getValidacija().validirajEmail(val);
+			validno = nsd.getController().getValidacija().validirajEmail(val);
 			break;
 		case "txtBrojIndexa": 
-			validno = isd.getController().getValidacija().validirajBrojIndeksa(val);
+			validno = nsd.getController().getValidacija().validirajBrojIndeksa(val);
 			break;
 		case "txtGodinaUpisa":
-			validno = isd.getController().getValidacija().validirajGodinuUpisa(val);
+			validno = nsd.getController().getValidacija().validirajGodinuUpisa(val);
 			break;
 		}
 		
-		if (!validno) {			
+		if (!validno) {
 			txt.setBorder(null);
 			txt.setBorder(BorderFactory.createLineBorder(new Color(221,119,119)));
 			txt.setForeground(new Color(221,119,119));
-			isd.disablePotvrdi();
-		} else {			
+			nsd.disablePotvrdi();
+		} else {
 			txt.setForeground(Color.black);
 			txt.setBorder(BorderFactory.createLineBorder(Color.gray));
 		}
 		
-		if(v.validirajStudenta() == true) {
-			isd.enablePotvrdi();
+		if(nsd.getController().getValidacija().validirajStudenta()) {
+			nsd.enablePotvrdi();
 		}
 		else {
-			isd.disablePotvrdi();
-		}
+			nsd.disablePotvrdi();
+		}		
+
 	}
 
 	@Override

@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.PredmetController;
+import listeners.PredmetKeyListener;
 
 public class NoviPredmetDialog extends JDialog{
 	

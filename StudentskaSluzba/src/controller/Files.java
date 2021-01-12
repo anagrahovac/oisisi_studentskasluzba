@@ -1,10 +1,16 @@
-package model;
+package controller;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
+import model.BazaPredmeta;
+import model.BazaProfesora;
+import model.BazaStudenata;
+import model.Data;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;

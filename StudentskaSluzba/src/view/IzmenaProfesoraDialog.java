@@ -21,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import controller.ProfesorController;
+import listeners.ProfesorIzmenaKeyListener;
 import model.BazaPredmeta;
 import model.BazaProfesora;
 import model.Profesor;

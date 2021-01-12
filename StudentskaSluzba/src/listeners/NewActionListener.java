@@ -1,9 +1,13 @@
-package view;
+package listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.BazaPredmeta;
+import view.MainFrame;
+import view.NoviPredmetDialog;
+import view.NoviProfesorDialog;
+import view.NoviStudentDialog;
 
 public class NewActionListener implements ActionListener{
 

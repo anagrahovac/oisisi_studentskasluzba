@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import controller.StudentController;
+import listeners.StudentKeyListener;
 
 
 public class NoviStudentDialog extends JDialog{

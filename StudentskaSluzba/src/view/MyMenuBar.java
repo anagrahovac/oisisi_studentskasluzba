@@ -15,6 +15,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+import listeners.DeleteActionListener;
+import listeners.EditActionListener;
+import listeners.NewActionListener;
+
 import java.awt.Color;
 
 public class MyMenuBar extends JMenuBar{

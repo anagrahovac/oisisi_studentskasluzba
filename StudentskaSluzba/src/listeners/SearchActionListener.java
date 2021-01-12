@@ -1,4 +1,4 @@
-package view;
+package listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,6 +6,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
+
+import view.AbstractTableModelPredmeti;
+import view.AbstractTableModelProfesori;
+import view.AbstractTableModelStudenti;
+import view.MainFrame;
+import view.MyToolbar;
 
 public class SearchActionListener implements ActionListener {
 

@@ -1,4 +1,4 @@
-package view;
+package listeners;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -8,6 +8,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 
 import controller.Validacija;
+import view.IzmenaProfesoraDialog;
 
 public class ProfesorIzmenaKeyListener implements KeyListener {
 	

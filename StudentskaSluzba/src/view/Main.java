@@ -3,7 +3,7 @@ package view;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import model.Files;
+import controller.Files;
 
 public class Main {
 

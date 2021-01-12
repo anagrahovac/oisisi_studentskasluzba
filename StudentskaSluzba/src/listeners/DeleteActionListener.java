@@ -1,4 +1,4 @@
-package view;
+package listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import controller.PredmetController;
 import controller.ProfesorController;
 import controller.StudentController;
+import view.MainFrame;
 
 public class DeleteActionListener implements ActionListener{
 

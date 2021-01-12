@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
+import listeners.AppWindowListener;
+
 public class MainFrame extends JFrame {
 	
 	private static final long serialVersionUID = 1956297561304331839L;
