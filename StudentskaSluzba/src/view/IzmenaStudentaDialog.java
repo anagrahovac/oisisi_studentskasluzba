@@ -24,20 +24,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-import javax.swing.WindowConstants;
-import javax.swing.border.MatteBorder;
 
 import controller.StudentController;
-import javafx.geometry.Insets;
 import model.BazaPredmeta;
-import model.BazaProfesora;
 import model.BazaStudenata;
 import model.Predmet;
 import model.Student;
 
 public class IzmenaStudentaDialog extends JDialog{
 
+	private static final long serialVersionUID = 3556006977945565364L;
+	
 	private StudentController controller;
 	private Student s;
 	private RowPanel pIme;

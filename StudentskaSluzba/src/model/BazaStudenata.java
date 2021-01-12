@@ -233,7 +233,6 @@ public class BazaStudenata {
 	}
 	
 	public Student studentDatogIndeksa(String indx) {
-		Student s = new Student();
 		for(int i = 0; i < studenti.size(); i++) {
 			if (studenti.get(i).getBrojIndexa().equals(indx)) {
 				return studenti.get(i);

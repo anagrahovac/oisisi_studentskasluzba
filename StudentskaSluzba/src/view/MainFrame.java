@@ -9,8 +9,6 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.table.TableRowSorter;
-
 
 public class MainFrame extends JFrame {
 	

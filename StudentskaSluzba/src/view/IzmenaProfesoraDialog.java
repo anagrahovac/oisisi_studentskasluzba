@@ -23,7 +23,6 @@ import javax.swing.JTabbedPane;
 import controller.ProfesorController;
 import model.BazaPredmeta;
 import model.BazaProfesora;
-import model.BazaStudenata;
 import model.Profesor;
 
 public class IzmenaProfesoraDialog extends JDialog {

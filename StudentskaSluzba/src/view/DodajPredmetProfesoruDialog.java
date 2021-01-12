@@ -21,22 +21,25 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import controller.ProfesorController;
-import model.BazaPredmeta;
 import model.Predmet;
 
 public class DodajPredmetProfesoruDialog extends JDialog {
 	
 	private static final long serialVersionUID = 4251870696910692468L;
 	
+	@SuppressWarnings("unused")
 	private IzmenaProfesoraDialog parent;
 	private ProfesorController controller;
 	private String id;
+	@SuppressWarnings("rawtypes")
 	private JList list;
+	@SuppressWarnings("rawtypes")
 	private DefaultListModel model;
 	ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
 	private JButton btnPotvrdi = new JButton("Potvrdi");
 	private JButton btnOdbaci = new JButton("Odustani");
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public DodajPredmetProfesoruDialog(IzmenaProfesoraDialog ipd, String id) {
 		super(ipd, "Dodaj predmet", true);
 		parent = ipd;

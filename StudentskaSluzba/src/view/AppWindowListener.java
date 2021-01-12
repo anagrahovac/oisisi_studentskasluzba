@@ -1,17 +1,12 @@
  package view;
  
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
 import model.Files;
@@ -33,27 +28,8 @@ public class AppWindowListener implements WindowListener {
 	@Override
 	public void windowClosing(WindowEvent arg0) {
 		JFrame frame = (JFrame) arg0.getComponent();
-		/*JButton btnDa = new JButton("Da");
-		JButton btnNe = new JButton("Ne");
-		btnDa.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				frame.dispose();
-			}
-		});
-		btnNe.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-			}
-		});
-		JButton[] daNe = {btnDa, btnNe};
-		*/
 		Object[] daNe = {"Da", "Ne"};
-		//UIManager.put(daNe, Color.white);
 		int code = JOptionPane.showOptionDialog(frame, "Da li ste sigurni da želite da zatvorite aplikaciju?",
 				"Message", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, daNe, daNe[0]);
 		if (code != JOptionPane.YES_OPTION) {

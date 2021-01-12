@@ -3,10 +3,11 @@ package view;
 import javax.swing.table.AbstractTableModel;
 
 import model.BazaProfesora;
-import model.BazaStudenata;
 
 public class AbstractTableModelListaProfesora extends AbstractTableModel{
-	
+
+	private static final long serialVersionUID = 5113911347261753838L;
+
 	public AbstractTableModelListaProfesora() {
 		// TODO Auto-generated constructor stub
 	}

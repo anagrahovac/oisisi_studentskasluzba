@@ -8,8 +8,6 @@ import javax.swing.JOptionPane;
 import controller.PredmetController;
 import controller.ProfesorController;
 import controller.StudentController;
-import model.BazaProfesora;
-import model.BazaStudenata;
 
 public class DeleteActionListener implements ActionListener{
 

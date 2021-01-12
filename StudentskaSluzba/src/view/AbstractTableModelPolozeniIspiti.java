@@ -5,7 +5,8 @@ import javax.swing.table.AbstractTableModel;
 import model.BazaStudenata;
 
 public class AbstractTableModelPolozeniIspiti extends AbstractTableModel{
-	
+
+	private static final long serialVersionUID = -2685393268849549750L;
 	private String indx;
 	
 	public AbstractTableModelPolozeniIspiti(String i) {

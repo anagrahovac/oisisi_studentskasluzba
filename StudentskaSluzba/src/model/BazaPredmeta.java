@@ -1,11 +1,7 @@
 package model;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import model.Predmet.Semestar;
-import model.Profesor.Titula;
-import model.Profesor.Zvanje;
-import model.Student.Status;
 import view.MainFrame;
 
 public class BazaPredmeta {
@@ -27,37 +23,6 @@ public class BazaPredmeta {
 		this.kolonePS = new ArrayList<String>();
 		this.kolonePS.add("Šifra");
 		this.kolonePS.add("Naziv");
-		
-		//obrisati posle
-		//this.dodajPredmete();
-	}
-	
-	//obrisati posle
-	private void dodajPredmete() {
-		//String sifraPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudija, Profesor predmetniProfesor, int brojBodova
-		Predmet p1, p2, p3, p4, p5;
-		Profesor pp1, pp2, pp3, pp4, pp5;
-		pp1 = new Profesor("Petrović", "Pera", LocalDate.of(1975, 8, 10), "Leptirova 52, Novi Sad", "0635248789", "pera.petrovic@gmail.com",
-				"Maksima Gorkog 56, Novi Sad", "008456251", Titula.DR, Zvanje.DOCENT);
-		pp2 = new Profesor("Marković", "Filip", LocalDate.of(1954, 2, 17), "Cara Lazara 78, Novi Sad", "0635248789", "filip_markovic@uns.acs.rs",
-				"Stražilovska 44, Novi Sad", "007543541", Titula.DR, Zvanje.REDOVNI_PROFESOR);
-		pp3 = new Profesor("Vasiljević", "Jovan", LocalDate.of(1969, 3, 25), "Kralja Petra I, Novi Sad", "0635248789", "jvasiljevic@uns.acs.rs",
-				"Stražilovska 46, Novi Sad", "008053452", Titula.DR, Zvanje.VANREDNI_PROFESOR);
-		pp4 = new Profesor("Blagojević", "Dušan", LocalDate.of(1980, 8, 16), "Pariska ulica 78, Beograd", "0665874454", "blagojevicd@hotmail.com",
-				"Somborski Bulevar 13, Novi Sad", "007712971", Titula.DR, Zvanje.VANREDNI_PROFESOR);
-		pp5 = new Profesor("Vukašinović", "Aleksa", LocalDate.of(1976, 3, 1), "Futoški put 96, Novi Sad", "0635589979", "vuksa@gmail.com",
-				"Zlatne grede 3, Novi Sad", "008651856", Titula.DR, Zvanje.DOCENT);
-		p1 = new Predmet("P012", "Algebra", Semestar.ZIMSKI, 1, null, 9);
-		p2 = new Predmet("A805", "Objektno programiranje", Semestar.ZIMSKI, 2, pp1, 8);
-		p3 = new Predmet("K156", "Arhitektura računara", Semestar.LETNJI, 1, null, 9);
-		p4 = new Predmet("T488", "Osnovi elekrotehnike", Semestar.LETNJI, 1, pp5, 8);
-		p5 = new Predmet("F137", "Baze podataka 1", Semestar.ZIMSKI, 3, pp3, 7);
-		this.predmeti.add(p1);
-		this.predmeti.add(p2);
-		this.predmeti.add(p3);
-		this.predmeti.add(p4);
-		this.predmeti.add(p5);
-		
 	}
 	
 	public static BazaPredmeta getInstance() {

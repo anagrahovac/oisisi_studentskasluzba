@@ -42,7 +42,6 @@ public class IzmenaPredmetaDialog extends JDialog{
 	private JButton btnPlus;
 	private JButton btnMinus;
 	
-	@SuppressWarnings("deprecation")
 	public IzmenaPredmetaDialog(String staraSifra) {
 		
 		super(MainFrame.getInstance(), "Izmena predmeta", true);

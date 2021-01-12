@@ -16,12 +16,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
-import javax.swing.table.JTableHeader;
 
 import model.BazaPredmeta;
 import model.BazaProfesora;
-import model.BazaStudenata;
 
 public class DodajProfesoraDialog extends JDialog{
 
