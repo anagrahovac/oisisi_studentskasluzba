@@ -141,7 +141,7 @@ public class Validacija {
 		if(str.equals("") || str == null)
 			this.adresaKancelarija = false;
 		else
-			this.adresaKancelarija = Pattern.matches("([0-9]+|[A-ZŠĐŽČĆa-zšđžčć][a-zšđžčć]+| ?|,?)+", str);
+			this.adresaKancelarija = Pattern.matches("([0-9]+|[A-ZŠĐŽČĆa-zšđžčć]+| ?|,?)+", str);
 		return this.adresaKancelarija;
 	}
 
@@ -165,7 +165,7 @@ public class Validacija {
 		if(str.equals("") || str == null)
 			this.naziv = false;
 		else
-			this.naziv = Pattern.matches("([A-ZŠĐŽČĆ]([a-zšđžčć]+)?| ?)+", str);
+			this.naziv = Pattern.matches("(([A-ZŠĐŽČĆa-zšđžčć0-9]+)?| ?)+", str);
 		return this.naziv;
 	}
 	
