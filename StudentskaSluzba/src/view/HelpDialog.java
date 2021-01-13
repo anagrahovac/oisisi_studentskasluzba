@@ -48,16 +48,9 @@ public class HelpDialog extends JDialog{
 		lblHeader.setFont(f);
 		
 		JTextArea koriscenje = new JTextArea();
-		koriscenje.setText("    U centralnom delu aplikacije nalaze se tabele sa datim "
-									+ "entitetima. Prethodne entitete studentska služba ima pravo da dodaje, menja, "
-									+ "briše... Referent dodaje entitet selektovanjem odgovarajuće tabele (npr. ako "
-									+ "želi da doda predmet, prethodno mora biti selektovan tab predmeta). Entitet se može "
-									+ "dodati iz stavke glavnog menija \"New\", pritiskom dugmeta toolbar-a "
-									+ "ili upotrebom odgovarajućih mnemonika i akceleratora. Pri dodavanju entiteta "
-									+ "svaki unos ima proveru da li je uneta vrednost moguća. Nakon provere entitet "
-									+ "se dodaje u tabelu, ona se ažurira i on postaje vidljiv korisniku. Ukoliko "
-									+ "referent odustane od dodavanja entiteta, to može učiniti pritiskom na dugme \"Odustani\".\n\n"
-
+		koriscenje.setText("   Aplikacija simulira rad studentske službe. U centralnom delu se nalaze tabovi sa tabelama studenata, profesora i predmeta.\r\n"
+				+ "   Tabele se mogu sortirati pritiskom na zaglavlje kolone, ili pak pretražiti unosom teksta u searchbox. Odredjene akcije mogu se pokrenuti izborom stavke iz menija, ili klikom na dugme iz toolbara, kao i sledećim prečicama:\r\n"
+				+ "\r\n"
 									+ "ALT+F - otvara File stavku menija\n"
 									+ "ALT+E - otvara Edit stavku menija\n"
 									+ "ALT+H - otvara Help stavku menija\n"
@@ -66,8 +59,20 @@ public class HelpDialog extends JDialog{
 									+ "CTRL+T - prečica za izmenu entiteta iz sistema\n"
 									+ "CTRL+D - prečica za brisanje postojećeg entiteta iz sistema\n"
 									+ "CTRL+B - prečica za otvaranje submenija za pomoć o radu aplikacije\n"
-									+ "CTRL+A - prečica za otvaranje submenija za opis autora\n");
+									+ "CTRL+A - prečica za otvaranje submenija za opis autora\n\n"
+
+									+ "Dodavanje entiteta:\n"
+									+ "Odabirom željenog taba i odabirom opcije New, otvara sa dijalog za dodavanje entiteta. Nakon što su svi podaci ispravno uneti, entitet se može dodati u bazu pritiskom na dugme potvrdi, ili odbaciti unete podatke pritiskom na dugme odbaci.\n\n"
+									+ "Izmena entiteta:\n"
+									+ "Nakon što je selektovan entitet za izmenu, odabirom opcije Edit, otvara se dijalog za izmenu informacija o entitetu. Nakon što su izmene ispravno unete, promene se mogu sačuvati ili odbaciti.\n\n"
+									+ "Brisanje entiteta:\n"
+									+ "Pored dodavanja i izmene, entitet se može i u potpunosti obrisati iz baze. Klikom na odgovarajuće dugme, on se briše, osim u bazi, i kod profesora i studenata koji su taj predmet predavali ili slušali.\n\n"
+									+ "Rad sa entitetima:\n"
+									+ "-Referent za selektovanog studenta, u dijalogu izmene, može pristupiti i njegovim položenim i nepoloženim predmetima. Svakom položenom predmetu ocena se moze poništiti ukoliko student to želi, nakon čega se taj predmet ubacuje u listu nepoloženih predmeta i pritom se njegov prosek i broj ESPB bodova redukuje. Ukoliko je pak neki student položio predmet koji sluša, referent može izvršiti polaganje tog predmeta datom studentu.\n"
+									+ "-Ukoliko profesor prestane da predaje neki predmet ili pak počne, tu promenu referent moze uneti u bazu i selektovanom profesoru ukloniti/dodati dati predmet.\n"
+									+ "-U tabu izmene predmeta, svakom predmetu može se dodeliti ili ukloniti profesor iz baze.\n");
 		koriscenje.setLineWrap(true);
+		koriscenje.setWrapStyleWord(true);
 		koriscenje.setFont(f1);	
 		koriscenje.setOpaque(true);
 		koriscenje.setEditable(false);

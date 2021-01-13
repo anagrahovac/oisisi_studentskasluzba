@@ -30,92 +30,6 @@ public class BazaStudenata {
 		columnNamesPolozeni.add("ESPB");
 		columnNamesPolozeni.add("Ocena");
 		columnNamesPolozeni.add("Datum");
-		
-		//obrisati
-		//this.dodajStudenta();
-	}
-	
-	private ArrayList<Ocena> initPredmeteMitar() {
-		ArrayList<Ocena> ocene = new ArrayList<Ocena>();
- 
-		Ocena o1 = new Ocena();
-		o1.setPredmet(new Predmet("E2212", "Matematička analiza 1", Semestar.ZIMSKI, 1, null, 9 ));
-		o1.setOcena(9);
-		o1.setDatumPolaganjaispita(LocalDate.of(2017, 1, 13));
-		ocene.add(o1);
-		Ocena o2 = new Ocena();
-		o2.setPredmet(new Predmet("E2214", "Objektno programiranje",Semestar.ZIMSKI, 2, null, 4));
-		o2.setOcena(10);
-		o2.setDatumPolaganjaispita(LocalDate.of(2021, 1, 3));
-		ocene.add(o2);
-		Ocena o3 = new Ocena();
-		o3.setPredmet(new Predmet("E2216", "Sistemi automatskog upravljanja",Semestar.LETNJI, 3, null, 7));
-		o3.setOcena(10);
-		o3.setDatumPolaganjaispita(LocalDate.of(2019, 8, 25));
-		ocene.add(o3);
- 
-		return ocene;
-	}
- 
-	//----
-	private ArrayList<Ocena> initPredmeteDusan() {
-		ArrayList<Ocena> ocene = new ArrayList<Ocena>();
- 
-		Ocena o2 = new Ocena();
-		o2.setPredmet(new Predmet("E2214", "Objektno programiranje",Semestar.ZIMSKI, 2, null, 9));
-		o2.setOcena(8);
-		o2.setDatumPolaganjaispita(LocalDate.of(2018, 6, 10));
-		ocene.add(o2);
-		Ocena o1 = new Ocena();
-		o1.setPredmet(new Predmet("E2218", "Operativni sistemi", Semestar.LETNJI, 4, null, 5));
-		o1.setOcena(6);
-		o1.setDatumPolaganjaispita(LocalDate.of(2020, 5, 16));
-		ocene.add(o1);
-		Ocena o3 = new Ocena();
-		o3.setPredmet(new Predmet("E2216", "Sistemi automatskog upravljanja", Semestar.LETNJI, 3, null, 7));
-		o3.setOcena(10);
-		o3.setDatumPolaganjaispita(LocalDate.of(2021, 2, 2));
-		ocene.add(o3);
- 
-		return ocene;
-	}
- 
-	//------
-	private ArrayList<Ocena> initPredmeteAndjela() {
-		ArrayList<Ocena> ocene = new ArrayList<Ocena>();
- 
-		Ocena o3 = new Ocena();
-		o3.setPredmet(new Predmet("E2216", "Sistemi automatskog upravljanja", Semestar.LETNJI, 1, null, 3));
-		o3.setOcena(10);
-		o3.setDatumPolaganjaispita(LocalDate.of(2021, 1, 1));
-		ocene.add(o3);
- 
-		return ocene;
-	}
-	
-	//obrisati
-	public void dodajStudenta() {
-		
-		Student s = new Student("Mirić", "Mitar", LocalDate.of(2017, 1, 13), "Šafarikova 23", "0600000000", "mitarmiric@uns.ac.rs", "ra-230-2018", 2018, 3, Status.B, 10.00);	
-		Student s1 = new Student("Obradović", "Dušan", LocalDate.of(1995, 6, 15), "Bulevar Oslobodjenja 67", "0610000000", "obradovicdusan@uns.ac.rs","sw-5-2014", 2014, 4, Status.S, 8.5);
-		Student s2 = new Student("Mitrović","Anđela", LocalDate.of(2000, 7, 22), "Mostarska 50", "0620000000", "mitrovicandjela@uns.ac.rs", "ra-35-2019", 2019, 2, Status.B , 8.95);
-		Student s3 = new Student("Kostovski", "Miloš", LocalDate.of(1998, 5, 11), "Mladosti 39", "0630000000", "kostovskimilos@uns.ac.rs", "in-56-2017", 2017, 4, Status.S, 7.25);
-		Student s4 = new Student("Antić", "Isidora", LocalDate.of(2001, 12, 14), "Radnička 55", "0640000000", "anticisidora@uns.ac.rs", "mh-23-2020", 2020, 1, Status.B, 9.45);
-		s.setSpisakPolozenihIspita(initPredmeteMitar());
-		s1.setSpisakPolozenihIspita(initPredmeteDusan());
-		s2.setSpisakPolozenihIspita(initPredmeteAndjela());
-		s.getSpisakNepolozenihIspita().add(BazaPredmeta.getInstance().getPredmeti().get(0));
-		s.getSpisakNepolozenihIspita().add(BazaPredmeta.getInstance().getPredmeti().get(3));
-		s1.getSpisakNepolozenihIspita().add(BazaPredmeta.getInstance().getPredmeti().get(1));
-		s2.getSpisakNepolozenihIspita().add(BazaPredmeta.getInstance().getPredmeti().get(3));
-		s2.getSpisakNepolozenihIspita().add(BazaPredmeta.getInstance().getPredmeti().get(2));
-		s2.getSpisakNepolozenihIspita().add(BazaPredmeta.getInstance().getPredmeti().get(4));
-		this.studenti.add(s);
-		this.studenti.add(s1);
-		this.studenti.add(s2);
-		this.studenti.add(s3);
-		this.studenti.add(s4);
-		
 	}
 
 	public static BazaStudenata getInstance() {
@@ -161,24 +75,24 @@ public class BazaStudenata {
 		return this.studenti.size();
 	}
 	
-	public String getValueAt(int row, int column) {
+	public Object getValueAt(int row, int column) {
 		// TODO Auto-generated method stub
 		Student student = this.studenti.get(row);
 		String retVal = null;
 		
 		switch(column) {
 		case 0:
-			retVal = student.getBrojIndexa();
-			break;
+			return student.getBrojIndexa();
+			//break;
 		case 1:
-			retVal = student.getImeStudenta();
-			break;
+			return student.getImeStudenta();
+			//break;
 		case 2:
-			retVal = student.getPrezimeStudenta();
-			break;
+			return student.getPrezimeStudenta();
+			//break;
 		case 3:
-			retVal = Integer.toString(student.getTrenutnaGodinaStudija());
-			break;
+			return student.getTrenutnaGodinaStudija();
+			//break;
 		case 4:
 			{
 			if (student.getStatus() == Status.B)
@@ -188,13 +102,14 @@ public class BazaStudenata {
 			return "";
 			}
 		case 5:
-			retVal = String.format("%.2f", student.getProsecnaocena());
-			break;
+			return student.getProsecnaocena();
+			//String.format("%.2f", student.getProsecnaocena());
+			//break;
 		default:
 			throw new IllegalArgumentException("Invalid column index");
 		}
 		
-		return retVal;
+		//return retVal;
 	}
 	
 	public void dodajStudentaUBazu(String prezime, String ime, LocalDate datumRodjenja, String adresaStanovanja, String kontaktTelefon,

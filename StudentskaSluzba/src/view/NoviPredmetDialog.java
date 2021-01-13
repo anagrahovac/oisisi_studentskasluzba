@@ -252,17 +252,6 @@ public class NoviPredmetDialog extends JDialog{
 			this.pGodinaStudija = pGodinaStudija;
 		}
 
-
-		//public RowPanel getpProfesor() {
-		//	return pProfesor;
-		//}
-
-
-		//public void setpProfesor(RowPanel pProfesor) {
-		//	this.pProfesor = pProfesor;
-		//}
-
-
 		public RowPanel getpBrojESPB() {
 			return pBrojESPB;
 		}

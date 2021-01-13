@@ -124,15 +124,6 @@ public class ProfesorController {
 	
 	public void obrisiProfesora(String id) {
 		int idd = BazaProfesora.getInstance().pronadjiProfesora(id);
-			
-		//for(int i = 0; i < BazaProfesora.getInstance().getProfesori().size(); i++) {
-		//	if(BazaProfesora.getInstance().getProfesori().get(i).getBrojLicneKarte().equals(id)) {
-		//		ArrayList<Predmet> predaje = BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta();
-		//		for(int j = 0; i < predaje.size(); j++) {
-		//			predaje.get(j).setPredmetniProfesor(null);
-		//		}
-		//	}
-		//}
 		
 		for(int i = 0; i < BazaProfesora.getInstance().getProfesori().size(); i++) {
 			if(i == idd) {

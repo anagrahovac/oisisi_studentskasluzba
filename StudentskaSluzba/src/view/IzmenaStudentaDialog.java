@@ -94,7 +94,6 @@ public class IzmenaStudentaDialog extends JDialog{
 		informacije.setBackground(c);
 		informacije.setLayout(new BoxLayout(informacije, BoxLayout.Y_AXIS));
 
-		//Student s = new Student();
 		s = BazaStudenata.getInstance().studentDatogIndeksa(stariIndeks);
 		
 		pIme = new RowPanel("Ime*");

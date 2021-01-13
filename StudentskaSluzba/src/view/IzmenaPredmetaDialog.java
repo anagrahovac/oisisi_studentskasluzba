@@ -162,7 +162,6 @@ public class IzmenaPredmetaDialog extends JDialog{
 	    
 		
 	    JPanel buttons = new JPanel();
-        //buttons.setPreferredSize(new Dimension(70,70));
         buttons.setBackground(c);
         buttons.setLayout(new FlowLayout(FlowLayout.CENTER));
         buttons.setPreferredSize(new Dimension(50, 50));
