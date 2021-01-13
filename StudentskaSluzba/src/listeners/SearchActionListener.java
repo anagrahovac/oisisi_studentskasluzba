@@ -149,7 +149,7 @@ public class SearchActionListener implements ActionListener {
 	}
 	
 	private boolean sadrziIndeks(int d, String i) {
-		if(d == 2)
+		if(d <= 2)
 			return true;
 		else
 			return i.contains(trazeniIndeks);
